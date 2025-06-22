@@ -16,7 +16,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
   pointer-events: none;
@@ -32,13 +32,15 @@
   height: 70px;
   position: relative;
   z-index: 2;
+  /* Added min-width to prevent container from collapsing too much */
+  min-width: 320px;
 }
 
 /* Brand Section */
 .nav-brand {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevents brand from shrinking too much */
 }
 
 .brand-link {
@@ -95,21 +97,35 @@
   line-height: 1;
 }
 
-/* Desktop Navigation Content */
+/* Desktop Navigation Content - Crucial Adjustments */
 .nav-content {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  flex: 1;
+  gap: 1.5rem; /* Slightly reduced gap for more space */
+  flex: 1; /* Allows it to take available space */
   justify-content: space-between;
   margin-left: 2rem;
+  min-width: 0; /* Allows this flex item to shrink below its content size */
+  /* If items still don't fit, consider allowing wrapping or horizontal scroll */
+  /* flex-wrap: wrap; */ /* Uncomment this if you want items to wrap to next line if space is limited */
 }
 
-/* Primary Navigation */
+/* Primary Navigation - Ensure horizontal layout and proper overflow */
 .nav-primary {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.5rem; /* Spacing between individual menu items */
+  overflow-x: auto; /* Allows horizontal scrolling if items exceed container width */
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  /* Hide scrollbar for Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* flex-grow: 1; */ /* Optional: allows primary nav to grow and push user nav to right */
+  flex-shrink: 1; /* Allows it to shrink */
+  min-width: 0; /* Important for flex items to shrink correctly */
+  white-space: nowrap; /* Ensures items stay on one line, combined with overflow-x: auto */
 }
 
 .nav-item {
@@ -124,7 +140,7 @@
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
-  white-space: nowrap;
+  flex-shrink: 0; /* Prevents individual items from shrinking too much */
 }
 
 .nav-item::before {
@@ -169,116 +185,12 @@
   font-weight: 600;
 }
 
-/* Dropdown */
-.dropdown-container {
-  position: relative;
-}
-
-.dropdown-trigger {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  background: transparent;
-  border: none;
-  color: #cbd5e1;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.dropdown-trigger:hover,
-.dropdown-active {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown-icon {
-  font-size: 0.75rem;
-  transition: transform 0.3s ease;
-}
-
-.dropdown-icon.rotated {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(20px);
-  min-width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 100;
-}
-
-.dropdown-open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-header {
-  padding: 0.75rem 1rem 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.75rem;
-  color: #94a3b8;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  color: #cbd5e1;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border-radius: 0;
-}
-
-.dropdown-item:hover {
-  background: rgba(59, 130, 246, 0.1);
-  color: #ffffff;
-  transform: translateX(4px);
-}
-
-.dropdown-item:first-of-type {
-  border-radius: 0;
-}
-
-.dropdown-item:last-of-type {
-  border-radius: 0 0 12px 12px;
-}
-
-.dropdown-icon {
-  font-size: 1rem;
-  color: #64748b;
-}
-
-.dropdown-item:hover .dropdown-icon {
-  color: #3b82f6;
-}
-
 /* User Section */
 .nav-user {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0; /* Prevents user section from shrinking excessively */
 }
 
 .user-item {
@@ -294,6 +206,7 @@
   transition: all 0.3s ease;
   white-space: nowrap;
   border: 1px solid transparent;
+  flex-shrink: 0; /* Prevents individual user items from shrinking */
 }
 
 .user-item:hover {
@@ -333,6 +246,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .sidebar-toggle-btn,
@@ -547,30 +461,29 @@
   .nav-container {
     padding: 0 1.5rem;
   }
-  
+
   .nav-content {
-    gap: 1.5rem;
+    gap: 1rem; /* Further reduced gap for smaller screens */
     margin-left: 1.5rem;
   }
-  
+
   .nav-primary {
     gap: 0.25rem;
   }
-  
+
   .nav-user {
     gap: 0.25rem;
   }
 }
 
 @media (max-width: 1024px) {
-  .nav-content {
-    display: none;
-  }
-  
+  /* At 1024px and below, the desktop navigation is hidden by !isMobile condition in React */
+  /* and the mobile menu takes over */
+
   .nav-container {
     height: 65px;
   }
-  
+
   .mobile-menu {
     width: 100%;
     max-width: 320px;
@@ -582,24 +495,24 @@
     padding: 0 1rem;
     height: 60px;
   }
-  
+
   .brand-title {
     font-size: 1.25rem;
   }
-  
+
   .brand-subtitle {
     font-size: 0.6875rem;
   }
-  
+
   .logo-img {
     width: 40px;
     height: 40px;
   }
-  
+
   .mobile-menu {
     width: 100%;
   }
-  
+
   .mobile-header {
     padding: 1.25rem;
   }
@@ -609,11 +522,11 @@
   .nav-container {
     padding: 0 0.75rem;
   }
-  
+
   .brand-text {
     display: none;
   }
-  
+
   .mobile-content {
     padding: 0.75rem;
   }
