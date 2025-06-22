@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {
-    FiSearch,
-    FiFilter,
-    FiDownload,
-    FiEye,
-    FiCalendar,
-    FiUser,
+import { 
+    FiSearch, 
+    FiFilter, 
+    FiDownload, 
+    FiEye, 
+    FiCalendar, 
+    FiUser, 
     FiBook,
     FiChevronLeft,
     FiChevronRight,
@@ -15,10 +15,9 @@ import {
     FiTrendingUp,
     FiAward,
     FiGlobe,
-    FiAlertCircle,
-    FiXCircle // Added for clear filter button
+    FiAlertCircle
 } from 'react-icons/fi';
-import './JournalList.css'; // This will contain our new styles
+import './JournalList.css';
 
 // Import the API service and utilities
 import api from '../services/api';
@@ -92,9 +91,9 @@ const JournalList = () => {
 
             if (err.response) {
                 errorMsg = err.response.data?.message ||
-                    (err.response.status === 401 ? 'Unable to fetch all journals. Some features may require login.' :
-                        err.response.status === 404 ? 'Journal endpoint not found' :
-                            'Server error occurred');
+                         (err.response.status === 401 ? 'Unable to fetch all journals. Some features may require login.' :
+                         err.response.status === 404 ? 'Journal endpoint not found' :
+                         'Server error occurred');
             } else if (err.request) {
                 errorMsg = 'Network error - unable to reach server';
             } else {
@@ -215,7 +214,7 @@ const JournalList = () => {
     const renderPaginationButtons = () => {
         const buttons = [];
         const { currentPage, totalPages } = pagination;
-
+        
         // Previous button
         buttons.push(
             <button
@@ -231,8 +230,8 @@ const JournalList = () => {
         // Page numbers
         for (let i = 1; i <= totalPages; i++) {
             if (
-                i === 1 ||
-                i === totalPages ||
+                i === 1 || 
+                i === totalPages || 
                 (i >= currentPage - 2 && i <= currentPage + 2)
             ) {
                 buttons.push(
@@ -245,7 +244,7 @@ const JournalList = () => {
                     </button>
                 );
             } else if (
-                i === currentPage - 3 ||
+                i === currentPage - 3 || 
                 i === currentPage + 3
             ) {
                 buttons.push(
@@ -287,7 +286,7 @@ const JournalList = () => {
         if (!authors || !Array.isArray(authors) || authors.length === 0) {
             return 'Authors not specified';
         }
-
+        
         return authors
             .map(author => author.name || author)
             .filter(Boolean)
@@ -318,8 +317,8 @@ const JournalList = () => {
                 <div className="error-state">
                     <FiAlertCircle className="error-icon" />
                     <p className="error-message">{error}</p>
-                    <button
-                        className="btn-primary" // Changed class for better styling
+                    <button 
+                        className="btn-reset-search"
                         onClick={() => fetchJournals()}
                     >
                         Try Again
@@ -338,7 +337,7 @@ const JournalList = () => {
                     <p>
                         Explore impactful research, case studies, and insights from the Nigerian Journal of Business and Entrepreneurship Education (NIJOBED). Discover innovative approaches and evidence-based practices shaping the future of business and entrepreneurship education in Nigeria and beyond.
                     </p>
-
+                    
                     <div className="hero-stats">
                         <div className="stat-item">
                             <span className="stat-number">
@@ -373,78 +372,79 @@ const JournalList = () => {
             </div>
 
             {/* Search and Filter Panel */}
-            <div className="search-filter-section">
-                <div className="search-bar-group">
-                    <FiSearch className="search-icon" />
-                    <input
-                        type="text"
-                        placeholder="Search by title, abstract, author..."
-                        value={searchTerm}
-                        onChange={handleSearch}
-                        className="search-input"
-                    />
-                    <button className="search-button">Search</button>
+            <div className="search-control-panel">
+                <div className="search-bar-wrapper">
+                    <div className="search-input-container">
+                        <FiSearch className="search-icon-left" />
+                        <input
+                            type="text"
+                            placeholder="Search by title, abstract, author, or keywords..."
+                            value={searchTerm}
+                            onChange={handleSearch}
+                            className="main-search-input"
+                        />
+                    </div>
+                    <button className="search-action-btn">
+                        <FiSearch />
+                        Search
+                    </button>
                 </div>
 
-                <div className="filter-controls">
+                <div className="filter-toggle">
                     <button
-                        className="filter-toggle-button"
+                        className="filter-button"
                         onClick={() => setShowFilters(!showFilters)}
                     >
-                        <FiFilter /> {showFilters ? 'Hide Filters' : 'Show Filters'}
+                        <FiFilter /> Filter Articles
                     </button>
-                    {Object.values(filters).some(f => f !== 'all' && f !== 'any' && f !== '') || searchTerm ? (
-                        <button className="clear-filters-button" onClick={resetFilters}>
-                            <FiXCircle /> Clear Filters
-                        </button>
-                    ) : null}
                 </div>
 
                 {showFilters && (
-                    <div className="filter-dropdown-panel">
-                        <div className="filter-group">
-                            <label htmlFor="journal-select"><FiBook /> Journal</label>
-                            <select
-                                id="journal-select"
-                                name="journal"
-                                value={filters.journal}
-                                onChange={handleFilterChange}
-                            >
-                                <option value="all">All Journals</option>
-                                {journalNames.map(name => (
-                                    <option key={name} value={name}>{name}</option>
-                                ))}
-                            </select>
-                        </div>
+                    <div className="filter-panel">
+                        <h3>Filter Articles</h3>
+                        <div className="filter-options">
+                            <div className="filter-group">
+                                <label><FiBook /> Journal</label>
+                                <select
+                                    name="journal"
+                                    value={filters.journal}
+                                    onChange={handleFilterChange}
+                                >
+                                    <option value="all">All Journals</option>
+                                    {journalNames.map(name => (
+                                        <option key={name} value={name}>{name}</option>
+                                    ))}
+                                </select>
+                            </div>
 
-                        <div className="filter-group">
-                            <label htmlFor="year-select"><FiCalendar /> Publication Year</label>
-                            <select
-                                id="year-select"
-                                name="year"
-                                value={filters.year}
-                                onChange={handleFilterChange}
-                            >
-                                <option value="any">Any Year</option>
-                                {publicationYears.map(year => (
-                                    <option key={year} value={year}>{year}</option>
-                                ))}
-                            </select>
-                        </div>
+                            <div className="filter-group">
+                                <label><FiCalendar /> Publication Year</label>
+                                <select
+                                    name="year"
+                                    value={filters.year}
+                                    onChange={handleFilterChange}
+                                >
+                                    <option value="any">Any Year</option>
+                                    {publicationYears.map(year => (
+                                        <option key={year} value={year}>{year}</option>
+                                    ))}
+                                </select>
+                            </div>
 
-                        <div className="filter-group">
-                            <label htmlFor="author-input"><FiUser /> Author Name</label>
-                            <input
-                                id="author-input"
-                                type="text"
-                                name="author"
-                                placeholder="e.g., Dr. Smith"
-                                value={filters.author}
-                                onChange={handleFilterChange}
-                            />
+                            <div className="filter-group">
+                                <label><FiUser /> Author Name</label>
+                                <input
+                                    type="text"
+                                    name="author"
+                                    placeholder="e.g., Dr. Smith"
+                                    value={filters.author}
+                                    onChange={handleFilterChange}
+                                />
+                            </div>
                         </div>
-                        <div className="filter-actions-dropdown">
-                            <button className="btn-primary" onClick={applyFilters}>Apply Filters</button>
+                        <div className="filter-actions">
+                            <button className="apply-filters" onClick={applyFilters}>Apply Filters</button>
+                            <button className="reset-filters" onClick={resetFilters}>Reset</button>
                         </div>
                     </div>
                 )}
@@ -456,75 +456,99 @@ const JournalList = () => {
                     <FiSearch className="no-results-icon" />
                     <h3 className="no-results-title">No Research Papers Found</h3>
                     <p className="no-results-message">
-                        We couldn't find any papers matching your search criteria.
+                        We couldn't find any papers matching your search criteria. 
                         Try adjusting your filters or search terms.
                     </p>
-                    <button className="btn-primary" onClick={resetFilters}>
+                    <button className="btn-reset-search" onClick={resetFilters}>
                         Clear All Filters
                     </button>
                 </div>
             ) : (
                 <>
                     {/* Journals Display */}
-                    <div className="journals-display-section">
-                        <div className="section-header">
-                            <h2 className="section-title">Latest Research Publications</h2>
+                    <div className="journals-horizontal-section">
+                        <div className="section-title">
+                            <h2>Latest Research Publications</h2>
                             <p className="section-subtitle">
                                 Showing {filteredJournals.length} of {pagination.totalJournals} research papers
                             </p>
                         </div>
 
-                        <div className="journal-grid">
+                        <div className="journals-horizontal-grid">
                             {filteredJournals.map((journal, index) => (
-                                <div key={journal._id || index} className="journal-card">
-                                    <div className="journal-card-header">
-                                        <Link to={`/journals/${journal._id}`} className="journal-card-title-link">
-                                            <h3 className="journal-card-title">
-                                                {journal.title || 'Untitled Research Paper'}
-                                            </h3>
-                                        </Link>
-                                    </div>
-
-                                    <div className="journal-card-meta">
-                                        <span className="meta-item"><FiCalendar /> {formatDate(journal.publicationDate)}</span>
-                                        <span className="meta-item"><FiBook /> {journal.journalName || 'IJIRSTEM'}</span>
-                                        {journal.volume && <span className="meta-item">Vol. {journal.volume}</span>}
-                                    </div>
-
-                                    {journal.abstract && (
-                                        <p className="journal-card-abstract">
-                                            {journal.abstract.substring(0, 150)}...
-                                        </p>
-                                    )}
-
-                                    <div className="journal-card-authors">
-                                        <FiUser /> <strong>Authors:</strong> {formatAuthors(journal.authors)}
-                                    </div>
-
-                                    {journal.keywords && journal.keywords.length > 0 && (
-                                        <div className="journal-card-keywords">
-                                            {journal.keywords.slice(0, 3).map((keyword, idx) => (
-                                                <span key={idx} className="keyword-tag">
-                                                    {keyword}
-                                                </span>
-                                            ))}
-                                            {journal.keywords.length > 3 && <span className="keyword-tag">+{journal.keywords.length - 3} more</span>}
+                                <div key={journal._id || index} className="journal-horizontal-card">
+                                    <div className="journal-card-content">
+                                        <div className="journal-title-section">
+                                            <Link 
+                                                to={`/journals/${journal._id}`} 
+                                                className="journal-title-link-new"
+                                            >
+                                                <h3 className="journal-title-new">
+                                                    {journal.title || 'Untitled Research Paper'}
+                                                </h3>
+                                            </Link>
                                         </div>
-                                    )}
 
-                                    <div className="journal-card-actions">
-                                        <Link
-                                            to={`/journals/${journal._id}`}
-                                            className="action-button view-button"
-                                        >
-                                            <FiEye /> View Details
-                                        </Link>
-                                        <button
-                                            className="action-button download-button"
-                                            onClick={() => handleDownload(journal)}
-                                        >
-                                            <FiDownload /> Download
-                                        </button>
+                                        <div className="journal-metadata">
+                                            <div className="meta-item">
+                                                <FiCalendar />
+                                                <span>{formatDate(journal.publicationDate)}</span>
+                                            </div>
+                                            <div className="meta-item">
+                                                <FiBook />
+                                                <span>{journal.journalName || 'IJIRSTEM'}</span>
+                                            </div>
+                                            {journal.volume && (
+                                                <div className="meta-item">
+                                                    <span>Vol. {journal.volume}</span>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {journal.abstract && (
+                                            <div className="journal-abstract-new">
+                                                {journal.abstract}
+                                            </div>
+                                        )}
+
+                                        <div className="journal-authors-new">
+                                            <div className="authors-label">
+                                                <FiUser />
+                                                Authors
+                                            </div>
+                                            <div className="authors-list">
+                                                {formatAuthors(journal.authors)}
+                                            </div>
+                                        </div>
+
+                                        {journal.keywords && journal.keywords.length > 0 && (
+                                            <div className="journal-keywords-new">
+                                                <div className="keywords-container">
+                                                    {journal.keywords.slice(0, 5).map((keyword, idx) => (
+                                                        <span key={idx} className="keyword-chip">
+                                                            {keyword}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <div className="journal-actions-new">
+                                            <Link 
+                                                to={`/journals/${journal._id}`}
+                                                className="action-btn btn-view"
+                                            >
+                                                <FiEye />
+                                                View Details
+                                            </Link>
+                                            <button 
+                                                className="action-btn btn-download"
+                                                onClick={() => handleDownload(journal)}
+                                            >
+                                                <FiDownload />
+                                                Download
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -539,7 +563,8 @@ const JournalList = () => {
                                     {renderPaginationButtons()}
                                 </div>
                                 <div className="pagination-info">
-                                    Page {pagination.currentPage} of {pagination.totalPages} ({pagination.totalJournals} total papers)
+                                    Showing page {pagination.currentPage} of {pagination.totalPages} 
+                                    ({pagination.totalJournals} total papers)
                                 </div>
                             </div>
                         </div>
