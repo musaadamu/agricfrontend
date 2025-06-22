@@ -1,50 +1,41 @@
-/* NJESTEME Theme CSS */
+/* NIJOBED Theme CSS */
 
-:root {  /* Primary Colors - Rich Emerald */
-  --primary-50: #ecfdf5;
-  --primary-100: #d1fae5;
-  --primary-200: #a7f3d0;
-  --primary-300: #6ee7b7;
-  --primary-400: #34d399;
-  --primary-500: #059669;  /* Our main emerald color */
-  --primary-600: #047857;
-  --primary-700: #065f46;
-  --primary-800: #064e3b;
-  --primary-900: #022c22;
-  /* Secondary Colors - Warm Gray */
-  --secondary-50: #fafaf9;
-  --secondary-100: #f5f5f4;
-  --secondary-200: #e7e5e4;
-  --secondary-300: #d6d3d1;
-  --secondary-400: #a8a29e;
-  --secondary-500: #8B8178;  /* Our main warm gray */
-  --secondary-600: #79716b;
-  --secondary-700: #6B615A;  /* Darker warm gray */
-  --secondary-800: #57534e;
-  --secondary-900: #44403c;
-  /* Accent Colors - Muted Gold */
-  --accent-50: #fbf7ef;
-  --accent-100: #f5edde;
-  --accent-200: #e9d5b9;
-  --accent-300: #ddc094;
-  --accent-400: #d0aa6f;
-  --accent-500: #c49455;  /* Our muted gold */
-  --accent-600: #b37c3d;
-  --accent-700: #956834;
-  --accent-800: #7d572c;
-  --accent-900: #654624;
+:root {
+  /* Primary Colors - Deep Blue */
+  --primary-50: #f0f4fa;
+  --primary-100: #d9e2f3;
+  --primary-200: #b0c4e6;
+  --primary-300: #7a9fd6;
+  --primary-400: #4173b3;
+  --primary-500: #1a3764;  /* Main deep blue */
+  --primary-600: #16305a;
+  --primary-700: #11274a;
+  --primary-800: #0c1c36;
+  --primary-900: #081225;
 
-  /* Neutral Colors */
-  --neutral-50: #f8fafc;
-  --neutral-100: #f1f5f9;
-  --neutral-200: #e2e8f0;
-  --neutral-300: #cbd5e1;
-  --neutral-400: #94a3b8;
-  --neutral-500: #64748b;
-  --neutral-600: #475569;
-  --neutral-700: #334155;
-  --neutral-800: #1e293b;
-  --neutral-900: #0f172a;
+  /* Secondary Colors - Gold */
+  --secondary-50: #fffbea;
+  --secondary-100: #fdf3c4;
+  --secondary-200: #fae29c;
+  --secondary-300: #f8d06a;
+  --secondary-400: #f6c342;
+  --secondary-500: #e6a800;  /* Main gold */
+  --secondary-600: #c48c00;
+  --secondary-700: #a37000;
+  --secondary-800: #7c5400;
+  --secondary-900: #5a3d00;
+
+  /* Accent Colors - Neutral Gray */
+  --accent-50: #f8fafc;
+  --accent-100: #f1f5f9;
+  --accent-200: #e2e8f0;
+  --accent-300: #cbd5e1;
+  --accent-400: #94a3b8;
+  --accent-500: #64748b;
+  --accent-600: #475569;
+  --accent-700: #334155;
+  --accent-800: #1e293b;
+  --accent-900: #0f172a;
 
   /* Font Families */
   --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

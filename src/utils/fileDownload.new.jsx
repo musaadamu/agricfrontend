@@ -37,7 +37,7 @@ export const downloadFile = async (url, filename, fileType) => {
             headers['Cache-Control'] = 'no-cache';
             headers['Pragma'] = 'no-cache';
         }        // For Render backend, ensure we're not sending credentials
-        const isRenderBackend = url.includes('coels-backend.onrender.com');
+        const isRenderBackend = url.includes('schoolofbusinessbackend.onrender.com');
         const isDirectFileEndpoint = url.includes('/direct-file/');
 
         console.log('Request headers:', headers);
@@ -168,7 +168,7 @@ export const downloadJournalFile = async (baseUrl, journalId, fileType, title) =
 
     // Clean the base URL to get the backend root
     const backendRoot = baseUrl.replace('/api', '');
-    const backendUrl = isProduction ? 'https://coels-backend.onrender.com' : 'http://localhost:5000';
+    const backendUrl = isProduction ? 'https://schoolofbusinessbackend.onrender.com' : 'http://localhost:5000';
 
     // Determine if we're running locally or accessing the deployed backend
     const isLocalBackend = window.location.hostname === 'localhost';
@@ -187,9 +187,9 @@ export const downloadJournalFile = async (baseUrl, journalId, fileType, title) =
         // For production (Render backend)
         urlsToTry.push(
             // Direct file endpoint first (more reliable on Render)
-            `https://coels-backend.onrender.com/direct-file/journals/${journalId}.${fileType}`,
+            `https://schoolofbusinessbackend.onrender.com/direct-file/journals/${journalId}.${fileType}`,
             // Then try the API endpoint
-            `https://coels-backend.onrender.com/api/journals/${journalId}/download/${fileType}`
+            `https://schoolofbusinessbackend.onrender.com/api/journals/${journalId}/download/${fileType}`
         );
     } else {
         // For local development

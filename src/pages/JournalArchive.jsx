@@ -175,7 +175,7 @@ const JournalArchive = () => {
             }
 
             // Fallback to direct URL approach
-            const baseUrl = api.defaults.baseURL || 'https://coels-backend.onrender.com/api';
+            const baseUrl = api.defaults.baseURL || 'https://schoolofbusinessbackend.onrender.com/api';
             const downloadUrl = `${baseUrl}/journals/${id}/direct-download/${fileType}`;
 
             console.log('Using direct download URL:', downloadUrl);

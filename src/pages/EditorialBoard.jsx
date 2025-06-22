@@ -1,57 +1,80 @@
 import React from "react";
 
 export default function EditorialBoard() {
-  const editorInChief = {
-    name: "Prof. John Sakiyo",
-    affiliation: "Department of Environmental and Life Science Education, Modibbo Adama University Yola"
-  };
-
-  const editorialMembers = [
+  const editorialBoard = [
     {
-      name: "Dr. A. M. Umar",
-      affiliation: "Energy Research Institute, Luton, UK"
+      name: "Dr. Oliver U. Ihedioha",
+      affiliation: "Federal College of Education (Tech) Potiskum",
+      role: "Editor In-chief"
     },
     {
-      name: "Dr. I. Dauda",
-      affiliation: "Department of Building Construction Technology, Federal University of Technology, Minna"
+      name: "Prof. Adamu Ibrahim",
+      affiliation: "Abubakar Tafawa Balewa University Bauchi",
+      role: "Editor"
     },
     {
-      name: "Dr. M. E. Hanafi",
-      affiliation: "College of Engineering and Petroleum, University of Bahrain, Dar Kulayb"
+      name: "As. Prof. Albdukareem Alhassan",
+      affiliation: "Federal University of Lafiya Nasarawa State",
+      role: "Editor"
     },
     {
-      name: "Dr. C. Warringtin",
-      affiliation: "Jomo Kenyatta University, Nairobi"
+      name: "Dr Umar Inuwa",
+      affiliation: "Abubakar Tafawa Balewa University Bauchi",
+      role: "Editor"
     },
     {
-      name: "Dr. H. J. Gunda",
-      affiliation: "Department of Chemistry Education, F. C.E (T) Potiskum"
+      name: "Dr Suleiman Dauda",
+      affiliation: "Federal University Gashua, Yobe State",
+      role: "Editor"
     },
     {
-      name: "Sajid P. K. S, PhD",
-      affiliation: "Department of Geography and Environmental Management, Vidyasagar University, India"
+      name: "Dr Baraya Abdulmutallib Umar",
+      affiliation: "Abubakar Tafawa Balewa University Bauchi",
+      role: "Editor"
+    },
+    {
+      name: "As. Prof. Karimu Ishola",
+      affiliation: "Federal University Gashua, Yobe State",
+      role: "Editor"
+    },
+    {
+      name: "Prof.  Ahmad Aliyu Deba",
+      affiliation: "Abubakar Tafawa Balewa University Bauchi",
+      role: "Editor"
+    },
+    {
+      name: "Dr. Mohammed Madu Yunusa",
+      affiliation: "Federal College of Education (Tech) Potiskum",
+      role: "Editor"
+    },
+    {
+      name: "Haj. Hindatu Aisha Bako",
+      affiliation: "Federal College of Education (Tech) Potiskum",
+      role: "Editor"
+    },
+    {
+      name: "Mr. Joseph Olorunmolu Oye",
+      affiliation: "Federal College of Education (Tech) Potiskum",
+      role: "Editor"
+    },
+    {
+      name: "Dr. Ahmadu Musa Maluri",
+      affiliation: "Federal College of Education (Tech) Potiskum",
+      role: "Secretary"
     }
   ];
 
-  const editorialSecretary = {
-    name: "Musah Aminu, PhD",
-    affiliation: "Department of Integrated Science, F. C. E (T) Potiskum"
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 text-primary-900">
       {/* Header Section */}
-      <div className="bg-white shadow-lg border-b border-gray-200">
+      <div className="bg-white shadow-lg border-b border-primary-100">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="text-center mb-6">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              International Journal of Innovative Research in Science, Technology and Mathematics Education
+            <h1 className="text-4xl font-bold text-primary-900 mb-2">
+              Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)
             </h1>
-            <p className="text-lg text-gray-600 mb-1">Volume 1, Number 1, January-March, 2025</p>
-            <p className="text-sm text-gray-500 font-medium">ISSN: 2636-7157</p>
-          </div>
-          <div className="border-t border-gray-200 pt-6">
-            <h2 className="text-3xl font-bold text-center text-indigo-800">Editorial Board</h2>
+            <p className="text-lg text-primary-700 mb-1">Editorial Board</p>
+            <p className="text-sm text-primary-500 font-medium">ISSN: 2636-7157</p>
           </div>
         </div>
       </div>
@@ -60,53 +83,30 @@ export default function EditorialBoard() {
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Introduction */}
         <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <p className="text-lg text-gray-700 leading-relaxed text-center">
-            The Editorial Board comprises distinguished scholars and researchers committed to maintaining 
-            the highest standards of academic excellence and integrity in science, technology, and mathematics education.
+          <p className="text-lg text-primary-800 leading-relaxed text-center">
+            The Editorial Board comprises distinguished scholars and professionals dedicated to advancing the field of business and entrepreneurship education in Nigeria and beyond.
           </p>
         </div>
 
-        {/* Editor-in-Chief */}
+        {/* Editorial Board List */}
         <div className="mb-10">
-          <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Editor-in-Chief</h3>
-          <div className="bg-white rounded-lg shadow-lg border border-indigo-200 p-8 max-w-3xl mx-auto">
-            <div className="text-center">
-              <h4 className="text-xl font-bold text-gray-900 mb-2">{editorInChief.name}</h4>
-              <p className="text-gray-600 text-lg">{editorInChief.affiliation}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Editorial Board Members */}
-        <div className="mb-10">
-          <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Editorial Board Members</h3>
+          <h3 className="text-2xl font-bold text-primary-800 mb-6 text-center">Editorial Board Members</h3>
           <div className="grid md:grid-cols-2 gap-6">
-            {editorialMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-300">
-                <h4 className="text-lg font-bold text-gray-900 mb-3">{member.name}</h4>
-                <p className="text-gray-600 leading-relaxed">{member.affiliation}</p>
+            {editorialBoard.map((member, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md border border-primary-100 p-6 hover:shadow-lg transition-shadow duration-300">
+                <h4 className="text-lg font-bold text-primary-900 mb-1">{member.name}</h4>
+                <p className="text-primary-700 mb-1">{member.affiliation}</p>
+                <span className="inline-block text-xs font-semibold text-secondary-600 bg-secondary-100 rounded px-2 py-1">{member.role}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Editorial Secretary */}
-        <div>
-          <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Editorial Secretary</h3>
-          <div className="bg-white rounded-lg shadow-lg border border-indigo-200 p-8 max-w-3xl mx-auto">
-            <div className="text-center">
-              <h4 className="text-xl font-bold text-gray-900 mb-2">{editorialSecretary.name}</h4>
-              <p className="text-gray-600 text-lg">{editorialSecretary.affiliation}</p>
-            </div>
-          </div>
-        </div>
-
         {/* Footer Note */}
         <div className="mt-12 text-center">
-          <div className="bg-indigo-50 rounded-lg p-6 border border-indigo-200">
-            <p className="text-gray-700 text-sm">
-              For editorial inquiries or manuscript submissions, please contact the Editorial Secretary 
-              or visit our journal's submission guidelines page.
+          <div className="bg-secondary-50 rounded-lg p-6 border border-secondary-200">
+            <p className="text-primary-700 text-sm">
+              For editorial inquiries or manuscript submissions, please contact the Editorial Secretary or visit our journal's submission guidelines page.
             </p>
           </div>
         </div>

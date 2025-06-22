@@ -185,7 +185,7 @@ export default function ManageJournal() {
             }
 
             // Fallback to direct URL approach
-            const baseUrl = api.defaults.baseURL || 'https://coels-backend.onrender.com/api';
+            const baseUrl = api.defaults.baseURL || 'https://schoolofbusinessbackend.onrender.com/api';
             const downloadUrl = `${baseUrl}/journals/${id}/direct-download/${fileType}`;
 
             console.log('Using direct download URL:', downloadUrl);
@@ -304,7 +304,7 @@ export default function ManageJournal() {
             }
 
             // Fallback to direct URL approach
-            const baseUrl = api.defaults.baseURL || 'https://coels-backend.onrender.com/api';
+            const baseUrl = api.defaults.baseURL || 'https://schoolofbusinessbackend.onrender.com/api';
             const downloadUrl = `${baseUrl}/submissions/${id}/direct-download/${fileType}`;
 
             console.log('Using direct download URL:', downloadUrl);
@@ -358,7 +358,7 @@ export default function ManageJournal() {
 
     return (
         <div className="journal-management-container">
-<h1 className="text-2xl font-bold mb-4 text-center text-gray-800 border-b pb-3">Manage International Journal of Innovative Research in Science Technology and Mathematics Education (IJIRSTME)</h1>
+<h1 className="text-2xl font-bold mb-4 text-center text-gray-800 border-b pb-3">Manage Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</h1>
 
             <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
                 <TabList>
@@ -504,7 +504,7 @@ export default function ManageJournal() {
                                 <div className="flex">
                                     <div className="flex-shrink-0">
                                         <svg className="h-4 w-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zm-4 4a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                         </svg>
                                     </div>
                                     <div className="ml-2">

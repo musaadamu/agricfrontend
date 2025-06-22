@@ -43,7 +43,7 @@ export const downloadFile = async (url, filename, fileType) => {
         // If the URL is relative, prepend the correct base URL
         if (url.startsWith('/')) {
             const baseUrl = isProduction() 
-                ? 'https://njestemebackend.onrender.com' 
+                ? 'https://schoolofbusinessbackend.onrender.com' 
                 : 'http://localhost:5000';
             url = `${baseUrl}${url}`;
         }
@@ -196,7 +196,7 @@ export const downloadJournalFile = async (baseUrl, journalId, fileType, title, c
     }
 
     // Clean the base URL to get the backend root
-    const backendRoot = baseUrl.replace('/api', '');    const backendUrl = isProduction ? 'https://coels-backend.onrender.com' : 'http://localhost:5000';
+    const backendRoot = baseUrl.replace('/api', '');    const backendUrl = isProduction ? 'https://schoolofbusinessbackend.onrender.com' : 'http://localhost:5000';
 
     // Determine if we're running locally or accessing the deployed backend
     const isLocalBackend = window.location.hostname === 'localhost';
@@ -215,7 +215,7 @@ export const downloadJournalFile = async (baseUrl, journalId, fileType, title, c
         // For production (Render backend)
         urlsToTry.push(
             // Primary API endpoint - this is the path that works locally
-            `https://coels-backend.onrender.com/api/journals/${journalId}/download/${fileType}`
+            `https://schoolofbusinessbackend.onrender.com/api/journals/${journalId}/download/${fileType}`
         );
     } else {
         // For local development - the known working path

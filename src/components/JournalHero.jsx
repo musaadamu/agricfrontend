@@ -75,7 +75,7 @@ export default function JournalHero() {
                     variants={itemVariants}
                     className="journal-hero__title"
                 >
-                    Explore Cutting-Edge Research from International Journal of Innovative Research in Science Technology and Mathematics Education (IJIRSTME)
+                    Explore Cutting-Edge Research from Nigerian Journal of Business and Entrepreneurship Education
                 </motion.h1>
 
                 <motion.p
