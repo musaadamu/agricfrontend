@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {
   FaHome,
   FaJournalWhills,
-  FaUpload,
+  FaUpload,        // For JournalSubmission
   FaUsers,
   FaInfoCircle,
   FaTachometerAlt,
@@ -14,17 +14,18 @@ import {
   FaArchive,
   FaBook,
   FaEnvelope,
-  FaCog,
-  FaCloudUploadAlt,
+  FaCog,            // For ManageJournal
+  FaCloudUploadAlt, // For JournalUpload (Admin)
   FaBars,
   FaTimes
 } from 'react-icons/fa';
 import "./Navigation.css";
 
-const Navigation = ({ user, toggleSidebar }) => {
+// Removed toggleSidebar prop as it's not passed from App.js
+const Navigation = ({ user }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logoPath = "/images/logo.JPG";
+  const logoPath = "/images/logo.JPG"; // Ensure this path is correct relative to public folder
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,47 +43,30 @@ const Navigation = ({ user, toggleSidebar }) => {
   }, []);
 
   // --- CONSOLIDATED AND CORRECTED MAIN NAVIGATION LINKS ---
-  // Ensuring all desired links appear exactly once and are in a logical order
+  // Based on your App.js routes
   const mainNavigationLinks = [
     { to: "/", label: "Home", icon: <FaHome /> },
     { to: "/journals", label: "Journals", icon: <FaJournalWhills /> },
-    { to: "/submission", label: "Submit", icon: <FaUpload /> },
+    { to: "/submission", label: "Submit Paper", icon: <FaUpload /> }, // User/Author submission
     { to: "/editorial-board", label: "Editorial", icon: <FaUsers /> },
-    { to: "/about", label: "About Us", icon: <FaInfoCircle /> }, // Corrected label
-    { to: "/archive", label: "Archive", icon: <FaArchive /> },   // Re-added
+    { to: "/about", label: "About Us", icon: <FaInfoCircle /> },
+    { to: "/archive", label: "Archive", icon: <FaArchive /> },
     { to: "/guide", label: "Guide", icon: <FaBook /> },
-    { to: "/contact", label: "Contact Us", icon: <FaEnvelope /> }, // Re-added and corrected label
-    // Dashboard, Manage, and Upload (Journals) were originally secondary and should be included
-    { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> }, // Ensures single instance
-    { to: "/manage-journals", label: "Manage", icon: <FaCog /> },
-    { to: "/journals/uploads", label: "Upload Papers", icon: <FaCloudUploadAlt /> } // Clarified label for submission distinction
+    { to: "/contact", label: "Contact Us", icon: <FaEnvelope /> },
+    { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> }, // Common dashboard link
+    { to: "/manage-journals", label: "Manage Journals", icon: <FaCog /> }, // Admin-specific management
+    { to: "/journals/uploads", label: "Upload Journals", icon: <FaCloudUploadAlt /> } // Admin-specific upload
   ];
 
-
-  // User navigation links (remain unchanged, as they depend on 'user' prop)
+  // User navigation links - now specifically handling login/register vs. profile/logout
+  // Dashboard is removed from here if user is logged in to avoid duplication with main nav.
   const userNavLinks = user ? [
-    { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> }, // This Dashboard might be redundant if user is logged in and it's already in mainNavLinks
     { to: "/updateprofile", label: "Profile", icon: <FaUser /> },
     { to: "/logout", label: "Logout", icon: <FaSignOutAlt /> }
   ] : [
     { to: "/register", label: "Register", icon: <FaUserPlus /> },
     { to: "/login", label: "Login", icon: <FaSignInAlt /> }
   ];
-
-  // CONSIDERATION: Handle duplicate 'Dashboard' if user is logged in
-  // If 'user' is logged in, and 'Dashboard' is in mainNavigationLinks,
-  // the 'userNavLinks' Dashboard might be a duplicate.
-  // A common pattern is to have the Dashboard link only appear in the main nav OR user menu, not both.
-  // For now, I've kept it as per your original structure, but it's something to review.
-  // If you want to remove the dashboard from userNavLinks when mainNavLinks has it,
-  // you'd filter userNavLinks. Example:
-  /*
-  const filteredUserNavLinks = user ?
-    userNavLinks.filter(link => link.to !== "/dashboard")
-    : userNavLinks;
-  // And then use filteredUserNavLinks in the render
-  */
-
 
   return (
     <nav className="modern-navigation">
@@ -121,7 +105,7 @@ const Navigation = ({ user, toggleSidebar }) => {
 
             {/* User Section */}
             <div className="nav-user">
-              {userNavLinks.map((link) => ( // Using original userNavLinks
+              {userNavLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
@@ -143,16 +127,7 @@ const Navigation = ({ user, toggleSidebar }) => {
         {/* Mobile Controls */}
         {isMobile && (
           <div className="nav-mobile-controls">
-            {toggleSidebar && (
-              <button
-                className="sidebar-toggle-btn"
-                onClick={toggleSidebar}
-                aria-label="Toggle sidebar"
-              >
-                <FaBars />
-              </button>
-            )}
-
+            {/* Removed toggleSidebar button here as prop is no longer passed */}
             <button
               className="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -210,7 +185,7 @@ const Navigation = ({ user, toggleSidebar }) => {
               <div className="mobile-section">
                 <h4 className="mobile-section-title">Account</h4>
                 <div className="mobile-links">
-                  {userNavLinks.map((link) => ( // Using original userNavLinks
+                  {userNavLinks.map((link) => (
                     <NavLink
                       key={link.to}
                       to={link.to}
