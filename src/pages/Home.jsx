@@ -38,6 +38,7 @@ export default function HomePage() {
                         <div className="welcome-section-enhanced">
                             <div className="welcome-content-full">
                                 <div className="welcome-text-container">
+
                                     <h1 className="welcome-heading-enhanced">
                                         Advancing Excellence in <span className="highlight-text">Business & Entrepreneurship Education</span>
                                     </h1>
@@ -46,21 +47,7 @@ export default function HomePage() {
                                         fostering groundbreaking research, innovative methodologies, and evidence-based practices in business 
                                         education, entrepreneurial development, and economic advancement across Nigeria and beyond.
                                     </p>
-                                    <div className="welcome-stats">
-                                        <div className="stat-item">
-                                            <span className="stat-number">500+</span>
-                                            <span className="stat-label">Published Articles</span>
-                                        </div>
-                                        <div className="stat-item">
-                                            <span className="stat-number">1000+</span>
-                                            <span className="stat-label">Researchers</span>
-                                        </div>
-                                        <div className="stat-item">
-                                            <span className="stat-number">50+</span>
-                                            <span className="stat-label">Institutions</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> 
                                 <div className="welcome-actions-enhanced">
                                     <Link to="/submission" className="action-button primary-enhanced">
                                         <span>Submit Your Research</span>
