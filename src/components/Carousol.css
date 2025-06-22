@@ -41,40 +41,12 @@
   background-color: #111827;
 }
 
-.carousel-gradient-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
-  opacity: 0.6;
-}
+/* REMOVED: .carousel-gradient-overlay */
 
-.carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  color: white;
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 1s ease, opacity 1s ease;
-}
-
-.carousel-caption-hidden {
-  transform: translateY(2rem);
-  opacity: 0;
-}
-
-.carousel-caption-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.carousel-caption-text {
-  font-size: 1.125rem;
-  opacity: 0.9;
-}
+/* REMOVED: .carousel-caption */
+/* REMOVED: .carousel-caption-hidden */
+/* REMOVED: .carousel-caption-title */
+/* REMOVED: .carousel-caption-text */
 
 .carousel-nav-button {
   position: absolute;
@@ -238,17 +210,5 @@
   
   .carousel-info-panel.hidden {
     transform: translateY(100%);
-  }
-  
-  .carousel-caption {
-    padding: 1rem;
-  }
-  
-  .carousel-caption-title {
-    font-size: 1.25rem;
-  }
-  
-  .carousel-caption-text {
-    font-size: 1rem;
   }
 }

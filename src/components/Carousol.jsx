@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './ImprovedCarousel.css';
+import './Carousel.css';
 
-export default function ImprovedCarousel({
+export default function Carousel({
   images = [],
   autoplaySpeed = 5000,
   height = 500,
@@ -75,14 +75,14 @@ export default function ImprovedCarousel({
     }, autoplaySpeed);
 
     return () => clearInterval(interval);
-  }, [autoplaySpeed, processedImages.length, isTransitioning]);
+  }, [autoplaySpeed, processedImages.length, isTransitioning, setActiveIndex]); // Added setActiveIndex to dependency array
 
   // If no images available, show placeholder
   if (processedImages.length === 0) {
     return (
       <div className="modern-carousel">
         <div className="carousel-header">
-          <h1>{title}</h1>
+          {/* Removed title prop, as it's not defined or passed to this component */}
         </div>
         <div className="carousel-placeholder">
           <p>No images available</p>
@@ -111,11 +111,9 @@ export default function ImprovedCarousel({
                   console.log(`Using fallback image for: ${image.alt}`);
                   e.target.onerror = null; // Prevent infinite loop
 
-                  // Try different image formats and variations if the original fails
                   const imagePath = image.src.substring(0, image.src.lastIndexOf('/') + 1);
                   const imageName = image.src.substring(image.src.lastIndexOf('/') + 1);
 
-                  // Try different case variations and extensions
                   const variations = [
                     imagePath + imageName.toLowerCase(),
                     imagePath + imageName.toUpperCase(),
@@ -123,16 +121,14 @@ export default function ImprovedCarousel({
                     imagePath + imageName.replace('.jpg', '.JPG'),
                     imagePath + imageName.replace('.JPG', '.jpeg'),
                     imagePath + imageName.replace('.jpg', '.jpeg'),
-                    imagePath + 'Image' + imageName.substring(5), // Try with capital I
-                    imagePath + 'image' + imageName.substring(5), // Try with lowercase i
+                    imagePath + 'Image' + imageName.substring(5),
+                    imagePath + 'image' + imageName.substring(5),
                   ];
 
-                  // Try the first variation
                   if (variations.length > 0) {
                     console.log('Trying alternative image path:', variations[0]);
                     e.target.src = variations[0];
                   } else {
-                    // If all else fails, use the fallback
                     e.target.src = image.fallbackSrc || "/images/image1.JPG.JPG";
                   }
 
@@ -141,9 +137,8 @@ export default function ImprovedCarousel({
                 style={{ objectPosition: 'center center' }}
               />
 
-              {/* No caption overlay */}
-
-              {/* Progress bar for current slide */}
+              {/* Removed: No caption overlay */}
+              {/* Removed: Progress bar for current slide - keeping it if you want it*/}
               {index === activeIndex && (
                 <div className="carousel-progress">
                   <div
