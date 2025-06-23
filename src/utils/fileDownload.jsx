@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { isProduction } from '../services/api';
 
 // Direct Cloudinary URL for fallback
-const CLOUDINARY_DIRECT_URL = 'https://res.cloudinary.com/dxnp54kf2/raw/upload/v1750334083/adati_draft_copy_cxwh09.docx';
+const CLOUDINARY_DIRECT_URL = 'https://res.cloudinary.com/dxnp54kf2/raw/schoolofbusiness/v1750334083/adati_draft_copy_cxwh09.docx';
 
 /**
  * Utility function to download files from the server

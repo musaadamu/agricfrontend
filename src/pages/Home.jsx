@@ -122,7 +122,7 @@ export default function HomePage() {
                     <main className="main-content">
                         {/* Journal Title */}
                         <div className="journal-title-container">
-                            <h1 className="journal-main-title">Nigerian Journal of Business and Entrepreneurship Education</h1>
+                            <h1 className="journal-main-title">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</h1>
                         </div>
 
                         {/* Modern Carousel Section */}
@@ -145,7 +145,7 @@ export default function HomePage() {
                             <div className="welcome-content-full">
                                 <div className="welcome-text-container">
                                     <h1 className="welcome-heading-enhanced">
-                                        Advancing Excellence in <span className="highlight-text">Business & Entrepreneurship Education</span>
+                                        Promoting Excellence in <span className="highlight-text">Business & Entrepreneurship Education</span>
                                     </h1>
                                     <p className="welcome-description">
                                         The Nigerian Journal of Business and Entrepreneurship Education serves as a premier scholarly platform, 
@@ -172,7 +172,7 @@ export default function HomePage() {
 
                         {/* Featured Articles Section */}
                         <div className="featured-articles-section">
-                            <h1 className="featured-title">Featured Articles</h1>
+                            <h1 className="featured-title">Current Published Journals</h1>
                             <p className="featured-subtitle">Discover the latest research from Nigerian Journal of Business and Entrepreneurship Education</p>
                             <div className="search-bar">
                                 <input type="text" className="search-input" placeholder="Search articles by keyword, title, author..." />

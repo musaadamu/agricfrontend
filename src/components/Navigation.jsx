@@ -1,211 +1,250 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import {
-  FaHome,
-  FaJournalWhills,
-  FaUpload,        // For JournalSubmission
-  FaUsers,
-  FaInfoCircle,
-  FaTachometerAlt,
-  FaUser,
-  FaSignOutAlt,
-  FaUserPlus,
-  FaSignInAlt,
-  FaArchive,
-  FaBook,
-  FaEnvelope,
-  FaCog,            // For ManageJournal
-  FaCloudUploadAlt, // For JournalUpload (Admin)
-  FaBars,
-  FaTimes
-} from 'react-icons/fa';
-import "./Navigation.css";
+// Navigation.jsx
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  Home, 
+  BookOpen, 
+  Info, 
+  HelpCircle, 
+  Mail, 
+  Archive, 
+  Users,
+  LogIn, 
+  UserPlus, 
+  User, 
+  LogOut,
+  LayoutDashboard,
+  Upload,
+  Settings,
+  FileText,
+  Menu,
+  X
+} from 'lucide-react';
+import './Navigation.css';
 
-// Removed toggleSidebar prop as it's not passed from App.js
 const Navigation = ({ user }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logoPath = "/images/logo.JPG"; // Ensure this path is correct relative to public folder
+  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-      if (window.innerWidth > 1024) {
-        setMobileMenuOpen(false);
+  const isActive = (path) => location.pathname === path;
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Define navigation items based on user role
+  const getNavigationItems = () => {
+    const publicItems = [
+      { path: '/', label: 'Home', icon: Home },
+      { path: '/journals', label: 'Journals', icon: BookOpen },
+      { path: '/archive', label: 'Archive', icon: Archive },
+      { path: '/editorial-board', label: 'Editorial Board', icon: Users },
+      { path: '/about', label: 'About', icon: Info },
+      { path: '/guide', label: 'Guide', icon: HelpCircle },
+      { path: '/contact', label: 'Contact', icon: Mail },
+    ];
+
+    const authenticatedItems = [
+      { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+      { path: '/submission', label: 'Submit Article', icon: FileText },
+      { path: '/updateprofile', label: 'Profile', icon: User },
+    ];
+
+    const adminItems = [
+      { path: '/journals/uploads', label: 'Upload Journal', icon: Upload },
+      { path: '/manage-journals', label: 'Manage Journals', icon: Settings },
+    ];
+
+    let items = [...publicItems];
+
+    if (user) {
+      items = [...items, ...authenticatedItems];
+      
+      // Add admin-only items if user is admin
+      if (user.role === 'admin') {
+        items = [...items, ...adminItems];
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
+    return items;
+  };
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const getUserItems = () => {
+    if (user) {
+      return [
+        { path: '/logout', label: 'Logout', icon: LogOut, className: 'user-cta' }
+      ];
+    } else {
+      return [
+        { path: '/login', label: 'Login', icon: LogIn },
+        { path: '/register', label: 'Register', icon: UserPlus, className: 'user-cta' }
+      ];
+    }
+  };
 
-  // --- CONSOLIDATED AND CORRECTED MAIN NAVIGATION LINKS ---
-  // Based on your App.js routes
-  const mainNavigationLinks = [
-    { to: "/", label: "Home", icon: <FaHome /> },
-    { to: "/journals", label: "Journals", icon: <FaJournalWhills /> },
-    { to: "/submission", label: "Submit Paper", icon: <FaUpload /> }, // User/Author submission
-    { to: "/editorial-board", label: "Editorial", icon: <FaUsers /> },
-    { to: "/about", label: "About Us", icon: <FaInfoCircle /> },
-    { to: "/archive", label: "Archive", icon: <FaArchive /> },
-    { to: "/guide", label: "Guide", icon: <FaBook /> },
-    { to: "/contact", label: "Contact Us", icon: <FaEnvelope /> },
-    { to: "/dashboard", label: "Dashboard", icon: <FaTachometerAlt /> }, // Common dashboard link
-    { to: "/manage-journals", label: "Manage Journals", icon: <FaCog /> }, // Admin-specific management
-    { to: "/journals/uploads", label: "Upload Journals", icon: <FaCloudUploadAlt /> } // Admin-specific upload
-  ];
-
-  // User navigation links - now specifically handling login/register vs. profile/logout
-  // Dashboard is removed from here if user is logged in to avoid duplication with main nav.
-  const userNavLinks = user ? [
-    { to: "/updateprofile", label: "Profile", icon: <FaUser /> },
-    { to: "/logout", label: "Logout", icon: <FaSignOutAlt /> }
-  ] : [
-    { to: "/register", label: "Register", icon: <FaUserPlus /> },
-    { to: "/login", label: "Login", icon: <FaSignInAlt /> }
-  ];
+  const navigationItems = getNavigationItems();
+  const userItems = getUserItems();
 
   return (
     <nav className="modern-navigation">
       <div className="nav-container">
-        {/* Logo Section */}
+        {/* Brand */}
         <div className="nav-brand">
-          <NavLink to="/" className="brand-link">
+          <Link to="/" className="brand-link">
             <div className="brand-logo">
-              <img src={logoPath} alt="IJIRSTME" className="logo-img" />
+              <img 
+                src="images/logo.JPG" 
+                alt="Journal Logo" 
+                className="logo-img"
+              />
             </div>
             <div className="brand-text">
-              <span className="brand-title">IJIRSTME</span>
-              <span className="brand-subtitle">Journal of Research</span>
+              <h1 className="brand-title">NIJOBED</h1>
+              <span className="brand-subtitle">Academic Journal</span>
             </div>
-          </NavLink>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
-        {!isMobile && (
-          <div className="nav-content">
-            {/* Primary Navigation - All main links displayed horizontally */}
-            <div className="nav-primary">
-              {mainNavigationLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) =>
-                    `nav-item ${isActive ? 'nav-item-active' : ''}`
-                  }
+        <div className="nav-content">
+          {/* Primary Navigation */}
+          <div className="nav-primary">
+            {navigationItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`nav-item ${isActive(item.path) ? 'nav-item-active' : ''}`}
                 >
-                  <span className="nav-icon">{link.icon}</span>
-                  <span className="nav-label">{link.label}</span>
-                </NavLink>
-              ))}
-            </div>
-
-            {/* User Section */}
-            <div className="nav-user">
-              {userNavLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) =>
-                    `user-item ${isActive ? 'user-item-active' : ''} ${
-                      link.label === 'Login' || link.label === 'Register' ? 'user-cta' : ''
-                    }`
-                  }
-                  title={link.label}
-                >
-                  <span className="user-icon">{link.icon}</span>
-                  <span className="user-label">{link.label}</span>
-                </NavLink>
-              ))}
-            </div>
+                  <Icon className="nav-icon" />
+                  <span className="nav-label">{item.label}</span>
+                </Link>
+              );
+            })}
           </div>
-        )}
+
+          {/* User Navigation */}
+          <div className="nav-user">
+            {userItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`user-item ${item.className || ''} ${isActive(item.path) ? 'user-item-active' : ''}`}
+                >
+                  <Icon className="user-icon" />
+                  <span className="user-label">{item.label}</span>
+                </Link>
+              );
+            })}
+            {user && (
+              <span className="user-item user-welcome">
+                <User className="user-icon" />
+                <span className="user-label">Welcome, {user.name}</span>
+              </span>
+            )}
+          </div>
+        </div>
 
         {/* Mobile Controls */}
-        {isMobile && (
-          <div className="nav-mobile-controls">
-            {/* Removed toggleSidebar button here as prop is no longer passed */}
-            <button
-              className="mobile-menu-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-            </button>
-          </div>
-        )}
+        <div className="nav-mobile-controls">
+          <button
+            className="mobile-menu-btn"
+            onClick={toggleMobileMenu}
+            aria-label="Open mobile menu"
+          >
+            <Menu />
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMobile && (
-        <div className={`mobile-overlay ${mobileMenuOpen ? 'overlay-open' : ''}`}>
-          <div className="mobile-menu">
-            <div className="mobile-header">
-              <div className="mobile-brand">
-                <img src={logoPath} alt="IJIRSTME" className="mobile-logo" />
-                <div className="mobile-brand-text">
-                  <span className="mobile-title">IJIRSTME</span>
-                  <span className="mobile-subtitle">Navigation Menu</span>
-                </div>
+      {/* Mobile Overlay and Menu */}
+      <div className={`mobile-overlay ${isMobileMenuOpen ? 'overlay-open' : ''}`}>
+        <div className="mobile-menu">
+          {/* Mobile Header */}
+          <div className="mobile-header">
+            <div className="mobile-brand">
+              <img 
+                src="images/logo.JPG" 
+                alt="Journal Logo" 
+                className="mobile-logo"
+              />
+              <div className="mobile-brand-text">
+                <h2 className="mobile-title">NIJOBED</h2>
+                <span className="mobile-subtitle">Academic Journal</span>
               </div>
-              <button
-                className="mobile-close"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <FaTimes />
-              </button>
+            </div>
+            <button
+              className="mobile-close"
+              onClick={closeMobileMenu}
+              aria-label="Close mobile menu"
+            >
+              <X />
+            </button>
+          </div>
+
+          {/* Mobile Content */}
+          <div className="mobile-content">
+            {/* User Welcome Section */}
+            {user && (
+              <div className="mobile-section">
+                <h3 className="mobile-section-title">Welcome, {user.name}</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.875rem', padding: '0 0.75rem' }}>
+                  Role: {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                </p>
+              </div>
+            )}
+
+            {/* Navigation Links */}
+            <div className="mobile-section">
+              <h3 className="mobile-section-title">Navigation</h3>
+              <div className="mobile-links">
+                {navigationItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`mobile-link ${isActive(item.path) ? 'mobile-link-active' : ''}`}
+                      onClick={closeMobileMenu}
+                    >
+                      <Icon className="mobile-link-icon" />
+                      <span className="mobile-link-text">{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="mobile-content">
-              {/* All Main Navigation Links in Mobile */}
-              <div className="mobile-section">
-                <h4 className="mobile-section-title">Main Navigation</h4>
-                <div className="mobile-links">
-                  {mainNavigationLinks.map((link) => (
-                    <NavLink
-                      key={link.to}
-                      to={link.to}
-                      className={({ isActive }) =>
-                        `mobile-link ${isActive ? 'mobile-link-active' : ''}`
-                      }
-                      onClick={() => setMobileMenuOpen(false)}
+            {/* User Actions */}
+            <div className="mobile-section">
+              <h3 className="mobile-section-title">Account</h3>
+              <div className="mobile-links">
+                {userItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={`mobile-link ${item.className === 'user-cta' ? 'mobile-cta' : ''} ${isActive(item.path) ? 'mobile-link-active' : ''}`}
+                      onClick={closeMobileMenu}
                     >
-                      <span className="mobile-link-icon">{link.icon}</span>
-                      <span className="mobile-link-text">{link.label}</span>
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-
-              {/* User Links in Mobile */}
-              <div className="mobile-section">
-                <h4 className="mobile-section-title">Account</h4>
-                <div className="mobile-links">
-                  {userNavLinks.map((link) => (
-                    <NavLink
-                      key={link.to}
-                      to={link.to}
-                      className={({ isActive }) =>
-                        `mobile-link ${isActive ? 'mobile-link-active' : ''} ${
-                          link.label === 'Login' || link.label === 'Register' ? 'mobile-cta' : ''
-                        }`
-                      }
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <span className="mobile-link-icon">{link.icon}</span>
-                      <span className="mobile-link-text">{link.label}</span>
-                    </NavLink>
-                  ))}
-                </div>
+                      <Icon className="mobile-link-icon" />
+                      <span className="mobile-link-text">{item.label}</span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

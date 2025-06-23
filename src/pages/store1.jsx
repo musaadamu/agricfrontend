@@ -24,7 +24,7 @@ import api from '../services/api';
 import { downloadFile } from '../utils/fileDownload';
 
 // Add Cloudinary URL for direct access as a last resort
-const CLOUDINARY_DIRECT_URL = 'https://res.cloudinary.com/dxnp54kf2/raw/upload/v1750334083/adati_draft_copy_cxwh09.docx';
+const CLOUDINARY_DIRECT_URL = 'https://res.cloudinary.com/dxnp54kf2/raw/schoolofbusiness/v1750334083/adati_draft_copy_cxwh09.docx';
 
 const JournalList = () => {
     const navigate = useNavigate();
