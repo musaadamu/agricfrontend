@@ -466,40 +466,40 @@ const JournalList = () => {
                         </div>
                         <div className="journal-list-horizontal flex flex-col space-y-6 max-w-full mx-auto">
                             {filteredJournals.map((journal, index) => (
-                                <div key={journal._id || index} className="journal-card-horizontal flex flex-row w-full max-w-full border border-gray-300 rounded-lg shadow-md p-6">
-                                    <div className="flex-1 pr-6">
-                                        <div className="journal-card-header text-center">
+                                <div key={journal._id || index} className="journal-card-horizontal flex flex-col md:flex-row w-full max-w-full border border-gray-300 rounded-lg shadow-md p-4 md:p-6 bg-white transition-all duration-200">
+                                    <div className="flex-1 md:pr-6">
+                                        <div className="journal-card-header text-center md:text-left">
                                             <Link to={`/journals/${journal._id}`} className="journal-card-title-link">
-                                                <h3 className="journal-card-title text-xl font-semibold text-gray-900">
+                                                <h3 className="journal-card-title text-lg md:text-xl font-semibold text-gray-900 break-words">
                                                     {journal.title || 'Untitled Research Paper'}
                                                 </h3>
                                             </Link>
                                         </div>
-                                        <div className="journal-card-meta flex flex-wrap gap-4 mt-2 text-sm text-gray-600">
+                                        <div className="journal-card-meta flex flex-wrap gap-2 md:gap-4 mt-2 text-xs md:text-sm text-gray-600 justify-center md:justify-start">
                                             <span className="meta-item flex items-center gap-1"><FiCalendar /> {journal.publicationDate ? formatDate(journal.publicationDate) : ''}</span>
                                             <span className="meta-item flex items-center gap-1"><FiBook /> {journal.journalName || 'NIJOBED'}</span>
                                             {journal.volume && <span className="meta-item">Vol. {journal.volume}</span>}
                                         </div>
                                         {journal.abstract && (
                                             <>
-                                                <h4 className="journal-card-abstract-title mt-4 font-semibold text-gray-700">Abstract</h4>
-                                                <p className="journal-card-abstract mt-1 text-gray-600 text-justify">
-                                                    {journal.abstract.length > 300 ? journal.abstract.substring(0, 300) + '...' : journal.abstract}
+                                                <h4 className="journal-card-abstract-title mt-3 font-semibold text-gray-700">Abstract</h4>
+                                                <p className="journal-card-abstract mt-1 text-gray-600 text-justify text-xs md:text-base">
+                                                    {journal.abstract.length > 200 ? journal.abstract.substring(0, 200) + '...' : journal.abstract}
                                                 </p>
                                             </>
                                         )}
-                                        <div className="journal-card-authors mt-4 text-gray-700 flex items-center gap-1 justify-center">
+                                        <div className="journal-card-authors mt-3 text-gray-700 flex items-center gap-1 justify-center md:justify-start text-xs md:text-base">
                                             <FiUser /> <strong>Authors:</strong> {formatAuthors(journal.authors)}
                                         </div>
-                                        <div className="journal-card-actions flex flex-row justify-center items-center space-x-2 mt-4">
+                                        <div className="journal-card-actions flex flex-col md:flex-row justify-center md:justify-start items-center gap-2 md:space-x-2 mt-4">
                                             <Link
                                                 to={`/journals/${journal._id}`}
-                                                className="action-button view-button bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                                                className="action-button view-button bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition w-full md:w-auto text-center"
                                             >
                                                 <FiEye /> View Details
                                             </Link>
                                             <button
-                                                className="action-button download-button bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition font-semibold shadow-md"
+                                                className="action-button download-button bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition font-semibold shadow-md w-full md:w-auto text-center"
                                                 onClick={() => handleDownload(journal)}
                                             >
                                                 <FiDownload /> Download
