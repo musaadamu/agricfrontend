@@ -452,7 +452,6 @@ const JournalList = () => {
             {/* Main Content */}
             {filteredJournals.length === 0 ? (
                 <div className="no-results-state">
-                    <h3 className="no-results-title">No journals found matching your criteria</h3>
                 </div>
             ) : (
                 <>
