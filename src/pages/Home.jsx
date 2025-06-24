@@ -122,7 +122,7 @@ export default function HomePage() {
                     <main className="main-content">
                         {/* Journal Title */}
                         <div className="journal-title-container">
-                            <h1 className="journal-main-title">
+                            <h1 className="journal-main-title responsive-journal-title">
                                 {isMobile ? (
                                     <>
                                         Nigerian Journal of Business<br />

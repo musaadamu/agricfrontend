@@ -93,6 +93,40 @@
   border-left: 4px solid #ca8a04;
 }
 
+/* Responsive journal title for Home.jsx */
+.responsive-journal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .responsive-journal-title {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+}
+
+/* Responsive hero title for JournalList.jsx */
+.responsive-hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .responsive-hero-title {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+}
+
+/* White hero description for JournalList.jsx */
+.journal-hero-desc-white {
+  color: #fff !important;
+  background: rgba(0,0,0,0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
 @media (max-width: 768px) {
   .vision-mission,
   .institution-content {

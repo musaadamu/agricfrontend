@@ -334,8 +334,8 @@ const JournalList = () => {
             {/* Hero Header */}
             <div className="journal-hero-header">
                 <div className="journal-hero-content">
-                    <h1 className="journal-hero-title-responsive">Research Excellence Hub</h1>
-                    <p className="journal-hero-desc-responsive">
+                    <h1 className="journal-hero-title-responsive responsive-hero-title">Research Excellence Hub</h1>
+                    <p className="journal-hero-desc-responsive journal-hero-desc-white">
                         Explore impactful research, case studies, and insights from the <span className="journal-full-title">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</span>. Discover innovative approaches and evidence-based practices shaping the future of business and entrepreneurship education in Nigeria and beyond.
                     </p>
                     <div className="hero-stats">
