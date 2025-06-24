@@ -127,7 +127,6 @@ const UpdateProfilePage = () => {
                     </p>
                 </div>
 
-                {/* Rest of the component... */}
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     {/* Profile header with avatar */}
                     <div className="bg-gradient-to-r from-blue-800 to-blue-600 px-8 py-10 text-white relative">
@@ -155,8 +154,170 @@ const UpdateProfilePage = () => {
                         </div>
                     </div>
 
-                    {/* Form content and buttons would go here */}
-                    {/* For brevity, we're not including the full component */}
+                    {/* Tabs for Personal and Security */}
+                    <div className="border-b border-gray-200">
+                        <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+                            <button
+                                onClick={() => setActiveTab("personal")}
+                                className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
+                                    activeTab === "personal"
+                                        ? "border-blue-500 text-blue-600"
+                                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                                }`}
+                            >
+                                <FaIdCard className="inline mr-2" />
+                                Personal
+                            </button>
+                            <button
+                                onClick={() => setActiveTab("security")}
+                                className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
+                                    activeTab === "security"
+                                        ? "border-blue-500 text-blue-600"
+                                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                                }`}
+                            >
+                                <FaShieldAlt className="inline mr-2" />
+                                Security
+                            </button>
+                        </nav>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="px-8 py-6">
+                        {activeTab === "personal" && (
+                            <>
+                                <div className="mb-4">
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                                        Name
+                                    </label>
+                                    <div className="mt-1 relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaUser className="text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            className={`block w-full pl-10 sm:text-sm border rounded-md ${
+                                                formErrors.name ? "border-red-500" : "border-gray-300"
+                                            } focus:ring-blue-500 focus:border-blue-500`}
+                                            placeholder="Your full name"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                    </div>
+                                    {formErrors.name && (
+                                        <p className="mt-1 text-xs text-red-600">{formErrors.name}</p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                                        Email address
+                                    </label>
+                                    <div className="mt-1 relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaEnvelope className="text-gray-400" />
+                                        </div>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            className={`block w-full pl-10 sm:text-sm border rounded-md ${
+                                                formErrors.email ? "border-red-500" : "border-gray-300"
+                                            } focus:ring-blue-500 focus:border-blue-500`}
+                                            placeholder="you@example.com"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
+                                    {formErrors.email && (
+                                        <p className="mt-1 text-xs text-red-600">{formErrors.email}</p>
+                                    )}
+                                </div>
+                            </>
+                        )}
+
+                        {activeTab === "security" && (
+                            <>
+                                <div className="mb-4">
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                        New Password
+                                    </label>
+                                    <div className="mt-1 relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaLock className="text-gray-400" />
+                                        </div>
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                            id="password"
+                                            className={`block w-full pl-10 sm:text-sm border rounded-md ${
+                                                formErrors.password ? "border-red-500" : "border-gray-300"
+                                            } focus:ring-blue-500 focus:border-blue-500`}
+                                            placeholder="Enter new password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
+                                            tabIndex={-1}
+                                        >
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </button>
+                                    </div>
+                                    {formErrors.password && (
+                                        <p className="mt-1 text-xs text-red-600">{formErrors.password}</p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                                        Confirm New Password
+                                    </label>
+                                    <div className="mt-1 relative rounded-md shadow-sm">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <FaLock className="text-gray-400" />
+                                        </div>
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="confirmPassword"
+                                            id="confirmPassword"
+                                            className={`block w-full pl-10 sm:text-sm border rounded-md ${
+                                                formErrors.confirmPassword ? "border-red-500" : "border-gray-300"
+                                            } focus:ring-blue-500 focus:border-blue-500`}
+                                            placeholder="Confirm new password"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    {formErrors.confirmPassword && (
+                                        <p className="mt-1 text-xs text-red-600">{formErrors.confirmPassword}</p>
+                                    )}
+                                </div>
+                            </>
+                        )}
+
+                        <div className="flex justify-between mt-6">
+                            <button
+                                type="button"
+                                onClick={() => navigate("/dashboard")}
+                                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                            >
+                                <FaArrowLeft className="mr-2" />
+                                Back
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
+                            >
+                                <FaSave className="mr-2" />
+                                {loading ? "Saving..." : "Save"}
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

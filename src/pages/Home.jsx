@@ -122,7 +122,17 @@ export default function HomePage() {
                     <main className="main-content">
                         {/* Journal Title */}
                         <div className="journal-title-container">
-                            <h1 className="journal-main-title">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</h1>
+                            <h1 className="journal-main-title">
+                                {isMobile ? (
+                                    <>
+                                        Nigerian Journal of Business<br />
+                                        and Entrepreneurship Education <br />
+                                        <span className="journal-abbr">(NIJOBED)</span>
+                                    </>
+                                ) : (
+                                    <>Nigerian Journal of Business and Entrepreneurship Education <span className="journal-abbr">(NIJOBED)</span></>
+                                )}
+                            </h1>
                         </div>
 
                         {/* Modern Carousel Section */}

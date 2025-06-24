@@ -34,24 +34,28 @@ const Navigation = ({ user }) => {
       { path: '/updateprofile', label: 'Profile', icon: User },
     ];
 
-    const adminItems = [
-      { path: '/journals/uploads', label: 'Upload Journal', icon: Upload },
-      { path: '/manage-journals', label: 'Manage Journals', icon: Settings },
-    ];
+    // Only add admin items if user exists AND has admin role (case-insensitive)
+    const adminItems =
+      user && user.role && user.role.toLowerCase() === 'admin'
+        ? [
+            { path: '/journals/uploads', label: 'Upload Journal', icon: Upload },
+            { path: '/manage-journals', label: 'Manage Journals', icon: Settings },
+          ]
+        : [];
 
     let items = [...publicItems];
     if (user) {
-      items = [...items, ...authenticatedItems];
-      if (user.role === 'admin') {
-        items = [...items, ...adminItems];
-      }
+      items = [...items, ...authenticatedItems, ...adminItems];
     }
     return items;
   };
 
   const getUserItems = () => {
+    // Show Logout if logged in, else Login/Register
     if (user) {
-      return [{ path: '/logout', label: 'Logout', icon: LogOut, className: 'user-cta' }];
+      return [
+        { path: '/logout', label: 'Logout', icon: LogOut, className: 'user-cta' },
+      ];
     } else {
       return [
         { path: '/login', label: 'Login', icon: LogIn },
@@ -62,6 +66,11 @@ const Navigation = ({ user }) => {
 
   const navigationItems = getNavigationItems();
   const userItems = getUserItems();
+
+  // Debug logging - remove in production
+  console.log('Navigation - User:', user);
+  console.log('Navigation - User Role:', user?.role);
+  console.log('Navigation - Is Admin:', user?.role?.toLowerCase() === 'admin');
 
   return (
     <nav className="modern-navigation">
@@ -74,7 +83,7 @@ const Navigation = ({ user }) => {
             </div>
             <div className="brand-text">
               <h1 className="brand-title">NIJOBED</h1>
-              <span className="brand-subtitle">Academic Journal</span>
+              <span className="brand-subtitle">NIJOBED</span>
             </div>
           </Link>
         </div>
@@ -114,7 +123,7 @@ const Navigation = ({ user }) => {
               );
             })}
             {user && (
-              <span className="user-item user-welcome" title={`Welcome, ${user.name}`}>
+              <span className="user-item user-welcome" title={`Welcome, ${user.name} (${user.role})`}>
                 <User className="user-icon" />
                 <span className="user-label">Welcome, {user.name}</span>
               </span>
@@ -150,7 +159,7 @@ const Navigation = ({ user }) => {
             {user && (
               <div className="mobile-section">
                 <h3 className="mobile-section-title">Welcome, {user.name}</h3>
-                <p className="mobile-user-role">Role: {user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
+                <p className="mobile-user-role">Role: {user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'User'}</p>
               </div>
             )}
 

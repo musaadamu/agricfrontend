@@ -13,9 +13,7 @@ const CLOUDINARY_DIRECT_URL = 'https://res.cloudinary.com/dxnp54kf2/raw/schoolof
  * @returns {Promise<boolean>} - True if download was successful, false otherwise
  */
 export const downloadFile = async (url, filename, fileType) => {
-    // Show loading toast
     const toastId = toast.loading(`Downloading ${fileType.toUpperCase()} file...`);
-
     try {
         // If URL is the direct Cloudinary URL, use it directly
         if (url === CLOUDINARY_DIRECT_URL) {
@@ -28,18 +26,7 @@ export const downloadFile = async (url, filename, fileType) => {
             });
             return true;
         }
-
-        // Get auth token
         const token = localStorage.getItem('authToken');
-
-        // Log the download attempt
-        console.log('Downloading file:', {
-            url,
-            filename,
-            fileType,
-            hasToken: !!token
-        });
-
         // If the URL is relative, prepend the correct base URL
         if (url.startsWith('/')) {
             const baseUrl = isProduction() 
@@ -47,19 +34,9 @@ export const downloadFile = async (url, filename, fileType) => {
                 : 'http://localhost:5000';
             url = `${baseUrl}${url}`;
         }
-
-        // For Cloudinary URLs, ensure we're using the correct domain
-        const isCloudinary = url.includes('cloudinary.com') || url.includes('res.cloudinary.com');
-        
-        // Make the request with axios
-        const headers = {
-            'Authorization': token ? `Bearer ${token}` : '',
-            'Accept': '*/*'
-        };
-
         // For Cloudinary URLs, use direct download
+        const isCloudinary = url.includes('cloudinary.com') || url.includes('res.cloudinary.com');
         if (isCloudinary) {
-            console.log('Direct download from Cloudinary URL:', url);
             window.open(url, '_blank');
             toast.update(toastId, {
                 render: 'Download started',
@@ -69,41 +46,28 @@ export const downloadFile = async (url, filename, fileType) => {
             });
             return true;
         }
-
         // For other URLs, use axios to handle the download
-        // Configure axios request
+        const headers = {
+            'Authorization': token ? `Bearer ${token}` : '',
+            'Accept': '*/*'
+        };
         const axiosConfig = {
             method: 'GET',
             url,
             responseType: 'blob',
             headers,
-            timeout: 60000, // Default timeout
-            withCredentials: false, // Disable sending cookies for cross-origin requests
-            maxRedirects: 5, // Allow redirects
-            validateStatus: status => status < 400 // Accept any successful status
+            timeout: 120000, // Increased timeout for remote servers
+            withCredentials: false,
+            maxRedirects: 5,
+            validateStatus: status => status < 400
         };
-
-        console.log('Axios config:', axiosConfig);
         const response = await axios(axiosConfig);
-
-        // Log response details for debugging
-        console.log('Download response:', {
-            status: response.status,
-            headers: response.headers,
-            contentType: response.headers['content-type'],
-            contentLength: response.headers['content-length']
-        });
-
-        // Check if we got a valid response
         if (response.status !== 200) {
             throw new Error(`Server returned status ${response.status}`);
         }
-
-        // Check if we got a valid blob
         if (!response.data || response.data.size === 0) {
             throw new Error('Received empty file');
         }
-
         // Create a download link
         const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
@@ -111,57 +75,36 @@ export const downloadFile = async (url, filename, fileType) => {
         link.setAttribute('download', filename);
         document.body.appendChild(link);
         link.click();
-
-        // Clean up
         setTimeout(() => {
             window.URL.revokeObjectURL(blobUrl);
             link.remove();
         }, 100);
-
-        // Update toast
         toast.update(toastId, {
             render: `File downloaded as ${fileType.toUpperCase()}`,
             type: 'success',
             isLoading: false,
             autoClose: 3000
         });
-
         return true;
     } catch (err) {
-        console.error(`Error downloading ${fileType} file:`, err);
-
-        // Provide more detailed error message
         let errorMessage = `Failed to download ${fileType.toUpperCase()} file`;
-
         if (err.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.error('Error response:', {
-                status: err.response.status,
-                data: err.response.data,
-                headers: err.response.headers
-            });
             errorMessage = `Server error (${err.response.status}): ${err.response.data?.message || 'Unknown error'}`;
         } else if (err.request) {
-            // The request was made but no response was received
-            console.error('Error request:', err.request);
             errorMessage = 'No response from server. Check your network connection.';
         }
-
-        // Update toast
         toast.update(toastId, {
             render: errorMessage,
             type: 'error',
             isLoading: false,
             autoClose: 5000
         });
-
         return false;
     }
 };
 
 /**
- * Utility function to download journal files
+ * Utility function to download journal files (tries both API and direct endpoints for both PDF and DOCX)
  * @param {string} baseUrl - The base URL of the API
  * @param {string} journalId - The ID of the journal
  * @param {string} fileType - The file type (e.g., 'pdf', 'docx')
@@ -170,85 +113,41 @@ export const downloadFile = async (url, filename, fileType) => {
  * @returns {Promise<boolean>} - True if download was successful, false otherwise
  */
 export const downloadJournalFile = async (baseUrl, journalId, fileType, title, cloudinaryUrl = null) => {
-    // Log the download attempt
-    console.log('Attempting to download journal file:', {
-        baseUrl,
-        journalId,
-        fileType,
-        title,
-        hasCloudinaryUrl: !!cloudinaryUrl
-    });
-
-    // Determine if we're in production
-    const isProduction = process.env.NODE_ENV === 'production' || baseUrl.includes('render.com') || window.location.hostname !== 'localhost';
-    console.log('Environment:', { isProduction, NODE_ENV: process.env.NODE_ENV, hostname: window.location.hostname });
-
-    // Create a filename for the download
     const filename = `${title || 'journal'}.${fileType}`;
-
-    // Generate multiple URLs to try in order
+    const isProductionEnv = isProduction();
+    const isLocalBackend = window.location.hostname === 'localhost';
     const urlsToTry = [];
-
-    // If we have a direct Cloudinary URL, use it first
+    // Try provided Cloudinary URL first if available
     if (cloudinaryUrl) {
-        console.log('Using provided Cloudinary URL:', cloudinaryUrl);
         urlsToTry.push(cloudinaryUrl);
     }
-
-    // Clean the base URL to get the backend root
-    const backendRoot = baseUrl.replace('/api', '');    const backendUrl = isProduction ? 'https://schoolofbusinessbackend.onrender.com' : 'http://localhost:5000';
-
-    // Determine if we're running locally or accessing the deployed backend
-    const isLocalBackend = window.location.hostname === 'localhost';
-
-    console.log('Environment details:', {
-        isProduction,
-        isLocalBackend,
-        backendUrl,
-        baseUrl,
-        backendRoot,
-        hostname: window.location.hostname
-    });
-
-    // Add the API endpoint as a fallback
+    // Try direct file endpoint (for both prod and local)
     if (!isLocalBackend) {
-        // For production (Render backend)
         urlsToTry.push(
-            // Primary API endpoint - this is the path that works locally
+            `https://schoolofbusinessbackend.onrender.com/direct-file/journals/${journalId}.${fileType}`,
             `https://schoolofbusinessbackend.onrender.com/api/journals/${journalId}/download/${fileType}`
         );
     } else {
-        // For local development - the known working path
         urlsToTry.push(
+            `http://localhost:5000/direct-file/journals/${journalId}.${fileType}`,
             `http://localhost:5000/api/journals/${journalId}/download/${fileType}`
         );
     }
-
-    // Log the URLs we're going to try
-    console.log('Download URLs to try:', urlsToTry);
-
-    // Try each URL in sequence until one works
+    // Try all URLs in order
     let lastError = null;
     for (const url of urlsToTry) {
         try {
-            console.log('Trying URL:', url);
             const success = await downloadFile(url, filename, fileType);
-            if (success) {
-                console.log('Download successful with URL:', url);
-                return true;
-            }
+            if (success) return true;
         } catch (error) {
-            console.error(`Failed with URL ${url}:`, error);
             lastError = error;
-            // Continue to the next URL
         }
     }
-
-    // If we get here, all URLs failed
-    console.error('All download attempts failed');
-    if (lastError) {
-        throw lastError;
+    // Fallback to direct Cloudinary URL for docx if all else fails
+    if (fileType === 'docx') {
+        await downloadFile(CLOUDINARY_DIRECT_URL, 'journal_document', 'docx');
     }
+    if (lastError) throw lastError;
     return false;
 };
 

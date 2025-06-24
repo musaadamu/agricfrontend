@@ -273,7 +273,7 @@ const JournalList = () => {
 
     // Format date helper
     const formatDate = (dateString) => {
-        if (!dateString) return 'Date not available';
+        if (!dateString) return '';
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', {
             year: 'numeric',
@@ -334,11 +334,10 @@ const JournalList = () => {
             {/* Hero Header */}
             <div className="journal-hero-header">
                 <div className="journal-hero-content">
-                    <h1>Research Excellence Hub</h1>
-                    <p>
-                        Explore impactful research, case studies, and insights from the Nigerian Journal of Business and Entrepreneurship Education (NIJOBED). Discover innovative approaches and evidence-based practices shaping the future of business and entrepreneurship education in Nigeria and beyond.
+                    <h1 className="journal-hero-title-responsive">Research Excellence Hub</h1>
+                    <p className="journal-hero-desc-responsive">
+                        Explore impactful research, case studies, and insights from the <span className="journal-full-title">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</span>. Discover innovative approaches and evidence-based practices shaping the future of business and entrepreneurship education in Nigeria and beyond.
                     </p>
-
                     <div className="hero-stats">
                         <div className="stat-item">
                             <span className="stat-number">
@@ -453,15 +452,7 @@ const JournalList = () => {
             {/* Main Content */}
             {filteredJournals.length === 0 ? (
                 <div className="no-results-state">
-                    <FiSearch className="no-results-icon" />
-                    <h3 className="no-results-title">No Research Papers Found</h3>
-                    <p className="no-results-message">
-                        We couldn't find any papers matching your search criteria.
-                        Try adjusting your filters or search terms.
-                    </p>
-                    <button className="btn-primary" onClick={resetFilters}>
-                        Clear All Filters
-                    </button>
+                    <h3 className="no-results-title">No journals found matching your criteria</h3>
                 </div>
             ) : (
                 <>
@@ -473,58 +464,47 @@ const JournalList = () => {
                                 Showing {filteredJournals.length} of {pagination.totalJournals} research papers
                             </p>
                         </div>
-
-                        <div className="journal-grid">
+                        <div className="journal-list-horizontal flex flex-col space-y-6 max-w-full mx-auto">
                             {filteredJournals.map((journal, index) => (
-                                <div key={journal._id || index} className="journal-card">
-                                    <div className="journal-card-header">
-                                        <Link to={`/journals/${journal._id}`} className="journal-card-title-link">
-                                            <h3 className="journal-card-title">
-                                                {journal.title || 'Untitled Research Paper'}
-                                            </h3>
-                                        </Link>
-                                    </div>
-
-                                    <div className="journal-card-meta">
-                                        <span className="meta-item"><FiCalendar /> {formatDate(journal.publicationDate)}</span>
-                                        <span className="meta-item"><FiBook /> {journal.journalName || 'IJIRSTEM'}</span>
-                                        {journal.volume && <span className="meta-item">Vol. {journal.volume}</span>}
-                                    </div>
-
-                                    {journal.abstract && (
-                                        <p className="journal-card-abstract">
-                                            {journal.abstract.substring(0, 150)}...
-                                        </p>
-                                    )}
-
-                                    <div className="journal-card-authors">
-                                        <FiUser /> <strong>Authors:</strong> {formatAuthors(journal.authors)}
-                                    </div>
-
-                                    {journal.keywords && journal.keywords.length > 0 && (
-                                        <div className="journal-card-keywords">
-                                            {journal.keywords.slice(0, 3).map((keyword, idx) => (
-                                                <span key={idx} className="keyword-tag">
-                                                    {keyword}
-                                                </span>
-                                            ))}
-                                            {journal.keywords.length > 3 && <span className="keyword-tag">+{journal.keywords.length - 3} more</span>}
+                                <div key={journal._id || index} className="journal-card-horizontal flex flex-row w-full max-w-full border border-gray-300 rounded-lg shadow-md p-6">
+                                    <div className="flex-1 pr-6">
+                                        <div className="journal-card-header text-center">
+                                            <Link to={`/journals/${journal._id}`} className="journal-card-title-link">
+                                                <h3 className="journal-card-title text-xl font-semibold text-gray-900">
+                                                    {journal.title || 'Untitled Research Paper'}
+                                                </h3>
+                                            </Link>
                                         </div>
-                                    )}
-
-                                    <div className="journal-card-actions">
-                                        <Link
-                                            to={`/journals/${journal._id}`}
-                                            className="action-button view-button"
-                                        >
-                                            <FiEye /> View Details
-                                        </Link>
-                                        <button
-                                            className="action-button download-button"
-                                            onClick={() => handleDownload(journal)}
-                                        >
-                                            <FiDownload /> Download
-                                        </button>
+                                        <div className="journal-card-meta flex flex-wrap gap-4 mt-2 text-sm text-gray-600">
+                                            <span className="meta-item flex items-center gap-1"><FiCalendar /> {journal.publicationDate ? formatDate(journal.publicationDate) : ''}</span>
+                                            <span className="meta-item flex items-center gap-1"><FiBook /> {journal.journalName || 'NIJOBED'}</span>
+                                            {journal.volume && <span className="meta-item">Vol. {journal.volume}</span>}
+                                        </div>
+                                        {journal.abstract && (
+                                            <>
+                                                <h4 className="journal-card-abstract-title mt-4 font-semibold text-gray-700">Abstract</h4>
+                                                <p className="journal-card-abstract mt-1 text-gray-600 text-justify">
+                                                    {journal.abstract.length > 300 ? journal.abstract.substring(0, 300) + '...' : journal.abstract}
+                                                </p>
+                                            </>
+                                        )}
+                                        <div className="journal-card-authors mt-4 text-gray-700 flex items-center gap-1 justify-center">
+                                            <FiUser /> <strong>Authors:</strong> {formatAuthors(journal.authors)}
+                                        </div>
+                                        <div className="journal-card-actions flex flex-row justify-center items-center space-x-2 mt-4">
+                                            <Link
+                                                to={`/journals/${journal._id}`}
+                                                className="action-button view-button bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                                            >
+                                                <FiEye /> View Details
+                                            </Link>
+                                            <button
+                                                className="action-button download-button bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition font-semibold shadow-md"
+                                                onClick={() => handleDownload(journal)}
+                                            >
+                                                <FiDownload /> Download
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
