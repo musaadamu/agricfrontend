@@ -33,6 +33,14 @@
     line-height: 1.6;
 }
 
+@media (max-width: 768px) {
+    .journal-hero-header p {
+        font-size: 0.9rem;
+        max-width: 100%;
+        text-align: justify;
+    }
+}
+
 .hero-stats {
     display: flex;
     justify-content: center;
