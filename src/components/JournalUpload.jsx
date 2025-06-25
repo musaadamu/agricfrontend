@@ -217,7 +217,7 @@ const JournalUpload = () => {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <Navigation />
+            {/* <Navigation /> */}
 
             <main className="flex-grow bg-gray-50 py-12">
                 <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
