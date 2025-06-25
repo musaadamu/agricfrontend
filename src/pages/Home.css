@@ -145,27 +145,64 @@
   letter-spacing: -0.02em;
 }
 
-.journal-main-title.responsive-journal-title {
-  font-size: 1.5rem;
-  line-height: 1.2;
+.welcome-description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 90%;
+  margin: 0;
+  font-weight: 400;
 }
 
-@media (max-width: 480px) {
-  .journal-main-title.responsive-journal-title {
-    font-size: 1.2rem;
-  }
-}
-
-/* Additional styles for Research Excellence Hub container width adjustment */
-.journal-hero-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .journal-hero-content {
+  .main-content {
     max-width: 100%;
-    padding: 1rem 2rem;
+    padding: 0 0.75rem;
+  }
+
+  .journal-title-container,
+  .carousel-caption-container {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+
+  /* Enhanced Welcome Section Mobile */
+  .welcome-section-enhanced {
+    padding: 60px 0;
+  }
+  
+  .welcome-content-full {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+  
+  .welcome-heading-enhanced {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .welcome-description {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  
+  .welcome-stats {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    align-items: center;
+  }
+  
+  .welcome-actions-enhanced {
+    align-items: center;
+  }
+  
+  .action-button {
+    min-width: 260px;
   }
 }
