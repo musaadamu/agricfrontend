@@ -134,7 +134,20 @@
   }
 
   .about-header h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .about-header p {
+    font-size: 0.9rem;
+  }
+
+  .about-section p {
+    font-size: 0.9rem;
+  }
+
+  .contact-details {
+    font-size: 0.9rem;
   }
 }
 

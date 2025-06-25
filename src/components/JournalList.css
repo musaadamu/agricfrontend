@@ -4,6 +4,13 @@
     margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+    .journal-showcase-container {
+        max-width: 100%;
+        padding: 2rem 1rem;
+    }
+}
+
 .journal-hero-header {
     background: linear-gradient(135deg, #0d47a1, #1976d2);
     color: #fff;

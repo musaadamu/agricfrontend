@@ -458,7 +458,7 @@ const JournalList = () => {
                     {/* Journals Display */}
                     <div className="journals-display-section">
                         <div className="section-header">
-                            <h2 className="section-title">Latest Research Publications</h2>
+                            <h2 className="section-title">Publications</h2>
                             <p className="section-subtitle">
                                 Showing {filteredJournals.length} of {pagination.totalJournals} research papers
                             </p>
