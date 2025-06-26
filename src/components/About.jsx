@@ -8,27 +8,27 @@ const About = () => {
         <div className="relative mb-16">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-indigo-800/20 to-blue-900/20 blur-3xl"></div>
           <div className="relative bg-gradient-to-r from-blue-900 to-indigo-800 rounded-3xl shadow-2xl overflow-hidden">
-<div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-            <div className="relative px-12 py-16 text-white">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+            <div className="relative px-4 sm:px-8 lg:px-12 py-12 sm:py-16 text-white">
               <div className="max-w-4xl">
-                <h1 className="text-5xl font-bold mb-6 leading-tight">
-                  Nigerian Journal of Business and<br />
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                  Nigerian Journal of Business and<br className="hidden sm:block" />
                   <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
                     Entrepreneurship Education
                   </span>
                 </h1>
-                <p className="text-xl text-blue-100 font-medium max-w-3xl leading-relaxed">
+                <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl leading-relaxed">
                   Advancing Research in Business and Entrepreneurship Education Through 
                   Innovation, Excellence, and Global Academic Collaboration
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-sm font-medium">
+                <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium">
                     📚 Peer-Reviewed Excellence
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-sm font-medium">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium">
                     🌍 International Reach
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 text-sm font-medium">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium">
                     🚀 Innovation Focused
                   </div>
                 </div>
@@ -40,22 +40,22 @@ const About = () => {
         {/* Vision & Mission */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Our Vision & Mission</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">Our Vision & Mission</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-3xl">
+              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-4 sm:p-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl">
                     🎯
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Vision</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">Vision</h3>
                 </div>
               </div>
-              <div className="p-8">
-                <p className="text-lg text-gray-700 leading-relaxed">
+              <div className="p-6 sm:p-8">
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                   To be a leading international journal promoting excellence in business, management, 
                   and entrepreneurship education research and innovation, setting global standards 
                   for academic excellence and practical application.
@@ -64,16 +64,16 @@ const About = () => {
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-3xl">
+              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 sm:p-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl">
                     🚀
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Mission</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">Mission</h3>
                 </div>
               </div>
-              <div className="p-8">
-                <p className="text-lg text-gray-700 leading-relaxed">
+              <div className="p-6 sm:p-8">
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                   To publish high-quality, peer-reviewed research that contributes to the advancement 
                   of business and entrepreneurship education, fostering innovation and excellence in 
                   teaching, learning, and enterprise development across global contexts.
@@ -86,40 +86,40 @@ const About = () => {
         {/* About the Journal */}
         <div className="mb-16">
           <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-900 to-indigo-800 px-8 py-6">
-              <h2 className="text-3xl font-bold text-white flex items-center">
-                <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mr-4">
+            <div className="bg-gradient-to-r from-blue-900 to-indigo-800 px-4 sm:px-8 py-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 text-lg sm:text-xl">
                   📖
                 </div>
                 About the Journal
               </h2>
             </div>
-            <div className="p-8">
-              <div className="grid lg:grid-cols-3 gap-8">
+            <div className="p-4 sm:p-8">
+              <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
                 <div className="lg:col-span-2">
-                  <div className="space-y-6">
-                    <p className="text-lg text-gray-700 leading-relaxed">
+                  <div className="space-y-4 sm:space-y-6">
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                       Nigerian Journal of Business and Entrepreneurship Education is a premier peer-reviewed 
                       academic journal focused on advancing research in business, management, and entrepreneurship 
                       education. Our journal serves as a platform for sharing innovative research, teaching 
                       methodologies, and best practices in business and entrepreneurship education.
                     </p>
-                    <p className="text-lg text-gray-700 leading-relaxed">
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                       Our international editorial board comprises distinguished scholars and practitioners from 
                       leading institutions worldwide, ensuring rigorous academic standards and diverse perspectives 
                       in business and entrepreneurship education research.
                     </p>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-                  <h3 className="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border border-blue-200">
+                  <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-4 flex items-center">
                     <span className="mr-2">📞</span>
                     Contact Information
                   </h3>
                   <div className="space-y-3 text-gray-700">
                     <div className="flex items-start space-x-3">
-                      <span className="text-blue-600 mt-1">📍</span>
-                      <div className="text-sm whitespace-pre-line">
+                      <span className="text-blue-600 mt-1 text-sm sm:text-base">📍</span>
+                      <div className="text-xs sm:text-sm whitespace-pre-line break-words">
                         The Editor-in-Chief
                         <br />Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)
                         <br />School of Secondary Education (Business),
@@ -127,13 +127,13 @@ const About = () => {
                         <br />Potiskum, Yobe State.
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-blue-600">📧</span>
-                      <a href="mailto:sbefcetpotiskum@gmail.com" className="hover:underline text-blue-700">sbefcetpotiskum@gmail.com</a>
+                    <div className="flex items-start space-x-3">
+                      <span className="text-blue-600 text-sm sm:text-base">📧</span>
+                      <a href="mailto:sbefcetpotiskum@gmail.com" className="hover:underline text-blue-700 text-xs sm:text-sm break-all">sbefcetpotiskum@gmail.com</a>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-blue-600">📱</span>
-                      <span>+2347035694303; +2348128161859</span>
+                    <div className="flex items-start space-x-3">
+                      <span className="text-blue-600 text-sm sm:text-base">📱</span>
+                      <span className="text-xs sm:text-sm break-words">+2347035694303; +2348128161859</span>
                     </div>
                   </div>
                 </div>
