@@ -12,7 +12,7 @@ const About = () => {
             <div className="relative px-4 sm:px-8 lg:px-12 py-12 sm:py-16 text-white">
               <div className="max-w-4xl">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  Nigerian Journal of Business and<br className="hidden sm:block" />
+                  Nigerian Journal of Business and<br className="block sm:hidden" />
                   <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
                     Entrepreneurship Education
                   </span>
