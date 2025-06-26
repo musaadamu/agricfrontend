@@ -163,33 +163,33 @@ const Guide = () => {
               </div>
               
               <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                  <h3 className="text-xl font-bold mb-4 text-blue-100">Payment & Submission Address</h3>
-                  <div className="space-y-2 text-blue-50">
+                <div className="bg-white/10 rounded-xl p-4 sm:p-6 backdrop-blur-sm">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 text-blue-100">Payment & Submission Address</h3>
+                  <div className="space-y-2 text-blue-50 text-sm sm:text-base">
                     <p className="font-semibold">The Editor-in-Chief</p>
-                    <p>Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</p>
-                    <p>School of Secondary Education (Business)</p>
-                    <p>Federal College of Education (Technical)</p>
+                    <p className="break-words">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</p>
+                    <p className="break-words">School of Secondary Education (Business)</p>
+                    <p className="break-words">Federal College of Education (Technical)</p>
                     <p>Potiskum, Yobe State</p>
                   </div>
                 </div>
                 
-                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                  <h3 className="text-xl font-bold mb-4 text-blue-100">Contact Details</h3>
+                <div className="bg-white/10 rounded-xl p-4 sm:p-6 backdrop-blur-sm">
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 text-blue-100">Contact Details</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                         <span className="text-sm">📧</span>
                       </div>
-                      <p className="text-blue-50">sbefcetpotiskum@gmail.com</p>
+                      <p className="text-blue-50 text-sm sm:text-base break-all">sbefcetpotiskum@gmail.com</p>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
                         <span className="text-sm">📱</span>
                       </div>
-                      <div className="text-blue-50">
-                        <p>+2347035694303</p>
-                        <p>+2348128161859</p>
+                      <div className="text-blue-50 text-sm sm:text-base">
+                        <p className="break-all">+2347035694303</p>
+                        <p className="break-all">+2348128161859</p>
                       </div>
                     </div>
                   </div>
