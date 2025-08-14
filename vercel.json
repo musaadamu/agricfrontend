@@ -74,10 +74,5 @@
       "source": "/robots.txt",
       "destination": "https://njestemebackend.onrender.com/robots.txt"
     }
-  ],
-  "functions": {
-    "app/api/**/*.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
