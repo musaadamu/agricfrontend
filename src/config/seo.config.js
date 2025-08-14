@@ -1,26 +1,29 @@
 // SEO Configuration for NIJOBED
 export const SEO_CONFIG = {
-  // Domain configuration
-  DOMAIN: 'www.nijobed.com.ng',
-  BASE_URL: 'https://www.nijobed.com.ng',
+  // Domain configuration (use environment variables in production)
+  DOMAIN: process.env.REACT_APP_DOMAIN || 'www.nijobed.com.ng',
+  BASE_URL: process.env.REACT_APP_FRONTEND_URL || 'https://www.nijobed.com.ng',
   
   // Default SEO settings
-  DEFAULT_TITLE: 'Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)',
-  DEFAULT_DESCRIPTION: 'NIJOBED is Nigeria\'s premier academic journal publishing cutting-edge research in business education, entrepreneurship, and related fields. Explore the latest scholarly articles and research findings.',
+  DEFAULT_TITLE: process.env.REACT_APP_SITE_NAME ?
+    `${process.env.REACT_APP_SITE_NAME} - Nigerian Journal of Business and Entrepreneurship Education` :
+    'Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)',
+  DEFAULT_DESCRIPTION: process.env.REACT_APP_SITE_DESCRIPTION ||
+    'NIJOBED is Nigeria\'s premier academic journal publishing cutting-edge research in business education, entrepreneurship, and related fields. Explore the latest scholarly articles and research findings.',
   DEFAULT_KEYWORDS: 'business education, entrepreneurship, academic journal, research, Nigeria, NIJOBED, business studies, education research, scholarly articles',
   DEFAULT_AUTHOR: 'Nigerian Journal of Business and Entrepreneurship Education',
   DEFAULT_IMAGE: '/images/logo.JPG',
   
   // Social media handles
   SOCIAL_MEDIA: {
-    twitter: '@nijobed',
-    facebook: 'nijobed',
-    linkedin: 'company/nijobed'
+    twitter: process.env.REACT_APP_TWITTER_HANDLE || '@nijobed',
+    facebook: process.env.REACT_APP_FACEBOOK_PAGE || 'nijobed',
+    linkedin: process.env.REACT_APP_LINKEDIN_PAGE || 'company/nijobed'
   },
-  
+
   // Contact information
   CONTACT: {
-    email: 'editor@nijobed.com.ng',
+    email: process.env.REACT_APP_CONTACT_EMAIL || 'editor@nijobed.com.ng',
     phone: '+234-XXX-XXX-XXXX',
     address: 'Nigeria'
   },
