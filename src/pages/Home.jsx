@@ -206,7 +206,7 @@ export default function HomePage() {
                                 <span className="filter-item">Entrepreneurship</span>
                                 <span className="filter-item">Marketing</span>
                                 <span className="filter-item">Management</span>
-                                <span className="filter-item">Office Practice</span>
+                                <span className="filter-item">Office Technology and Management</span>
                             </div>
                             <JournalList />
                             <div className="no-results">No journals found matching your criteria.</div>
