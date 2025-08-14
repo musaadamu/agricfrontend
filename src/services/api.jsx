@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { secureStorage, rateLimiter, sanitizeInput } from '../utils/security';
 
 // Determine the correct base URL based on environment
 const getBaseUrl = () => {
@@ -17,13 +18,16 @@ console.log('API Base URL:', apiBaseUrl);
 // Add a function to check if we're using the production API
 export const isProduction = () => apiBaseUrl.includes('schoolofbusinessbackend.onrender.com');
 
-// Create axios instance with base URL
+// Create axios instance with base URL and security headers
 const api = axios.create({
   baseURL: `${apiBaseUrl}/api`,
   timeout: 30000, // 30 seconds timeout
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest', // CSRF protection
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache'
   },
   withCredentials: false // Disable cookies for cross-origin requests
 });
@@ -34,28 +38,80 @@ console.log('API Configuration:', {
   withCredentials: false
 });
 
-// Request interceptor to inject token
+// Request interceptor with security enhancements
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authToken');
+    // Rate limiting check
+    if (!rateLimiter.canMakeRequest(config.url)) {
+      return Promise.reject(new Error('Rate limit exceeded. Please try again later.'));
+    }
+
+    // Get token from secure storage
+    const token = secureStorage.get('authToken') || localStorage.getItem('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Add request timestamp for monitoring
+    config.metadata = { startTime: Date.now() };
+
+    // Log suspicious requests
+    if (config.data && typeof config.data === 'object') {
+      const dataString = JSON.stringify(config.data);
+      const suspiciousPatterns = [
+        /(\<script\>|\<\/script\>)/i,
+        /(union|select|insert|delete|update|drop|create|alter)/i,
+        /(\.\.|\/etc\/|\/bin\/|\/usr\/)/i
+      ];
+
+      if (suspiciousPatterns.some(pattern => pattern.test(dataString))) {
+        console.warn('🚨 Suspicious request data detected:', config.url);
+      }
+    }
+
     return config;
   },
   (error) => {
+    console.error('Request interceptor error:', error);
     return Promise.reject(error);
   }
 );
 
-// Response interceptor to handle errors
+// Response interceptor with enhanced security and monitoring
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Log response time for monitoring
+    if (response.config.metadata?.startTime) {
+      const duration = Date.now() - response.config.metadata.startTime;
+      if (duration > 10000) { // Log slow requests (>10s)
+        console.warn('⚠️ Slow API response:', {
+          url: response.config.url,
+          duration: `${duration}ms`,
+          status: response.status
+        });
+      }
+    }
+
+    return response;
+  },
   (error) => {
-    // Check if the error is a 401 Unauthorized
+    // Enhanced error logging
+    const errorInfo = {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.message,
+      timestamp: new Date().toISOString()
+    };
+
+    // Log security-related errors
     if (error.response?.status === 401) {
-      // Clear the token if it's invalid
+      console.warn('🚨 UNAUTHORIZED ACCESS:', errorInfo);
+
+      // Clear tokens from both secure storage and localStorage
+      secureStorage.remove('authToken');
       localStorage.removeItem('authToken');
+      localStorage.removeItem('authUser');
 
       // Get the current path
       const currentPath = window.location.pathname;
@@ -77,7 +133,14 @@ api.interceptors.response.use(
       } else {
         console.log('Unauthorized access to public route, not redirecting');
       }
+    } else if (error.response?.status === 403) {
+      console.warn('🚨 FORBIDDEN ACCESS:', errorInfo);
+    } else if (error.response?.status === 429) {
+      console.warn('🚨 RATE LIMIT EXCEEDED:', errorInfo);
+    } else if (error.response?.status >= 500) {
+      console.error('🚨 SERVER ERROR:', errorInfo);
     }
+
     return Promise.reject(error);
   }
 );
