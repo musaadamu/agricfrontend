@@ -1,8 +1,31 @@
 import React from 'react';
+import SEOWrapper from './SEO/SEOWrapper';
+import { getPageSEO } from '../utils/seo';
+import { SEO_CONFIG } from '../config/seo.config';
 
 const About = () => {
+  const aboutSEO = getPageSEO('about');
+
+  const aboutStructuredData = {
+    ...SEO_CONFIG.STRUCTURED_DATA.organization,
+    "@type": "AboutPage",
+    "mainEntity": SEO_CONFIG.STRUCTURED_DATA.organization
+  };
+
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://www.nijobed.com.ng/' },
+    { name: 'About Us', url: 'https://www.nijobed.com.ng/about' }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <SEOWrapper
+      title={aboutSEO.title}
+      description={aboutSEO.description}
+      keywords={aboutSEO.keywords}
+      structuredData={aboutStructuredData}
+      breadcrumbs={breadcrumbs}
+    >
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Hero Header */}
         <div className="relative mb-16">
@@ -301,6 +324,7 @@ const About = () => {
         </div>
       </div>
     </div>
+    </SEOWrapper>
   );
 };
 

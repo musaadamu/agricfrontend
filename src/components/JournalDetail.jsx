@@ -3,6 +3,9 @@ import { toast } from 'react-toastify';
 import api from '../services/api';
 import { useParams } from 'react-router-dom';
 import { downloadJournalFile } from '../utils/fileDownload';
+import { useJournalSEO } from '../hooks/useSEO';
+import { generateJournalSEO, generateJournalStructuredData } from '../utils/seo';
+import SEOWrapper from './SEO/SEOWrapper';
 import './JournalDetails.css';
 
 const JournalDetail = () => {
@@ -10,6 +13,16 @@ const JournalDetail = () => {
     const [journal, setJournal] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+
+    // SEO setup for journal
+    const breadcrumbs = [
+        { name: 'Home', url: 'https://www.nijobed.com.ng/' },
+        { name: 'Journals', url: 'https://www.nijobed.com.ng/journals' },
+        { name: journal?.title || 'Journal', url: `https://www.nijobed.com.ng/journals/${id}` }
+    ];
+
+    // Use journal-specific SEO hook
+    useJournalSEO(journal, breadcrumbs);
 
     useEffect(() => {
         const fetchJournal = async () => {
@@ -47,8 +60,20 @@ const JournalDetail = () => {
     if (loading) return <p className="text-gray-600">Loading...</p>;
     if (error) return <div className="bg-red-100 text-red-700 p-3 rounded">{error}</div>;
 
+    // Generate SEO data for the journal
+    const journalSEO = journal ? generateJournalSEO(journal) : null;
+    const journalStructuredData = journal ? generateJournalStructuredData(journal) : null;
+
     return (
-        <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg">
+        <SEOWrapper
+            title={journalSEO?.title}
+            description={journalSEO?.description}
+            keywords={journalSEO?.keywords}
+            type="article"
+            structuredData={journalStructuredData}
+            breadcrumbs={breadcrumbs}
+        >
+            <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg">
             <h2 className="text-2xl font-bold mb-4">{journal?.title || 'Untitled Journal'}</h2>
             <div className="space-y-3">
                 <p className="text-justify"><strong>Abstract:</strong> {journal?.abstract || 'No abstract available'}</p>
@@ -79,8 +104,23 @@ const JournalDetail = () => {
                 <p><strong>Keywords:</strong> {journal?.keywords?.join(', ') || 'No keywords'}</p>
                 <p><strong>Status:</strong> {journal?.status || 'Unknown'}</p>
                 <p><strong>Published Date:</strong> {journal?.publishedDate ? new Date(journal.publishedDate).toLocaleDateString() : 'Not published yet'}</p>
+
+                {/* Authors section with structured data markup */}
+                {journal?.authors && journal.authors.length > 0 && (
+                    <div>
+                        <strong>Authors:</strong>
+                        <span itemScope itemType="https://schema.org/Person">
+                            {journal.authors.map((author, index) => (
+                                <span key={index} itemProp="name">
+                                    {author}{index < journal.authors.length - 1 ? ', ' : ''}
+                                </span>
+                            ))}
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
+        </SEOWrapper>
     );
 };
 

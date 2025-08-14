@@ -97,6 +97,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import JournalList from "../components/JournalList.jsx";
+import SEOHead from "../components/SEO/SEOHead.jsx";
+import { useSEO } from "../hooks/useSEO.js";
+import { getPageSEO } from "../utils/seo.js";
 import './Home.css';
 import Carousel from "../components/Carousel.jsx"; // Assuming this is your Carousel component, adjust if the filename is 'ImprovedCarousel.jsx'
 import './WelcomeSection.css';
@@ -104,6 +107,33 @@ import './FeaturedArticles.css';
 
 export default function HomePage() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    // SEO setup
+    const homeSEO = getPageSEO('home');
+    const homeStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Nigerian Journal of Business and Entrepreneurship Education",
+        "alternateName": "NIJOBED",
+        "url": "https://nijobed.com",
+        "description": homeSEO.description,
+        "publisher": {
+            "@type": "Organization",
+            "name": "Nigerian Journal of Business and Entrepreneurship Education",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://nijobed.com/images/logo.JPG"
+            }
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://nijobed.com/journals?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    };
+
+    // Use SEO hook
+    useSEO(homeSEO, homeStructuredData);
 
     // Handle window resize
     useEffect(() => {
@@ -117,6 +147,13 @@ export default function HomePage() {
 
     return (
         <div className="home-container">
+            <SEOHead
+                title={homeSEO.title}
+                description={homeSEO.description}
+                keywords={homeSEO.keywords}
+                url={homeSEO.url}
+                structuredData={homeStructuredData}
+            />
             <div className="min-h-screen bg-gray-50 text-gray-900">
                 <div className="main-container">
                     <main className="main-content">

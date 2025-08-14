@@ -1,0 +1,43 @@
+User-agent: *
+Allow: /
+
+# Disallow private/admin areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+Disallow: /forgotpassword
+Disallow: /resetpassword/
+Disallow: /updateprofile
+Disallow: /submission
+Disallow: /manage-journals
+Disallow: /journals/uploads
+
+# Allow important pages
+Allow: /
+Allow: /journals
+Allow: /journals/*
+Allow: /archive
+Allow: /about
+Allow: /contact
+Allow: /guide
+Allow: /editorial-board
+
+# Sitemap location
+Sitemap: https://www.nijobed.com.ng/sitemap.xml
+
+# Crawl delay (be respectful to servers)
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
