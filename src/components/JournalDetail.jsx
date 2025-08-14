@@ -3,9 +3,10 @@ import { toast } from 'react-toastify';
 import api from '../services/api';
 import { useParams } from 'react-router-dom';
 import { downloadJournalFile } from '../utils/fileDownload';
-import { useJournalSEO } from '../hooks/useSEO';
-import { generateJournalSEO, generateJournalStructuredData } from '../utils/seo';
-import SEOWrapper from './SEO/SEOWrapper';
+// Temporarily comment out SEO imports
+// import { useJournalSEO } from '../hooks/useSEO';
+// import { generateJournalSEO, generateJournalStructuredData } from '../utils/seo';
+// import SEOWrapper from './SEO/SEOWrapper';
 import './JournalDetails.css';
 
 const JournalDetail = () => {
@@ -14,15 +15,9 @@ const JournalDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // SEO setup for journal
-    const breadcrumbs = [
-        { name: 'Home', url: 'https://www.nijobed.com.ng/' },
-        { name: 'Journals', url: 'https://www.nijobed.com.ng/journals' },
-        { name: journal?.title || 'Journal', url: `https://www.nijobed.com.ng/journals/${id}` }
-    ];
-
-    // Use journal-specific SEO hook
-    useJournalSEO(journal, breadcrumbs);
+    // Temporarily comment out SEO setup
+    // const breadcrumbs = [ ... ];
+    // useJournalSEO(journal, breadcrumbs);
 
     useEffect(() => {
         const fetchJournal = async () => {
@@ -60,19 +55,12 @@ const JournalDetail = () => {
     if (loading) return <p className="text-gray-600">Loading...</p>;
     if (error) return <div className="bg-red-100 text-red-700 p-3 rounded">{error}</div>;
 
-    // Generate SEO data for the journal
-    const journalSEO = journal ? generateJournalSEO(journal) : null;
-    const journalStructuredData = journal ? generateJournalStructuredData(journal) : null;
+    // Temporarily comment out SEO generation
+    // const journalSEO = journal ? generateJournalSEO(journal) : null;
+    // const journalStructuredData = journal ? generateJournalStructuredData(journal) : null;
 
     return (
-        <SEOWrapper
-            title={journalSEO?.title}
-            description={journalSEO?.description}
-            keywords={journalSEO?.keywords}
-            type="article"
-            structuredData={journalStructuredData}
-            breadcrumbs={breadcrumbs}
-        >
+        // <SEOWrapper ...>
             <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg">
             <h2 className="text-2xl font-bold mb-4">{journal?.title || 'Untitled Journal'}</h2>
             <div className="space-y-3">
@@ -120,7 +108,7 @@ const JournalDetail = () => {
                 )}
             </div>
         </div>
-        </SEOWrapper>
+        // </SEOWrapper>
     );
 };
 

@@ -73,6 +73,10 @@
     {
       "source": "/robots.txt",
       "destination": "https://njestemebackend.onrender.com/robots.txt"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
