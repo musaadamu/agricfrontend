@@ -20,23 +20,8 @@ const secureStorage = {
   remove: (key) => localStorage.removeItem(key)
 };
 
-const rateLimiter = {
-  requests: new Map(),
-  canMakeRequest: function(url, limit = 10, windowMs = 60000) {
-    const now = Date.now();
-    if (!this.requests.has(url)) {
-      this.requests.set(url, []);
-    }
-    const requests = this.requests.get(url);
-    const validRequests = requests.filter(time => now - time < windowMs);
-    if (validRequests.length >= limit) {
-      return false;
-    }
-    validRequests.push(now);
-    this.requests.set(url, validRequests);
-    return true;
-  }
-};
+// Rate limiting REMOVED per user request
+// const rateLimiter = { ... };
 
 // Determine the correct base URL based on environment
 const getBaseUrl = () => {
@@ -72,13 +57,10 @@ console.log('API Configuration:', {
   withCredentials: false
 });
 
-// Request interceptor with security enhancements
+// Request interceptor (rate limiting removed)
 api.interceptors.request.use(
   (config) => {
-    // Rate limiting check
-    if (!rateLimiter.canMakeRequest(config.url)) {
-      return Promise.reject(new Error('Rate limit exceeded. Please try again later.'));
-    }
+    // Rate limiting check REMOVED
 
     // Get token from secure storage
     const token = secureStorage.get('authToken') || localStorage.getItem('authToken');
