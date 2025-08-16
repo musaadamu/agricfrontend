@@ -61,10 +61,7 @@ const api = axios.create({
   timeout: 30000, // 30 seconds timeout
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'X-Requested-With': 'XMLHttpRequest', // CSRF protection
-    'Cache-Control': 'no-cache',
-    'Pragma': 'no-cache'
+    'Accept': 'application/json'
   },
   withCredentials: false // Disable cookies for cross-origin requests
 });
