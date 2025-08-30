@@ -25,9 +25,9 @@ const secureStorage = {
 
 // Determine the correct base URL based on environment
 const getBaseUrl = () => {
-  // For production (Vercel deployment)
+  // For production - backend is deployed on Render
   if (import.meta.env.PROD) {
-    return 'https://schoolofbusinessbackend.onrender.com';
+    return 'https://schoolofagricfrontend.onrender.com';
   }
   // For local development
   return 'http://localhost:5000';
@@ -38,7 +38,7 @@ const apiBaseUrl = getBaseUrl();
 console.log('API Base URL:', apiBaseUrl);
 
 // Add a function to check if we're using the production API
-export const isProduction = () => apiBaseUrl.includes('schoolofbusinessbackend.onrender.com');
+export const isProduction = () => apiBaseUrl.includes('schoolofagricfrontend.onrender.com');
 
 // Create axios instance with base URL and security headers
 const api = axios.create({

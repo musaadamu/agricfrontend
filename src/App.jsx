@@ -188,6 +188,12 @@ import EditorialBoard from "./pages/EditorialBoard.jsx";
 import Footer from "./components/Footer.jsx";
 import TestComponent from "./components/TestComponent.jsx";
 
+// Published Journal System Components
+import PublishedJournals from "./pages/PublishedJournals.jsx";
+import SubmitJournal from "./pages/SubmitJournal.jsx";
+import ManagePublishedJournals from "./pages/ManagePublishedJournals.jsx";
+import PublishedJournalArchive from "./pages/PublishedJournalArchive.jsx";
+
 function App() {
   const storedUser = localStorage.getItem('authUser');
   const user = storedUser ? JSON.parse(storedUser) : null;
@@ -215,6 +221,11 @@ function App() {
             <Route path="/journals" element={<JournalList />} />
             <Route path="/journals/:id" element={<JournalDetail />} />
             <Route path="/archive" element={<JournalArchive />} />
+
+            {/* Published Journal System Routes */}
+            <Route path="/published-journals" element={<PublishedJournals />} />
+            <Route path="/published-journal-archive" element={<PublishedJournalArchive />} />
+
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="/test" element={<TestComponent />} />
 
@@ -237,6 +248,13 @@ function App() {
               </ProtectedRoute>
             } />
 
+            {/* Published Journal Submission Route */}
+            <Route path="/submit-journal" element={
+              <ProtectedRoute allowedRoles={["admin", "author", "user"]}>
+                <SubmitJournal />
+              </ProtectedRoute>
+            } />
+
             {/* Admin Only Routes */}
             <Route path="/journals/uploads" element={
               <ProtectedRoute allowedRoles={["admin"]}>
@@ -246,6 +264,13 @@ function App() {
             <Route path="/manage-journals" element={
               <ProtectedRoute allowedRoles={["admin"]}>
                 <ManageJournal />
+              </ProtectedRoute>
+            } />
+
+            {/* Published Journal Management Route */}
+            <Route path="/manage-published-journals" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <ManagePublishedJournals />
               </ProtectedRoute>
             } />
 
