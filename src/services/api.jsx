@@ -25,16 +25,32 @@ const secureStorage = {
 
 // Determine the correct base URL based on environment
 const getBaseUrl = () => {
-  // For production - backend is deployed on Render
-  if (import.meta.env.PROD) {
+  // Check if we have an environment variable first
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+
+  // Auto-detect based on hostname
+  const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
+  if (isProduction) {
+    // Production - backend is deployed on Render
     return 'https://schoolofagricfrontend.onrender.com';
   }
+
   // For local development
   return 'http://localhost:5000';
 };
 
 // Log the API base URL for debugging
 const apiBaseUrl = getBaseUrl();
+console.log('Environment Detection:', {
+  hostname: window.location.hostname,
+  isProduction: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
+  envVariable: import.meta.env.VITE_API_BASE_URL,
+  prodMode: import.meta.env.PROD,
+  finalApiUrl: apiBaseUrl
+});
 console.log('API Base URL:', apiBaseUrl);
 
 // Add a function to check if we're using the production API
