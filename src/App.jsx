@@ -193,6 +193,8 @@ import PublishedJournals from "./pages/PublishedJournals.jsx";
 import PublishedJournalHome from "./pages/PublishedJournalHome.jsx";
 import PublishedJournalSearch from "./pages/PublishedJournalSearch.jsx";
 import PublishedJournalStats from "./pages/PublishedJournalStats.jsx";
+import PublishedJournalUpload from "./pages/PublishedJournalUpload.jsx";
+import PublishedJournalBulk from "./pages/PublishedJournalBulk.jsx";
 import SubmitJournal from "./pages/SubmitJournal.jsx";
 import ManagePublishedJournals from "./pages/ManagePublishedJournals.jsx";
 import PublishedJournalArchive from "./pages/PublishedJournalArchive.jsx";
@@ -277,10 +279,20 @@ function App() {
               </ProtectedRoute>
             } />
 
-            {/* Published Journal Management Route */}
+            {/* Published Journal Management Routes */}
             <Route path="/manage-published-journals" element={
               <ProtectedRoute allowedRoles={["admin"]}>
                 <ManagePublishedJournals />
+              </ProtectedRoute>
+            } />
+            <Route path="/published-journal-upload" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <PublishedJournalUpload />
+              </ProtectedRoute>
+            } />
+            <Route path="/published-journal-bulk" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <PublishedJournalBulk />
               </ProtectedRoute>
             } />
 

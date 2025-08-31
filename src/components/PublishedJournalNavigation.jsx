@@ -33,7 +33,8 @@ const PublishedJournalNavigation = ({ user }) => {
       user && user.role && user.role.toLowerCase() === 'admin'
         ? [
             { path: '/manage-published-journals', label: 'Manage Journals', icon: Settings },
-            { path: '/published-journal-bulk', label: 'Bulk Operations', icon: Upload },
+            { path: '/published-journal-upload', label: 'Upload Journal', icon: Upload },
+            { path: '/published-journal-bulk', label: 'Bulk Operations', icon: FileText },
           ]
         : [];
 
