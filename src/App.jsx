@@ -190,6 +190,9 @@ import TestComponent from "./components/TestComponent.jsx";
 
 // Published Journal System Components
 import PublishedJournals from "./pages/PublishedJournals.jsx";
+import PublishedJournalHome from "./pages/PublishedJournalHome.jsx";
+import PublishedJournalSearch from "./pages/PublishedJournalSearch.jsx";
+import PublishedJournalStats from "./pages/PublishedJournalStats.jsx";
 import SubmitJournal from "./pages/SubmitJournal.jsx";
 import ManagePublishedJournals from "./pages/ManagePublishedJournals.jsx";
 import PublishedJournalArchive from "./pages/PublishedJournalArchive.jsx";
@@ -225,7 +228,10 @@ function App() {
             <Route path="/archive" element={<JournalArchive />} />
 
             {/* Published Journal System Routes */}
+            <Route path="/published-journal-home" element={<PublishedJournalHome />} />
             <Route path="/published-journals" element={<PublishedJournals />} />
+            <Route path="/published-journal-search" element={<PublishedJournalSearch />} />
+            <Route path="/published-journal-stats" element={<PublishedJournalStats />} />
             <Route path="/published-journal-archive" element={<PublishedJournalArchive />} />
             <Route path="/test-download" element={<TestDownload />} />
             <Route path="/test-both-systems" element={<TestBothSystems />} />

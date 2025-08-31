@@ -460,3 +460,75 @@
     font-size: 0.7rem;
   }
 }
+
+/* Published Journal Navigation Styles */
+.published-journal-nav {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.published-journal-nav .brand-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.75rem;
+}
+
+.published-journal-nav .nav-item {
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.published-journal-nav .nav-item:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.published-journal-nav .nav-item-active {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.back-to-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.back-link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.back-to-main-mobile {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Mobile adjustments for published journal nav */
+@media (max-width: 768px) {
+  .back-to-main {
+    display: none;
+  }
+
+  .published-journal-nav .mobile-menu {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .published-journal-nav .mobile-nav-item {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .published-journal-nav .mobile-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+}

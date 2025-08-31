@@ -21,6 +21,7 @@ const Navigation = ({ user }) => {
     const publicItems = [
       { path: '/', label: 'Home', icon: Home },
       { path: '/journals', label: 'Journals', icon: BookOpen },
+      { path: '/published-journal-home', label: 'Published Journals', icon: FileText },
       { path: '/archive', label: 'Archive', icon: Archive },
       { path: '/editorial-board', label: 'Editorial Board', icon: Users },
       { path: '/about', label: 'About', icon: Info },
