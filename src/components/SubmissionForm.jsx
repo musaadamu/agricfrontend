@@ -86,32 +86,53 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
         }
     };
 
-    // Handle file upload
+    // Handle file upload with enhanced validation
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+            console.log('File selected:', {
+                name: file.name,
+                type: file.type,
+                size: file.size
+            });
+
             // Validate file type
             const allowedTypes = [
                 'application/pdf',
                 'application/msword',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
             ];
-            
-            if (!allowedTypes.includes(file.type)) {
+
+            const allowedExtensions = ['.pdf', '.doc', '.docx'];
+            const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
+
+            if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
                 toast.error('Please upload a PDF, DOC, or DOCX file');
+                console.error('Invalid file type:', file.type, 'Extension:', fileExtension);
                 return;
             }
-            
+
             // Validate file size (50MB)
-            if (file.size > 50 * 1024 * 1024) {
-                toast.error('File size must be less than 50MB');
+            const maxSize = 50 * 1024 * 1024; // 50MB
+            if (file.size > maxSize) {
+                toast.error(`File size must be less than 50MB. Current size: ${formatFileSize(file.size)}`);
+                console.error('File too large:', file.size, 'bytes');
                 return;
             }
-            
+
+            // Validate minimum file size (1KB)
+            if (file.size < 1024) {
+                toast.error('File appears to be too small. Please check your file.');
+                console.error('File too small:', file.size, 'bytes');
+                return;
+            }
+
+            console.log('File validation passed');
             onDataChange({ manuscript: file });
             if (errors.manuscript) {
                 setErrors(prev => ({ ...prev, manuscript: '' }));
             }
+            toast.success(`File "${file.name}" selected successfully`);
         }
     };
 
@@ -318,26 +339,54 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
                                 <p className="text-lg font-medium text-gray-600 mb-2">
                                     Click to upload your manuscript
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 mb-3">
                                     Supported formats: PDF, DOC, DOCX (Max: 50MB)
                                 </p>
+                                <div className="text-xs text-gray-400 space-y-1">
+                                    <p>• PDF files are preferred for final submissions</p>
+                                    <p>• DOCX files are accepted for review purposes</p>
+                                    <p>• Ensure your file is complete and properly formatted</p>
+                                </div>
                             </div>
                         ) : (
-                            <div className="border border-gray-300 rounded-lg p-4">
+                            <div className="border border-green-300 rounded-lg p-4 bg-green-50">
                                 <div className="flex items-center gap-3">
-                                    <FaFileAlt className="text-green-600 text-2xl" />
-                                    <div className="flex-1">
-                                        <p className="font-medium text-gray-900">{data.manuscript.name}</p>
-                                        <p className="text-sm text-gray-500">
-                                            {formatFileSize(data.manuscript.size)} • {data.manuscript.type}
-                                        </p>
+                                    <div className="flex-shrink-0">
+                                        <FaFileAlt className="text-green-600 text-2xl" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <p className="font-medium text-gray-900 truncate">{data.manuscript.name}</p>
+                                        <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                                            <span>{formatFileSize(data.manuscript.size)}</span>
+                                            <span>•</span>
+                                            <span className="capitalize">
+                                                {data.manuscript.type.includes('pdf') ? 'PDF Document' :
+                                                 data.manuscript.type.includes('word') ? 'Word Document' :
+                                                 data.manuscript.name.toLowerCase().endsWith('.docx') ? 'Word Document' :
+                                                 'Document'}
+                                            </span>
+                                            <span>•</span>
+                                            <span className="text-green-600 font-medium">✓ Valid</span>
+                                        </div>
                                     </div>
                                     <button
-                                        onClick={() => onDataChange({ manuscript: null })}
-                                        className="text-red-600 hover:bg-red-50 p-2 rounded-lg"
+                                        onClick={() => {
+                                            onDataChange({ manuscript: null });
+                                            toast.info('File removed. You can select a new file.');
+                                        }}
+                                        className="text-red-600 hover:bg-red-100 p-2 rounded-lg transition-colors"
+                                        title="Remove file"
                                     >
                                         <FaTimes />
                                     </button>
+                                </div>
+
+                                {/* File preview info */}
+                                <div className="mt-3 pt-3 border-t border-green-200">
+                                    <p className="text-xs text-green-700">
+                                        <FaCheck className="inline mr-1" />
+                                        File ready for submission. You can proceed to the next step.
+                                    </p>
                                 </div>
                             </div>
                         )}
@@ -346,7 +395,7 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
                             ref={fileInputRef}
                             type="file"
                             onChange={handleFileChange}
-                            accept=".pdf,.doc,.docx"
+                            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                             className="hidden"
                         />
                         

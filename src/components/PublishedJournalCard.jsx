@@ -45,32 +45,55 @@ const PublishedJournalCard = ({ journal }) => {
         return `${year} - ${quarters[quarter]}`;
     };
 
-    // Handle file download
-    const handleDownload = async () => {
-        if (!journal.pdfCloudinaryUrl && !journal.content_file_path) {
+    // Handle file download using backend API
+    const handleDownload = async (fileType = 'pdf') => {
+        if (!journal.pdfCloudinaryUrl && !journal.content_file_path && !journal.docxCloudinaryUrl) {
             toast.error('No file available for download');
             return;
         }
 
         try {
             setDownloading(true);
-            
-            // Use Cloudinary URL if available, otherwise use local file path
-            const downloadUrl = journal.pdfCloudinaryUrl || journal.content_file_path;
-            
-            // Create a temporary link and trigger download
+
+            // Use the backend download endpoint for better error handling and logging
+            const downloadEndpoint = `${import.meta.env.VITE_API_BASE_URL}/api/published-journals/${journal._id}/download/${fileType}`;
+
+            console.log('Downloading from endpoint:', downloadEndpoint);
+
+            // Create a temporary link and trigger download through backend
             const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = `${journal.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+            link.href = downloadEndpoint;
             link.target = '_blank';
+            link.rel = 'noopener noreferrer';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            toast.success('Download started');
+
+            toast.success(`${fileType.toUpperCase()} download started`);
         } catch (error) {
             console.error('Download error:', error);
             toast.error('Failed to download file');
+
+            // Fallback to direct URL download if backend fails
+            try {
+                const fallbackUrl = fileType === 'pdf'
+                    ? (journal.pdfCloudinaryUrl || journal.content_file_path)
+                    : journal.docxCloudinaryUrl;
+
+                if (fallbackUrl) {
+                    const link = document.createElement('a');
+                    link.href = fallbackUrl;
+                    link.download = `${journal.title.replace(/[^a-zA-Z0-9]/g, '_')}.${fileType}`;
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    toast.success('Fallback download started');
+                }
+            } catch (fallbackError) {
+                console.error('Fallback download error:', fallbackError);
+                toast.error('All download methods failed');
+            }
         } finally {
             setDownloading(false);
         }
@@ -202,8 +225,9 @@ const PublishedJournalCard = ({ journal }) => {
 
                 {/* Actions */}
                 <div className="flex gap-2">
+                    {/* PDF Download Button */}
                     <button
-                        onClick={handleDownload}
+                        onClick={() => handleDownload('pdf')}
                         disabled={downloading || (!journal.pdfCloudinaryUrl && !journal.content_file_path)}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
@@ -215,11 +239,29 @@ const PublishedJournalCard = ({ journal }) => {
                         ) : (
                             <>
                                 <FaDownload />
-                                Download
+                                PDF
                             </>
                         )}
                     </button>
-                    
+
+                    {/* DOCX Download Button (if available) */}
+                    {journal.docxCloudinaryUrl && (
+                        <button
+                            onClick={() => handleDownload('docx')}
+                            disabled={downloading}
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                            {downloading ? (
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                            ) : (
+                                <>
+                                    <FaDownload />
+                                    DOCX
+                                </>
+                            )}
+                        </button>
+                    )}
+
                     <button
                         onClick={() => {
                             // Navigate to detailed view (implement if needed)

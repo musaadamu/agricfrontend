@@ -193,6 +193,8 @@ import PublishedJournals from "./pages/PublishedJournals.jsx";
 import SubmitJournal from "./pages/SubmitJournal.jsx";
 import ManagePublishedJournals from "./pages/ManagePublishedJournals.jsx";
 import PublishedJournalArchive from "./pages/PublishedJournalArchive.jsx";
+import TestDownload from "./pages/TestDownload.jsx";
+import TestBothSystems from "./pages/TestBothSystems.jsx";
 
 function App() {
   const storedUser = localStorage.getItem('authUser');
@@ -225,6 +227,8 @@ function App() {
             {/* Published Journal System Routes */}
             <Route path="/published-journals" element={<PublishedJournals />} />
             <Route path="/published-journal-archive" element={<PublishedJournalArchive />} />
+            <Route path="/test-download" element={<TestDownload />} />
+            <Route path="/test-both-systems" element={<TestBothSystems />} />
 
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="/test" element={<TestComponent />} />
