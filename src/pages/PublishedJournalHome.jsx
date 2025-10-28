@@ -45,9 +45,14 @@ const PublishedJournalHome = () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/published-journals/stats/overview`);
       const data = await response.json();
-      
+
       if (data.success) {
-        setStats(data.data);
+        setStats({
+          totalJournals: data.data.overview.totalJournals,
+          currentYearJournals: data.data.overview.currentYearJournals,
+          totalDownloads: data.data.overview.totalDownloads,
+          currentQuarter: Math.ceil((new Date().getMonth() + 1) / 3)
+        });
       }
     } catch (error) {
       console.error('Error fetching stats:', error);

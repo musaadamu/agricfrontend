@@ -35,7 +35,7 @@ const getBaseUrl = () => {
 
   if (isProduction) {
     // Production - backend is deployed on Render
-    return 'https://schoolofagricfrontend.onrender.com';
+    return 'https://agricbackend.onrender.com';
   }
 
   // For local development
@@ -54,7 +54,7 @@ console.log('Environment Detection:', {
 console.log('API Base URL:', apiBaseUrl);
 
 // Add a function to check if we're using the production API
-export const isProduction = () => apiBaseUrl.includes('schoolofagricfrontend.onrender.com');
+export const isProduction = () => apiBaseUrl.includes('agricbackend.onrender.com');
 
 // Create axios instance with base URL and security headers
 const api = axios.create({

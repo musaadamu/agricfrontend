@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BarChart3, TrendingUp, Calendar, Download, 
-  BookOpen, Users, Award, Clock 
+import {
+  BarChart3, TrendingUp, Calendar, Download,
+  BookOpen, Users, Award, Clock
 } from 'lucide-react';
 import PublishedJournalNavigation from '../components/PublishedJournalNavigation';
+import { toast } from 'react-hot-toast';
 
 const PublishedJournalStats = () => {
   const [stats, setStats] = useState({
     overview: {
       totalJournals: 0,
+      currentYearJournals: 0,
+      totalSubmissions: 0,
+      pendingReviews: 0,
       totalDownloads: 0,
+      avgDownloads: 0,
       totalAuthors: 0,
-      currentYearJournals: 0
+      currentYear: new Date().getFullYear()
     },
-    yearlyStats: [],
     quarterlyStats: [],
+    yearlyStats: [],
     topJournals: [],
-    recentActivity: []
+    recentActivity: {},
+    statusDistribution: {},
+    availableYears: [],
+    monthlyTrends: [],
+    generatedAt: null,
+    requestedYear: new Date().getFullYear()
   });
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -32,14 +42,21 @@ const PublishedJournalStats = () => {
   const fetchStats = async () => {
     try {
       setLoading(true);
+      console.log(`📊 Fetching statistics for year: ${selectedYear}`);
+
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/published-journals/stats/overview?year=${selectedYear}`);
       const data = await response.json();
-      
+
       if (data.success) {
+        console.log('📈 Statistics received:', data.data);
         setStats(data.data);
+      } else {
+        console.error('❌ Failed to fetch statistics:', data.message);
+        toast.error(data.message || 'Failed to fetch statistics');
       }
     } catch (error) {
-      console.error('Error fetching stats:', error);
+      console.error('❌ Error fetching stats:', error);
+      toast.error('Failed to load statistics. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -50,8 +67,9 @@ const PublishedJournalStats = () => {
 
   const overviewCards = [
     {
-      title: 'Total Journals',
+      title: 'Total Published',
       value: stats.overview.totalJournals,
+      subtitle: 'Published Journals',
       icon: BookOpen,
       color: 'bg-blue-500',
       textColor: 'text-blue-600',
@@ -60,14 +78,16 @@ const PublishedJournalStats = () => {
     {
       title: 'Total Downloads',
       value: stats.overview.totalDownloads,
+      subtitle: `Avg: ${stats.overview.avgDownloads}/journal`,
       icon: Download,
       color: 'bg-green-500',
       textColor: 'text-green-600',
       bgColor: 'bg-green-50'
     },
     {
-      title: 'Total Authors',
+      title: 'Unique Authors',
       value: stats.overview.totalAuthors,
+      subtitle: 'Contributing Authors',
       icon: Users,
       color: 'bg-purple-500',
       textColor: 'text-purple-600',
@@ -76,10 +96,20 @@ const PublishedJournalStats = () => {
     {
       title: `${selectedYear} Journals`,
       value: stats.overview.currentYearJournals,
+      subtitle: `of ${stats.overview.totalSubmissions} submissions`,
       icon: Calendar,
       color: 'bg-orange-500',
       textColor: 'text-orange-600',
       bgColor: 'bg-orange-50'
+    },
+    {
+      title: 'Pending Reviews',
+      value: stats.overview.pendingReviews,
+      subtitle: 'Awaiting Review',
+      icon: Clock,
+      color: 'bg-yellow-500',
+      textColor: 'text-yellow-600',
+      bgColor: 'bg-yellow-50'
     }
   ];
 
@@ -147,21 +177,24 @@ const PublishedJournalStats = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12"
           >
             {overviewCards.map((card, index) => {
               const Icon = card.icon;
               return (
                 <div key={index} className={`${card.bgColor} rounded-lg p-6 border border-gray-200`}>
-                  <div className="flex items-center justify-between">
-                    <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex-1">
                       <p className="text-gray-600 text-sm font-medium">{card.title}</p>
-                      <p className="text-3xl font-bold text-gray-900 mt-2">
-                        {card.value.toLocaleString()}
+                      <p className="text-2xl font-bold text-gray-900 mt-1">
+                        {typeof card.value === 'number' ? card.value.toLocaleString() : card.value}
                       </p>
+                      {card.subtitle && (
+                        <p className="text-xs text-gray-500 mt-1">{card.subtitle}</p>
+                      )}
                     </div>
                     <div className={`p-3 rounded-lg ${card.color}`}>
-                      <Icon className="text-white" size={24} />
+                      <Icon className="text-white" size={20} />
                     </div>
                   </div>
                 </div>
@@ -246,34 +279,104 @@ const PublishedJournalStats = () => {
             )}
           </motion.div>
 
-          {/* Yearly Trends */}
+          {/* Status Distribution & Recent Activity */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8"
+          >
+            {/* Status Distribution */}
+            <div className="bg-white rounded-lg shadow-md p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <BarChart3 className="text-blue-600" />
+                Status Distribution
+              </h2>
+
+              <div className="space-y-4">
+                {Object.entries(stats.statusDistribution).map(([status, count]) => (
+                  <div key={status} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-3 h-3 rounded-full ${
+                        status === 'published' ? 'bg-green-500' :
+                        status === 'under_review' ? 'bg-yellow-500' :
+                        status === 'submitted' ? 'bg-blue-500' :
+                        status === 'archived' ? 'bg-gray-500' : 'bg-red-500'
+                      }`}></div>
+                      <span className="font-medium text-gray-900 capitalize">
+                        {status.replace('_', ' ')}
+                      </span>
+                    </div>
+                    <span className="text-lg font-bold text-gray-700">{count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Activity */}
+            <div className="bg-white rounded-lg shadow-md p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <Clock className="text-orange-600" />
+                Recent Activity (30 days)
+              </h2>
+
+              <div className="space-y-4">
+                {Object.entries(stats.recentActivity).length > 0 ? (
+                  Object.entries(stats.recentActivity).map(([status, count]) => (
+                    <div key={status} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                      <span className="font-medium text-gray-900 capitalize">
+                        {status.replace('_', ' ')} Journals
+                      </span>
+                      <span className="text-lg font-bold text-blue-600">{count}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-center py-4">No recent activity</p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Yearly Trends */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="bg-white rounded-lg shadow-md p-8"
           >
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <TrendingUp className="text-green-600" />
               Yearly Trends
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {stats.yearlyStats.map((yearData) => (
-                <div key={yearData.year} className="text-center p-4 border border-gray-200 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{yearData.year}</h3>
-                  <div className="space-y-2">
-                    <div>
-                      <p className="text-2xl font-bold text-blue-600">{yearData.count}</p>
-                      <p className="text-sm text-gray-600">Journals Published</p>
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-green-600">{yearData.downloads}</p>
-                      <p className="text-sm text-gray-600">Total Downloads</p>
+              {stats.yearlyStats.length > 0 ? (
+                stats.yearlyStats.map((yearData) => (
+                  <div key={yearData.year} className="text-center p-4 border border-gray-200 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{yearData.year}</h3>
+                    <div className="space-y-2">
+                      <div>
+                        <p className="text-2xl font-bold text-blue-600">{yearData.count}</p>
+                        <p className="text-sm text-gray-600">Journals Published</p>
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold text-green-600">{yearData.downloads}</p>
+                        <p className="text-sm text-gray-600">Total Downloads</p>
+                      </div>
+                      {yearData.avgDownloads && (
+                        <div>
+                          <p className="text-sm font-medium text-purple-600">{yearData.avgDownloads}</p>
+                          <p className="text-xs text-gray-500">Avg Downloads</p>
+                        </div>
+                      )}
                     </div>
                   </div>
+                ))
+              ) : (
+                <div className="col-span-3 text-center py-8">
+                  <p className="text-gray-500">No yearly data available</p>
                 </div>
-              ))}
+              )}
             </div>
           </motion.div>
         </div>
