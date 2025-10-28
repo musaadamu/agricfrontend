@@ -85,8 +85,14 @@ export const updateUserProfile = createAsyncThunk(
         try {
             const response = await api.auth.updateProfile(userData);
             const { data } = response;
-            localStorage.setItem('authUser', JSON.stringify(data));
-            return data;
+
+            // Extract user data from response
+            const userToStore = data.user || data;
+
+            // Store updated user in localStorage
+            localStorage.setItem('authUser', JSON.stringify(userToStore));
+
+            return userToStore;
         } catch (error) {
             console.error('Profile update error:', error);
             return rejectWithValue(error.response?.data?.message || 'Profile update failed');
