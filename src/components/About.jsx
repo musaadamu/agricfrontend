@@ -22,13 +22,13 @@ const About = () => {
             <div className="relative px-4 sm:px-8 lg:px-12 py-12 sm:py-16 text-white">
               <div className="max-w-4xl">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  Nigerian Journal of Business and<br className="block sm:hidden" />
+                  Journal of Vocational<br className="block sm:hidden" />
                   <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
-                    Entrepreneurship Education
+                    Teacher Education
                   </span>
                 </h1>
                 <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl leading-relaxed">
-                  Advancing Research in Business and Entrepreneurship Education Through 
+                  Advancing Research in Vocational Teacher Education Through
                   Innovation, Excellence, and Global Academic Collaboration
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
@@ -66,9 +66,8 @@ const About = () => {
               </div>
               <div className="p-6 sm:p-8">
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  To be a leading international journal promoting excellence in business, management, 
-                  and entrepreneurship education research and innovation, setting global standards 
-                  for academic excellence and practical application.
+                  To be a leading multidisciplinary journal promoting excellence in vocational teacher education research and innovation,
+                  setting global standards for academic excellence and practical application in vocational and technical education.
                 </p>
               </div>
             </div>
@@ -84,9 +83,8 @@ const About = () => {
               </div>
               <div className="p-6 sm:p-8">
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  To publish high-quality, peer-reviewed research that contributes to the advancement 
-                  of business and entrepreneurship education, fostering innovation and excellence in 
-                  teaching, learning, and enterprise development across global contexts.
+                  To publish high-quality, peer-reviewed research that contributes to the advancement
+                  of vocational teacher education, fostering innovation and excellence in teaching, learning, and skills development across global contexts.
                 </p>
               </div>
             </div>
@@ -109,15 +107,15 @@ const About = () => {
                 <div className="lg:col-span-2">
                   <div className="space-y-4 sm:space-y-6">
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      Nigerian Journal of Business and Entrepreneurship Education is a premier peer-reviewed 
-                      academic journal focused on advancing research in business, management, and entrepreneurship 
-                      education. Our journal serves as a platform for sharing innovative research, teaching 
-                      methodologies, and best practices in business and entrepreneurship education.
+                      The Journal of Vocational Teacher Education (JOVOTE) is a multidisciplinary peer-reviewed
+                      academic journal for the School of Secondary Education (Vocational), Federal College of Education (Technical) Potiskum.
+                      It is open to scholars from Vocational Education and related disciplines. Our journal serves as a platform for sharing
+                      innovative research, teaching methodologies, and best practices in vocational and technical education.
                     </p>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      Our international editorial board comprises distinguished scholars and practitioners from 
-                      leading institutions worldwide, ensuring rigorous academic standards and diverse perspectives 
-                      in business and entrepreneurship education research.
+                      Our editorial board comprises distinguished scholars and practitioners from
+                      leading institutions worldwide, ensuring rigorous academic standards and diverse perspectives
+                      in vocational teacher education research.
                     </p>
                   </div>
                 </div>
@@ -130,20 +128,18 @@ const About = () => {
                     <div className="flex items-start space-x-3">
                       <span className="text-blue-600 mt-1 text-sm sm:text-base">📍</span>
                       <div className="text-xs sm:text-sm whitespace-pre-line break-words">
-                        The Editor-in-Chief
-                        <br />Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)
-                        <br />School of Secondary Education (Business),
-                        <br />Federal College of Education (Technical),
-                        <br />Potiskum, Yobe State.
+                        School of Secondary Education (Vocational)
+                        <br />Federal College of Education (Technical)
+                        <br />Potiskum, Yobe State, Nigeria
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <span className="text-blue-600 text-sm sm:text-base">📧</span>
-                      <a href="mailto:sbefcetpotiskum@gmail.com" className="hover:underline text-blue-700 text-xs sm:text-sm break-all">sbefcetpotiskum@gmail.com</a>
+                      <a href="mailto:jovote2025@gmail.com" className="hover:underline text-blue-700 text-xs sm:text-sm break-all">jovote2025@gmail.com</a>
                     </div>
                     <div className="flex items-start space-x-3">
                       <span className="text-blue-600 text-sm sm:text-base">📱</span>
-                      <span className="text-xs sm:text-sm break-words">+2347035694303; +2348128161859</span>
+                      <span className="text-xs sm:text-sm break-words">Dr. Victor Madu U.: 08034942253 | Halima Abdullahi: 08065386688</span>
                     </div>
                   </div>
                 </div>
@@ -164,19 +160,19 @@ const About = () => {
               {
                 icon: "📅",
                 title: "Publication Frequency",
-                content: "Quarterly (4 issues per year)",
+                content: "Annual publication for 2026",
                 gradient: "from-blue-500 to-cyan-500"
               },
               {
                 icon: "🔍",
                 title: "Peer Review Process",
-                content: "Double-blind peer review by business and entrepreneurship education experts",
+                content: "Rigorous vetting by vocational education experts",
                 gradient: "from-indigo-500 to-blue-500"
               },
               {
                 icon: "🌐",
-                title: "Open Access",
-                content: "Full open access with immediate online publication",
+                title: "Scope",
+                content: "Multidisciplinary journal for vocational and related disciplines",
                 gradient: "from-cyan-500 to-blue-500"
               },
               {
@@ -209,30 +205,30 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                icon: "💼",
-                title: "Business Education",
-                content: "Business Administration, Management, Marketing, Human Resources, Strategic Planning",
+                icon: "🎓",
+                title: "Vocational Education",
+                content: "Curriculum Development, Teaching Methods, Skills Training, Technical Competencies",
                 gradient: "from-blue-50 to-cyan-50",
                 border: "border-blue-200"
               },
               {
-                icon: "🚀",
-                title: "Entrepreneurship Education",
-                content: "Entrepreneurial Mindset, Venture Creation, Innovation Management, Startup Development",
+                icon: "👨‍🏫",
+                title: "Teacher Training & Development",
+                content: "Teacher Preparation, Professional Development, Pedagogical Innovation, Mentoring",
                 gradient: "from-indigo-50 to-blue-50",
                 border: "border-indigo-200"
               },
               {
-                icon: "👥",
-                title: "Leadership Education",
-                content: "Organizational Leadership, Strategic Management, Change Management, Team Building",
+                icon: "🔧",
+                title: "Technical Education",
+                content: "Hands-on Learning, Practical Skills, Industry Partnerships, Apprenticeship Models",
                 gradient: "from-cyan-50 to-blue-50",
                 border: "border-cyan-200"
               },
               {
-                icon: "💰",
-                title: "Financial Literacy",
-                content: "Personal Finance, Investment Strategies, Financial Planning, Economic Education",
+                icon: "💡",
+                title: "Educational Innovation",
+                content: "Technology Integration, Assessment Methods, Curriculum Design, Best Practices",
                 gradient: "from-blue-50 to-indigo-50",
                 border: "border-blue-200"
               }
@@ -265,7 +261,7 @@ const About = () => {
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center mr-3">
                   📍
                 </div>
-                Federal College of Education (Technical), Potiskum
+                School of Secondary Education (Vocational), Federal College of Education (Technical), Potiskum
               </h3>
             </div>
             <div className="p-0">
@@ -297,12 +293,12 @@ const About = () => {
           <div className="mb-6">
             <h3 className="text-2xl font-bold text-blue-900 mb-2">Join Our Academic Community</h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Be part of a global network of researchers, educators, and practitioners advancing 
-              business and entrepreneurship education worldwide.
+              Be part of a global network of researchers, educators, and practitioners advancing
+              vocational teacher education worldwide.
             </p>
           </div>
           <div className="flex justify-center space-x-8 text-sm text-gray-500 mb-4">
-            <span>© 2025 NIJOBED</span>
+            <span>© 2025 JOVOTE</span>
             <span>•</span>
             <span>Academic Excellence</span>
             <span>•</span>

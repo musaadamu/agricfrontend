@@ -20,6 +20,7 @@ const Navigation = ({ user }) => {
   const getNavigationItems = () => {
     const publicItems = [
       { path: '/', label: 'Home', icon: Home },
+      { path: '/call-for-papers', label: 'Call for Papers', icon: FileText },
       { path: '/journals', label: 'Journals', icon: BookOpen },
       { path: '/published-journal-home', label: 'Published Journals', icon: FileText },
       { path: '/archive', label: 'Archive', icon: Archive },
@@ -83,8 +84,8 @@ const Navigation = ({ user }) => {
               <img src="images/logo.JPG" alt="Journal Logo" className="logo-img" />
             </div>
             <div className="brand-text">
-              <h1 className="brand-title">NIJOBED</h1>
-              <span className="brand-subtitle">NIJOBED</span>
+              <h1 className="brand-title">JOVOTE</h1>
+              <span className="brand-subtitle">Vocational Teacher Education</span>
             </div>
           </Link>
         </div>

@@ -136,12 +136,12 @@ export default function HomePage() {
                             <h1 className="journal-main-title responsive-journal-title">
                                 {isMobile ? (
                                     <>
-                                        Nigerian Journal of Business<br />
-                                        and Entrepreneurship Education <br />
-                                        <span className="journal-abbr">(NIJOBED)</span>
+                                        Journal of Vocational<br />
+                                        Teacher Education <br />
+                                        <span className="journal-abbr">(JOVOTE)</span>
                                     </>
                                 ) : (
-                                    <>Nigerian Journal of Business and Entrepreneurship Education <span className="journal-abbr">(NIJOBED)</span></>
+                                    <>Journal of Vocational Teacher Education <span className="journal-abbr">(JOVOTE)</span></>
                                 )}
                             </h1>
                         </div>
@@ -166,14 +166,14 @@ export default function HomePage() {
                             <div className="welcome-content-full">
                                 <div className="welcome-text-container">
                                     <h1 className="welcome-heading-enhanced">
-                                        Promoting Excellence in <span className="highlight-text">Business & Entrepreneurship Education</span>
+                                        Advancing Excellence in <span className="highlight-text">Vocational Teacher Education</span>
                                     </h1>
                                     <p className="welcome-description">
-                                        The Nigerian Journal of Business and Entrepreneurship Education serves as a premier scholarly platform, 
-                                        fostering groundbreaking research, innovative methodologies, and evidence-based practices in business 
-                                        education, entrepreneurial development, and economic advancement across Nigeria and beyond.
+                                        The Journal of Vocational Teacher Education (JOVOTE) is a multidisciplinary platform for the School of Secondary Education (Vocational),
+                                        Federal College of Education (Technical) Potiskum. We foster groundbreaking research, innovative teaching methodologies, and evidence-based
+                                        practices in vocational education across Nigeria and beyond.
                                     </p>
-                                </div> 
+                                </div>
                                 <div className="welcome-actions-enhanced">
                                     <Link to="/submission" className="action-button primary-enhanced">
                                         <span>Submit Your Research</span>
@@ -212,20 +212,20 @@ export default function HomePage() {
 
                         {/* Featured Articles Section */}
                         <div className="featured-articles-section">
-                            <h1 className="featured-title">Current Journals</h1>
-                            <p className="featured-subtitle">Discover the latest research from Nigerian Journal of Business and Entrepreneurship Education</p>
+                            <h1 className="featured-title">Current Submissions</h1>
+                            <p className="featured-subtitle">Discover the latest research from the Journal of Vocational Teacher Education</p>
                             <div className="search-bar">
                                 <input type="text" className="search-input" placeholder="Search articles by keyword, title, author..." />
                             </div>
                             <div className="filter-section">
                                 <span className="filter-item active">All</span>
-                                <span className="filter-item">Finance</span>
-                                <span className="filter-item">Economics</span>
-                                <span className="filter-item">Accounting</span>
-                                <span className="filter-item">Entrepreneurship</span>
-                                <span className="filter-item">Marketing</span>
-                                <span className="filter-item">Management</span>
-                                <span className="filter-item">Office Technology and Management</span>
+                                <span className="filter-item">Vocational Education</span>
+                                <span className="filter-item">Teacher Training</span>
+                                <span className="filter-item">Curriculum Development</span>
+                                <span className="filter-item">Technical Education</span>
+                                <span className="filter-item">Skills Development</span>
+                                <span className="filter-item">Educational Technology</span>
+                                <span className="filter-item">Pedagogy</span>
                             </div>
                             <JournalList />
                             <div className="no-results">No journals found matching your criteria.</div>

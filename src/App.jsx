@@ -184,6 +184,7 @@ import Navigation from "./components/Navigation.jsx";
 import About from "./components/About.jsx";
 import Guide from "./components/Guide.jsx";
 import Contact from "./components/Contact.jsx";
+import CallForPapers from "./pages/CallForPapers.jsx";
 import EditorialBoard from "./pages/EditorialBoard.jsx";
 import Footer from "./components/Footer.jsx";
 import TestComponent from "./components/TestComponent.jsx";
@@ -223,6 +224,7 @@ function App() {
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/resetpassword/:token" element={<ResetPassword />} />
             <Route path="/about" element={<About />} />
+            <Route path="/call-for-papers" element={<CallForPapers />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/journals" element={<JournalList />} />
