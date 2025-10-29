@@ -16,10 +16,11 @@ const PublishedJournalUpload = () => {
     status: 'published'
   });
   const [files, setFiles] = useState({
-    manuscript: null,
-    supplementary: []
+    pdfFile: null,
+    docxFile: null
   });
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const storedUser = localStorage.getItem('authUser');
   const user = storedUser ? JSON.parse(storedUser) : null;
@@ -52,20 +53,26 @@ const PublishedJournalUpload = () => {
 
   const handleFileChange = (e) => {
     const { name, files: selectedFiles } = e.target;
-    if (name === 'manuscript') {
-      setFiles(prev => ({ ...prev, manuscript: selectedFiles[0] }));
-    } else if (name === 'supplementary') {
-      setFiles(prev => ({ ...prev, supplementary: Array.from(selectedFiles) }));
+    if (selectedFiles && selectedFiles[0]) {
+      setFiles(prev => ({ ...prev, [name]: selectedFiles[0] }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate that at least one file is selected
+    if (!files.pdfFile && !files.docxFile) {
+      toast.error('Please upload at least one file (PDF or DOCX)');
+      return;
+    }
+
     setLoading(true);
+    setUploadProgress(0);
 
     try {
       const submitData = new FormData();
-      
+
       // Add form data
       submitData.append('title', formData.title);
       submitData.append('abstract', formData.abstract);
@@ -77,13 +84,12 @@ const PublishedJournalUpload = () => {
       submitData.append('status', formData.status);
 
       // Add files
-      if (files.manuscript) {
-        submitData.append('manuscript', files.manuscript);
+      if (files.pdfFile) {
+        submitData.append('pdfFile', files.pdfFile);
       }
-      
-      files.supplementary.forEach((file, index) => {
-        submitData.append(`supplementary_${index}`, file);
-      });
+      if (files.docxFile) {
+        submitData.append('docxFile', files.docxFile);
+      }
 
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/published-journals/admin/upload`, {
         method: 'POST',
@@ -93,7 +99,7 @@ const PublishedJournalUpload = () => {
       const result = await response.json();
 
       if (result.success) {
-        toast.success('Journal uploaded successfully!');
+        toast.success('Journal uploaded successfully to Cloudinary!');
         // Reset form
         setFormData({
           title: '',
@@ -105,7 +111,8 @@ const PublishedJournalUpload = () => {
           submitted_by: '',
           status: 'published'
         });
-        setFiles({ manuscript: null, supplementary: [] });
+        setFiles({ pdfFile: null, docxFile: null });
+        setUploadProgress(0);
       } else {
         toast.error(result.message || 'Upload failed');
       }
@@ -314,35 +321,53 @@ const PublishedJournalUpload = () => {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                   <Upload className="text-indigo-600" />
-                  Files
+                  Files (Upload to Cloudinary)
                 </h3>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Manuscript File *
-                  </label>
-                  <input
-                    type="file"
-                    name="manuscript"
-                    onChange={handleFileChange}
-                    accept=".pdf,.docx,.doc"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
+
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-blue-800">
+                    ℹ️ Files will be uploaded to Cloudinary cloud storage. You can upload PDF and/or DOCX files (max 50MB each).
+                  </p>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Supplementary Files (Optional)
+                    PDF File (Optional)
                   </label>
-                  <input
-                    type="file"
-                    name="supplementary"
-                    onChange={handleFileChange}
-                    accept=".pdf,.docx,.doc,.xlsx,.csv"
-                    multiple
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
+                  <div className="relative">
+                    <input
+                      type="file"
+                      name="pdfFile"
+                      onChange={handleFileChange}
+                      accept=".pdf"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                    {files.pdfFile && (
+                      <div className="mt-2 text-sm text-green-600 flex items-center gap-2">
+                        ✓ {files.pdfFile.name}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    DOCX File (Optional)
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      name="docxFile"
+                      onChange={handleFileChange}
+                      accept=".docx,.doc"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                    {files.docxFile && (
+                      <div className="mt-2 text-sm text-green-600 flex items-center gap-2">
+                        ✓ {files.docxFile.name}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
 

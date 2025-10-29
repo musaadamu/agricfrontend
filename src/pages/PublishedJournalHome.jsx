@@ -76,48 +76,48 @@ const PublishedJournalHome = () => {
       icon: BookOpen,
       label: 'Total Journals',
       value: stats.totalJournals,
-      color: 'bg-blue-500',
-      textColor: 'text-blue-600'
+      color: 'bg-red-500',
+      textColor: 'text-red-600'
     },
     {
       icon: Calendar,
       label: `${currentYear} Journals`,
       value: stats.currentYearJournals,
-      color: 'bg-green-500',
-      textColor: 'text-green-600'
+      color: 'bg-orange-500',
+      textColor: 'text-orange-600'
     },
     {
       icon: Download,
       label: 'Total Downloads',
       value: stats.totalDownloads,
-      color: 'bg-purple-500',
-      textColor: 'text-purple-600'
+      color: 'bg-amber-500',
+      textColor: 'text-amber-600'
     },
     {
       icon: TrendingUp,
       label: `Q${currentQuarter} ${currentYear}`,
       value: 'Current',
-      color: 'bg-orange-500',
-      textColor: 'text-orange-600'
+      color: 'bg-rose-500',
+      textColor: 'text-rose-600'
     }
   ];
 
   const quickActions = [
     {
       title: 'Browse All Journals',
-      description: 'Explore our complete collection of published journals',
+      description: 'Explore our complete collection of vocational education research',
       icon: BookOpen,
       link: '/published-journals',
-      color: 'bg-blue-50 border-blue-200 hover:bg-blue-100',
-      iconColor: 'text-blue-600'
+      color: 'bg-red-50 border-red-200 hover:bg-red-100',
+      iconColor: 'text-red-600'
     },
     {
       title: 'Submit Your Journal',
-      description: 'Submit your research for publication consideration',
+      description: 'Submit your vocational education research for publication',
       icon: FileText,
       link: '/submit-journal',
-      color: 'bg-green-50 border-green-200 hover:bg-green-100',
-      iconColor: 'text-green-600',
+      color: 'bg-orange-50 border-orange-200 hover:bg-orange-100',
+      iconColor: 'text-orange-600',
       requiresAuth: true
     },
     {
@@ -125,16 +125,16 @@ const PublishedJournalHome = () => {
       description: 'Find specific journals using advanced filters',
       icon: Search,
       link: '/published-journal-search',
-      color: 'bg-purple-50 border-purple-200 hover:bg-purple-100',
-      iconColor: 'text-purple-600'
+      color: 'bg-amber-50 border-amber-200 hover:bg-amber-100',
+      iconColor: 'text-amber-600'
     },
     {
       title: 'View Archive',
       description: 'Access journals from previous years',
       icon: Calendar,
       link: '/published-journal-archive',
-      color: 'bg-orange-50 border-orange-200 hover:bg-orange-100',
-      iconColor: 'text-orange-600'
+      color: 'bg-rose-50 border-rose-200 hover:bg-rose-100',
+      iconColor: 'text-rose-600'
     }
   ];
 
@@ -146,7 +146,7 @@ const PublishedJournalHome = () => {
       {/* Main Content */}
       <div className="pt-24 pb-12">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-16">
+        <div className="bg-gradient-to-r from-red-600 to-orange-700 text-white py-16">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -155,14 +155,14 @@ const PublishedJournalHome = () => {
               className="text-center max-w-4xl mx-auto"
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Published Journals Portal
+                JOVOTE Published Journals
               </h1>
               <p className="text-xl md:text-2xl mb-8 opacity-90">
-                Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)
+                Journal of Vocational Teacher Education
               </p>
               <p className="text-lg mb-8 opacity-80 max-w-2xl mx-auto">
-                Discover cutting-edge research in business, entrepreneurship, and education. 
-                Access peer-reviewed articles from leading scholars and practitioners.
+                Discover cutting-edge research in vocational teacher education.
+                Access peer-reviewed articles from leading scholars at the Federal College of Education (Technical), Potiskum.
               </p>
 
               {/* Search Bar */}
