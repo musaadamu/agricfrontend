@@ -12,22 +12,22 @@ const About = () => {
 
   return (
     // <SEOWrapper ...>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-amber-50">
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Hero Header */}
         <div className="relative mb-16">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-indigo-800/20 to-blue-900/20 blur-3xl"></div>
-          <div className="relative bg-gradient-to-r from-blue-900 to-indigo-800 rounded-3xl shadow-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-orange-800/20 to-red-900/20 blur-3xl"></div>
+          <div className="relative bg-gradient-to-r from-red-700 via-red-600 to-orange-600 rounded-3xl shadow-2xl overflow-hidden">
             <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
             <div className="relative px-4 sm:px-8 lg:px-12 py-12 sm:py-16 text-white">
               <div className="max-w-4xl">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   Journal of Vocational<br className="block sm:hidden" />
-                  <span className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-orange-200 to-amber-200 bg-clip-text text-transparent">
                     Teacher Education
                   </span>
                 </h1>
-                <p className="text-lg sm:text-xl text-blue-100 font-medium max-w-3xl leading-relaxed">
+                <p className="text-lg sm:text-xl text-orange-100 font-medium max-w-3xl leading-relaxed">
                   Advancing Research in Vocational Teacher Education Through
                   Innovation, Excellence, and Global Academic Collaboration
                 </p>
@@ -50,13 +50,13 @@ const About = () => {
         {/* Vision & Mission */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">Our Vision & Mission</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-red-900 mb-4">Our Vision & Mission</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-orange-600 mx-auto rounded-full"></div>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-4 sm:p-6">
+            <div className="bg-white rounded-2xl shadow-xl border border-red-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+              <div className="bg-gradient-to-r from-red-600 to-orange-600 p-4 sm:p-6">
                 <div className="flex items-center space-x-3 sm:space-x-4">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl">
                     🎯
@@ -72,8 +72,8 @@ const About = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 sm:p-6">
+            <div className="bg-white rounded-2xl shadow-xl border border-red-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+              <div className="bg-gradient-to-r from-orange-600 to-amber-600 p-4 sm:p-6">
                 <div className="flex items-center space-x-3 sm:space-x-4">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl sm:text-3xl">
                     🚀
@@ -93,8 +93,8 @@ const About = () => {
 
         {/* About the Journal */}
         <div className="mb-16">
-          <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-900 to-indigo-800 px-4 sm:px-8 py-6">
+          <div className="bg-white rounded-2xl shadow-xl border border-red-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-red-700 to-orange-600 px-4 sm:px-8 py-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-xl flex items-center justify-center mr-3 sm:mr-4 text-lg sm:text-xl">
                   📖
@@ -151,43 +151,43 @@ const About = () => {
         {/* Journal Details */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Journal Details</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+            <h2 className="text-4xl font-bold text-red-900 mb-4">Journal Details</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-orange-600 mx-auto rounded-full"></div>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 icon: "📅",
                 title: "Publication Frequency",
                 content: "Annual publication for 2026",
-                gradient: "from-blue-500 to-cyan-500"
+                gradient: "from-red-500 to-orange-500"
               },
               {
                 icon: "🔍",
                 title: "Peer Review Process",
                 content: "Rigorous vetting by vocational education experts",
-                gradient: "from-indigo-500 to-blue-500"
+                gradient: "from-orange-500 to-amber-500"
               },
               {
                 icon: "🌐",
                 title: "Scope",
                 content: "Multidisciplinary journal for vocational and related disciplines",
-                gradient: "from-cyan-500 to-blue-500"
+                gradient: "from-amber-500 to-orange-500"
               },
               {
                 icon: "⚖️",
                 title: "Publication Ethics",
                 content: "Adherence to international publication standards and ethics",
-                gradient: "from-blue-500 to-indigo-500"
+                gradient: "from-red-500 to-orange-500"
               }
             ].map((detail, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg border border-blue-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div key={index} className="bg-white rounded-xl shadow-lg border border-red-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div className={`bg-gradient-to-r ${detail.gradient} p-4`}>
                   <div className="text-3xl text-white text-center mb-2">{detail.icon}</div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-blue-900 mb-3">{detail.title}</h3>
+                  <h3 className="text-lg font-bold text-red-900 mb-3">{detail.title}</h3>
                   <p className="text-gray-700 text-sm leading-relaxed">{detail.content}</p>
                 </div>
               </div>
@@ -198,39 +198,39 @@ const About = () => {
         {/* Research Focus Areas */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Research Focus Areas</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+            <h2 className="text-4xl font-bold text-red-900 mb-4">Research Focus Areas</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-orange-600 mx-auto rounded-full"></div>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
                 icon: "🎓",
                 title: "Vocational Education",
                 content: "Curriculum Development, Teaching Methods, Skills Training, Technical Competencies",
-                gradient: "from-blue-50 to-cyan-50",
-                border: "border-blue-200"
+                gradient: "from-red-50 to-orange-50",
+                border: "border-red-200"
               },
               {
                 icon: "👨‍🏫",
                 title: "Teacher Training & Development",
                 content: "Teacher Preparation, Professional Development, Pedagogical Innovation, Mentoring",
-                gradient: "from-indigo-50 to-blue-50",
-                border: "border-indigo-200"
+                gradient: "from-orange-50 to-amber-50",
+                border: "border-orange-200"
               },
               {
                 icon: "🔧",
                 title: "Technical Education",
                 content: "Hands-on Learning, Practical Skills, Industry Partnerships, Apprenticeship Models",
-                gradient: "from-cyan-50 to-blue-50",
-                border: "border-cyan-200"
+                gradient: "from-amber-50 to-orange-50",
+                border: "border-amber-200"
               },
               {
                 icon: "💡",
                 title: "Educational Innovation",
                 content: "Technology Integration, Assessment Methods, Curriculum Design, Best Practices",
-                gradient: "from-blue-50 to-indigo-50",
-                border: "border-blue-200"
+                gradient: "from-orange-50 to-red-50",
+                border: "border-orange-200"
               }
             ].map((area, index) => (
               <div key={index} className={`bg-gradient-to-br ${area.gradient} rounded-xl p-6 border ${area.border} shadow-lg hover:shadow-xl transition-all duration-300`}>
@@ -239,7 +239,7 @@ const About = () => {
                     {area.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-blue-900 mb-3">{area.title}</h3>
+                    <h3 className="text-xl font-bold text-red-900 mb-3">{area.title}</h3>
                     <p className="text-gray-700 leading-relaxed">{area.content}</p>
                   </div>
                 </div>
@@ -251,12 +251,12 @@ const About = () => {
         {/* Location Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Our Location</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+            <h2 className="text-4xl font-bold text-red-900 mb-4">Our Location</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-orange-600 mx-auto rounded-full"></div>
           </div>
-          
-          <div className="bg-white rounded-2xl shadow-xl border border-blue-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-900 to-indigo-800 px-8 py-6">
+
+          <div className="bg-white rounded-2xl shadow-xl border border-red-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-red-700 to-orange-600 px-8 py-6">
               <h3 className="text-2xl font-bold text-white flex items-center">
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center mr-3">
                   📍
@@ -289,9 +289,9 @@ const About = () => {
         </div>
 
         {/* Footer */}
-        <div className="text-center pt-12 border-t border-blue-200">
+        <div className="text-center pt-12 border-t border-red-200">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">Join Our Academic Community</h3>
+            <h3 className="text-2xl font-bold text-red-900 mb-2">Join Our Academic Community</h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Be part of a global network of researchers, educators, and practitioners advancing
               vocational teacher education worldwide.

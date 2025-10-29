@@ -161,31 +161,48 @@ export default function HomePage() {
                             </div>
                         )}
 
-                        {/* Enhanced Welcome Section */}
-                        <div className="welcome-section-enhanced">
-                            <div className="welcome-content-full">
-                                <div className="welcome-text-container">
-                                    <h1 className="welcome-heading-enhanced">
-                                        Transforming <span className="highlight-text">Vocational Teacher Education</span>
-                                    </h1>
-                                    <p className="welcome-description">
-                                        JOVOTE is the premier multidisciplinary platform for the School of Secondary Education (Vocational), Federal College of Education (Technical) Potiskum.
-                                        We champion cutting-edge research, innovative pedagogical approaches, and evidence-based practices that elevate vocational and technical education across Nigeria and the African continent.
+                        {/* Vocational Education Research Hub - Redesigned */}
+                        <div className="research-hub-section">
+                            <div className="research-hub-container">
+                                {/* Left Content */}
+                                <div className="research-hub-content">
+                                    <div className="hub-badge">🎓 Research Hub</div>
+                                    <h2 className="hub-title">Vocational Education Research Hub</h2>
+                                    <p className="hub-description">
+                                        Explore groundbreaking research, innovative case studies, and transformative insights from JOVOTE - Journal of Vocational Teacher Education. Discover evidence-based practices and cutting-edge methodologies advancing vocational and technical education across Nigeria and the African continent.
                                     </p>
+                                    <div className="hub-cta-buttons">
+                                        <Link to="/submission" className="hub-button hub-button-primary">
+                                            Submit Research
+                                        </Link>
+                                        <Link to="/journals" className="hub-button hub-button-secondary">
+                                            Browse Articles
+                                        </Link>
+                                    </div>
                                 </div>
-                                <div className="welcome-actions-enhanced">
-                                    <Link to="/submission" className="action-button primary-enhanced">
-                                        <span>Contribute Your Research</span>
-                                        <svg className="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                                        </svg>
-                                    </Link>
-                                    <Link to="/about" className="action-button secondary-enhanced">
-                                        <span>Learn More</span>
-                                        <svg className="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </Link>
+
+                                {/* Right Stats Grid */}
+                                <div className="research-hub-stats">
+                                    <div className="stat-card">
+                                        <div className="stat-icon">📊</div>
+                                        <div className="stat-value">1</div>
+                                        <div className="stat-name">Research Papers</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-icon">⏰</div>
+                                        <div className="stat-value">0</div>
+                                        <div className="stat-name">Years of Excellence</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-icon">👥</div>
+                                        <div className="stat-value">50+</div>
+                                        <div className="stat-name">Expert Authors</div>
+                                    </div>
+                                    <div className="stat-card">
+                                        <div className="stat-icon">🌍</div>
+                                        <div className="stat-value">Global</div>
+                                        <div className="stat-name">Impact</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +244,6 @@ export default function HomePage() {
                                 <span className="filter-item">Pedagogy</span>
                             </div>
                             <JournalList />
-                            <div className="no-results">No journals found matching your criteria.</div>
                             <Link to="/journals" className="view-all-button">View All Articles →</Link>
                         </div>
                     </main>

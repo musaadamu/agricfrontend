@@ -119,18 +119,18 @@ const JournalArchive = () => {
   };
 
   if (loading) return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-      <div className="text-blue-600 text-xl font-semibold">Loading journals...</div>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-red-50 to-orange-50">
+      <div className="text-red-600 text-xl font-semibold">Loading journals...</div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-      <div className="bg-gradient-to-br from-blue-800 to-blue-900 shadow-lg py-12 mb-8">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50">
+      <div className="bg-gradient-to-br from-red-700 to-orange-600 shadow-lg py-12 mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-white mb-4">Journal Statistics</h2>
-            <div className="w-20 h-1 bg-accent-500 mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-amber-400 mx-auto rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -139,7 +139,7 @@ const JournalArchive = () => {
                   <div className="p-3 rounded-full bg-white/20 text-white">{stat.icon}</div>
                   <div>
                     <div className="text-4xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-blue-100">{stat.title}</div>
+                    <div className="text-orange-100">{stat.title}</div>
                   </div>
                 </div>
               </div>
@@ -149,10 +149,10 @@ const JournalArchive = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-blue-100">
-          <div className="p-6 border-b border-blue-100">
-            <h1 className="text-3xl font-bold text-blue-800 mb-2">Journal Archive</h1>
-            <p className="text-blue-600">Browse through our collection of published articles</p>
+        <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-red-100">
+          <div className="p-6 border-b border-red-100">
+            <h1 className="text-3xl font-bold text-red-800 mb-2">Journal Archive</h1>
+            <p className="text-red-600">Browse through our collection of published articles</p>
           </div>
           {error && (
             <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 m-6" role="alert">
@@ -168,16 +168,16 @@ const JournalArchive = () => {
                     placeholder="Search journals..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full px-4 py-2 rounded-lg border border-blue-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full px-4 py-2 rounded-lg border border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
                   />
-                  <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500" />
+                  <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-500" />
                 </div>
               </div>
               <div className="flex gap-4 flex-wrap">
                 <select
                   value={yearFilter}
                   onChange={(e) => setYearFilter(e.target.value)}
-                  className="px-4 py-2 rounded-lg border border-blue-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                  className="px-4 py-2 rounded-lg border border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white"
                 >
                   <option value="all">All Years</option>
                   {availableYears.map(year => <option key={year} value={year}>{year}</option>)}
@@ -186,19 +186,19 @@ const JournalArchive = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredJournals.map(journal => (
-                <div key={journal._id} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-blue-100 overflow-hidden">
+                <div key={journal._id} className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-red-100 overflow-hidden">
                   <div className="p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-2">{journal.title}</h3>
-                    <p className="text-blue-600 text-sm mb-4 line-clamp-2">{journal.abstract}</p>
+                    <h3 className="text-lg font-semibold text-red-800 mb-2">{journal.title}</h3>
+                    <p className="text-red-600 text-sm mb-4 line-clamp-2">{journal.abstract}</p>
                     <div className="flex items-center justify-between mt-4">
                       <button
                         onClick={() => handleDownload(journal)}
-                        className="inline-flex items-center px-4 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition-colors duration-200"
+                        className="inline-flex items-center px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors duration-200"
                       >
                         <FiDownload className="mr-2" />
                         Download PDF
                       </button>
-                      <span className="text-blue-500 text-sm">{new Date(journal.createdAt).toLocaleDateString()}</span>
+                      <span className="text-red-500 text-sm">{new Date(journal.createdAt).toLocaleDateString()}</span>
                     </div>
                   </div>
                 </div>

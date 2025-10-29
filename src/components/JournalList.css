@@ -4,21 +4,76 @@
     margin: 0 auto;
 }
 
+@media (max-width: 1024px) {
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .journal-showcase-container {
         max-width: 100%;
         padding: 2rem 1rem;
     }
+
+    .journal-hero-header {
+        padding: 2rem 1rem;
+    }
+
+    .journal-hero-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .journal-hero-header p {
+        font-size: 1rem;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
 }
 
 .journal-hero-header {
-    background: linear-gradient(135deg, #dc2626, #ea580c);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: #fff;
     padding: 3rem 2rem;
     border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.journal-hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(234, 88, 12, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.journal-hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .journal-hero-header h1 {
@@ -31,6 +86,7 @@
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.6;
+    color: #cbd5e1;
 }
 
 @media (max-width: 768px) {
@@ -42,11 +98,12 @@
 }
 
 .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     margin-top: 2rem;
-    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .stat-item {
@@ -55,14 +112,35 @@
     align-items: center;
     font-size: 1rem;
     color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+    background: rgba(220, 38, 38, 0.1);
+    border-color: rgba(220, 38, 38, 0.4);
+    transform: translateY(-5px);
 }
 
 .stat-number {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #fca5a5;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .search-filter-section {

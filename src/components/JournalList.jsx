@@ -356,7 +356,7 @@ const JournalList = () => {
                         <div className="stat-item">
                             <span className="stat-number">
                                 <FiAward />
-                                100+
+                                50+
                             </span>
                             <span className="stat-label">Expert Authors</span>
                         </div>

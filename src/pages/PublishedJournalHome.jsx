@@ -146,8 +146,17 @@ const PublishedJournalHome = () => {
       {/* Main Content */}
       <div className="pt-24 pb-16">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-red-700 via-red-600 to-orange-600 text-white py-24 shadow-2xl">
-          <div className="container mx-auto px-4">
+        <div className="relative bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white py-24 shadow-2xl overflow-hidden">
+          {/* Background Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 opacity-90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/50"></div>
+          <div className="absolute top-0 left-0 right-0 bottom-0 opacity-10"
+              style={{
+                  backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(234, 88, 12, 0.3) 0%, transparent 50%)'
+              }}>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -157,26 +166,26 @@ const PublishedJournalHome = () => {
               <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
                 JOVOTE Research Portal
               </h1>
-              <p className="text-2xl md:text-3xl mb-8 opacity-95 font-semibold">
+              <p className="text-2xl md:text-3xl mb-8 text-gray-300 font-semibold">
                 Journal of Vocational Teacher Education
               </p>
-              <p className="text-lg mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg mb-10 text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Explore cutting-edge research in vocational teacher education. Access peer-reviewed articles from leading scholars at the Federal College of Education (Technical), Potiskum.
               </p>
 
               {/* Search Bar */}
-              <form onSubmit={handleSearch} className="max-w-3xl mx-auto">
+              <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative z-20">
                 <div className="flex gap-3">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search journals by title, author, keywords..."
-                    className="flex-1 px-8 py-4 rounded-xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-white/50 shadow-lg"
+                    className="flex-1 px-8 py-4 rounded-xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-red-500/50 shadow-lg"
                   />
                   <button
                     type="submit"
-                    className="px-10 py-4 bg-white text-red-600 rounded-xl hover:bg-gray-100 transition-all font-bold flex items-center gap-2 shadow-lg"
+                    className="px-10 py-4 bg-white text-slate-900 rounded-xl hover:bg-gray-100 transition-all font-bold flex items-center gap-2 shadow-lg"
                   >
                     <Search size={22} />
                     <span>Search</span>
