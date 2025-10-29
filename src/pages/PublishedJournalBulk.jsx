@@ -204,14 +204,14 @@ const PublishedJournalBulk = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search journals..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 />
               </div>
 
               <select
                 value={filters.year}
                 onChange={(e) => setFilters(prev => ({ ...prev, year: e.target.value }))}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
               >
                 <option value="">All Years</option>
                 {years.map(year => (
@@ -222,7 +222,7 @@ const PublishedJournalBulk = () => {
               <select
                 value={filters.quarter}
                 onChange={(e) => setFilters(prev => ({ ...prev, quarter: e.target.value }))}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
               >
                 <option value="">All Quarters</option>
                 {quarters.map(quarter => (
@@ -233,7 +233,7 @@ const PublishedJournalBulk = () => {
               <select
                 value={filters.status}
                 onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="published">Published</option>
@@ -291,7 +291,7 @@ const PublishedJournalBulk = () => {
                         className="flex items-center gap-2 text-sm font-medium text-gray-700"
                       >
                         {selectedJournals.size === journals.length && journals.length > 0 ? (
-                          <CheckSquare size={16} className="text-blue-600" />
+                          <CheckSquare size={16} className="text-red-600" />
                         ) : (
                           <Square size={16} />
                         )}

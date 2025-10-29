@@ -24,7 +24,7 @@ export const SEO_CONFIG = {
   // Contact information
   CONTACT: {
     email: process.env.REACT_APP_CONTACT_EMAIL || 'jovote2025@gmail.com',
-    phone: '+234-803-494-2253',
+    phone: 'Chairman: Dr. Victor Madu U. - 08034942253 | Secretary: Halima Abdullahi - 08065386688',
     address: 'Potiskum, Yobe State, Nigeria'
   },
   

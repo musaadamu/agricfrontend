@@ -67,14 +67,14 @@ const LoginPage = () => {
                     </div>
                     <button
                         type="submit"
-                        className={`w-full p-3 rounded-md text-white ${email && password ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"}`}
+                        className={`w-full p-3 rounded-md text-white ${email && password ? "bg-red-600 hover:bg-red-700" : "bg-gray-400 cursor-not-allowed"}`}
                         disabled={!email || !password || loading}
                     >
                         {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
                 <div className="text-center mt-4">
-                    <Link to="/forgotpassword" className="text-blue-500 hover:underline">Forgot Password?</Link>
+                    <Link to="/forgotpassword" className="text-red-600 hover:underline">Forgot Password?</Link>
                 </div>
             </div>
         </div>

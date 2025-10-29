@@ -224,8 +224,8 @@ const JournalUpload = () => {
                     <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                         <div className="p-6 sm:p-8">
                             <div className="flex justify-between items-center mb-8">
-<h2 className="text-2xl font-bold text-gray-800">Upload Article to Nigerian Journal of Business and Entrepreneurship Education</h2>
-                                <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+<h2 className="text-2xl font-bold text-gray-800">Upload Article to Journal of Vocational Teacher Education</h2>
+                                <div className="bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
                                     Academic Publishing
                                 </div>
                             </div>
@@ -279,7 +279,7 @@ const JournalUpload = () => {
                                                 onChange={handleChange}
                                                 required
                                                 placeholder="Enter journal title"
-                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                             />
                                         </div>
                                     </div>
@@ -296,7 +296,7 @@ const JournalUpload = () => {
                                                 required
                                                 rows={4}
                                                 placeholder="Provide a brief summary of your journal"
-                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                             />
                                         </div>
                                     </div>
@@ -313,7 +313,7 @@ const JournalUpload = () => {
                                                 onChange={handleChange}
                                                 required
                                                 placeholder="e.g., John Smith, Jane Doe"
-                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                             />
                                         </div>
                                         <p className="mt-2 text-sm text-gray-500">
@@ -332,7 +332,7 @@ const JournalUpload = () => {
                                                 value={formData.keywords}
                                                 onChange={handleChange}
                                                 placeholder="e.g., science, research, medicine"
-                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                             />
                                         </div>
                                         <p className="mt-2 text-sm text-gray-500">
@@ -346,7 +346,7 @@ const JournalUpload = () => {
                                             Upload PDF Document (.pdf) <span className="text-red-500">*</span>
                                         </label>
                                         <div
-                                            className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 ${pdfDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'} border-dashed rounded-md`}
+                                            className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 ${pdfDragActive ? 'border-red-500 bg-red-50' : 'border-gray-300'} border-dashed rounded-md`}
                                             onDragEnter={handlePdfDrag}
                                             onDragLeave={handlePdfDrag}
                                             onDragOver={handlePdfDrag}
@@ -372,7 +372,7 @@ const JournalUpload = () => {
                                                         <div className="flex text-sm text-gray-600 justify-center">
                                                             <label
                                                                 htmlFor="pdfFileInput"
-                                                                className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none"
+                                                                className="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none"
                                                             >
                                                                 <span>Upload a PDF file</span>
                                                                 <input
@@ -391,10 +391,10 @@ const JournalUpload = () => {
                                                     </>
                                                 ) : (
                                                     <div className="flex flex-col items-center">
-                                                        <svg className="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                         </svg>
-                                                        <p className="mt-2 text-sm text-blue-600 font-medium">{pdfFileName}</p>
+                                                        <p className="mt-2 text-sm text-red-600 font-medium">{pdfFileName}</p>
                                                         <button
                                                             type="button"
                                                             onClick={() => {
@@ -418,7 +418,7 @@ const JournalUpload = () => {
                                             Upload Word Document (.docx) <span className="text-red-500">*</span>
                                         </label>
                                         <div
-                                            className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 ${docxDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'} border-dashed rounded-md`}
+                                            className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 ${docxDragActive ? 'border-red-500 bg-red-50' : 'border-gray-300'} border-dashed rounded-md`}
                                             onDragEnter={handleDocxDrag}
                                             onDragLeave={handleDocxDrag}
                                             onDragOver={handleDocxDrag}
@@ -444,7 +444,7 @@ const JournalUpload = () => {
                                                         <div className="flex text-sm text-gray-600 justify-center">
                                                             <label
                                                                 htmlFor="docxFileInput"
-                                                                className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none"
+                                                                className="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none"
                                                             >
                                                                 <span>Upload a Word file</span>
                                                                 <input
@@ -463,10 +463,10 @@ const JournalUpload = () => {
                                                     </>
                                                 ) : (
                                                     <div className="flex flex-col items-center">
-                                                        <svg className="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                         </svg>
-                                                        <p className="mt-2 text-sm text-blue-600 font-medium">{docxFileName}</p>
+                                                        <p className="mt-2 text-sm text-red-600 font-medium">{docxFileName}</p>
                                                         <button
                                                             type="button"
                                                             onClick={() => {
@@ -493,14 +493,14 @@ const JournalUpload = () => {
                                         <button
                                             type="button"
                                             onClick={resetForm}
-                                            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                         >
                                             Reset
                                         </button>
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                                            className={`px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ${
                                                 loading ? "opacity-70 cursor-not-allowed" : ""
                                             }`}
                                         >

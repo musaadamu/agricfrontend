@@ -358,7 +358,7 @@ export default function ManageJournal() {
 
     return (
         <div className="journal-management-container">
-<h1 className="text-2xl font-bold mb-4 text-center text-gray-800 border-b pb-3">Manage Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</h1>
+<h1 className="text-2xl font-bold mb-4 text-center text-red-900 border-b-2 border-red-600 pb-3">Manage Journal of Vocational Teacher Education (JOVOTE)</h1>
 
             <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
                 <TabList>
@@ -381,7 +381,7 @@ export default function ManageJournal() {
                         <>
                             <button
                                 onClick={handleAdd}
-                                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 flex items-center"
+                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300 flex items-center"
                             >
                                 <i className="fas fa-plus mr-2"></i> Add New Journal
                             </button>

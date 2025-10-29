@@ -94,7 +94,7 @@ const SubmitJournal = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
+            <div className="bg-gradient-to-r from-red-700 via-red-600 to-orange-600 text-white py-16">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -123,7 +123,7 @@ const SubmitJournal = () => {
                                         <div
                                             className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                                                 currentStep >= step.number
-                                                    ? 'bg-green-600 text-white'
+                                                    ? 'bg-red-600 text-white'
                                                     : 'bg-gray-200 text-gray-600'
                                             }`}
                                         >
@@ -146,7 +146,7 @@ const SubmitJournal = () => {
                                         <div
                                             className={`w-16 h-1 mx-4 transition-all duration-300 ${
                                                 currentStep > step.number
-                                                    ? 'bg-green-600'
+                                                    ? 'bg-red-600'
                                                     : 'bg-gray-200'
                                             }`}
                                         />

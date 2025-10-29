@@ -54,10 +54,10 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
             {[
-              { icon: FaBookOpen, number: '12+', label: 'Published Volumes', color: 'from-blue-400 to-blue-600' },
-              { icon: FaUsers, number: '200+', label: 'Contributing Authors', color: 'from-purple-400 to-purple-600' },
-              { icon: FaGraduationCap, number: '35+', label: 'Vocational Programs', color: 'from-green-400 to-green-600' },
-              { icon: FaAward, number: '98%', label: 'Peer Review Quality', color: 'from-yellow-400 to-yellow-600' }
+              { icon: FaBookOpen, number: '12+', label: 'Published Volumes', color: 'from-red-400 to-red-600' },
+              { icon: FaUsers, number: '200+', label: 'Contributing Authors', color: 'from-orange-400 to-orange-600' },
+              { icon: FaGraduationCap, number: '35+', label: 'Vocational Programs', color: 'from-amber-400 to-amber-600' },
+              { icon: FaAward, number: '98%', label: 'Peer Review Quality', color: 'from-red-500 to-orange-500' }
             ].map((stat, index) => (
               <div key={index} className={`relative overflow-hidden p-4 bg-white/15 rounded-2xl backdrop-blur-md border border-white/30 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/30 cursor-pointer group`}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
@@ -211,11 +211,11 @@ const Footer = () => {
                 <h5 className="text-sm font-semibold text-slate-100 mb-2">Follow Us</h5>
                 <div className="flex gap-2 flex-wrap">
                   {[
-                    { icon: FaFacebook, color: 'hover:bg-blue-600', label: 'Facebook' },
-                    { icon: FaTwitter, color: 'hover:bg-sky-500', label: 'Twitter' },
-                    { icon: FaLinkedin, color: 'hover:bg-blue-700', label: 'LinkedIn' },
-                    { icon: FaResearchgate, color: 'hover:bg-teal-600', label: 'ResearchGate' },
-                    { icon: FaOrcid, color: 'hover:bg-lime-600', label: 'ORCID' }
+                    { icon: FaFacebook, color: 'hover:bg-red-600', label: 'Facebook' },
+                    { icon: FaTwitter, color: 'hover:bg-orange-500', label: 'Twitter' },
+                    { icon: FaLinkedin, color: 'hover:bg-red-700', label: 'LinkedIn' },
+                    { icon: FaResearchgate, color: 'hover:bg-amber-600', label: 'ResearchGate' },
+                    { icon: FaOrcid, color: 'hover:bg-orange-600', label: 'ORCID' }
                   ].map((social, index) => (
                     <a key={index} href="#" className={`w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-slate-300 ${social.color} hover:text-white transition-all duration-300 hover:transform hover:-translate-y-1 text-sm`} aria-label={social.label}>
                       <social.icon />
@@ -237,7 +237,7 @@ const Footer = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white text-xs placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all"
+                      className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white text-xs placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white/15 transition-all"
                     />
                     <button
                       onClick={handleSubscribe}
@@ -274,7 +274,7 @@ const Footer = () => {
 
             <div className="flex flex-wrap gap-4 justify-center">
               {['Privacy Policy', 'Terms of Service', 'Ethics Guidelines', 'Accessibility'].map((link, index) => (
-                <a key={index} href="#" className="text-xs text-slate-300 hover:text-blue-400 transition-colors">
+                <a key={index} href="#" className="text-xs text-slate-300 hover:text-red-400 transition-colors">
                   {link}
                 </a>
               ))}

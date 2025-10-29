@@ -188,8 +188,8 @@ const Guide = () => {
                         <span className="text-sm">📱</span>
                       </div>
                       <div className="text-red-50 text-sm sm:text-base">
-                        <p className="break-all">+234-803-494-2253</p>
-                        <p className="break-all">+234-806-538-6688</p>
+                        <p className="break-all">Chairman: Dr. Victor Madu U. - 08034942253</p>
+                        <p className="break-all">Secretary: Halima Abdullahi - 08065386688</p>
                       </div>
                     </div>
                   </div>

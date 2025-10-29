@@ -126,13 +126,9 @@ const Dashboard = () => {
             {/* Navigation Bar */}
             <nav className="dashboard-nav">
                 <div className="nav-content">
-                    <div className="nav-logo">NIJOBED</div>
+                    <div className="nav-logo">JOVOTE</div>
                     <div className="nav-links">
                         <Link to="/" className="nav-link">Home</Link>
-                        <Link to="/about" className="nav-link">About Us</Link>
-                        <Link to="/submissions" className="nav-link">Make Submissions</Link>
-                        <Link to="/current-issue" className="nav-link">Current Issue</Link>
-                        <Link to="/archive" className="nav-link">Archive</Link>
                         {user?.role === "admin" && (
                             <Link to="/manage-journals" className="nav-link">Manage Journals</Link>
                         )}

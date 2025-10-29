@@ -34,7 +34,7 @@ const ForgotPassword = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="max-w-md w-full p-8 bg-white shadow-lg rounded-lg">
-                <h2 className="text-2xl font-bold mb-6 text-center text-blue-800">Forgot Password</h2>
+                <h2 className="text-2xl font-bold mb-6 text-center text-red-800">Forgot Password</h2>
 
                 {submitted ? (
                     <div className="text-center">
@@ -48,7 +48,7 @@ const ForgotPassword = () => {
                                 setSubmitted(false);
                                 setEmail('');
                             }}
-                            className="text-blue-600 hover:text-blue-800 underline mt-2"
+                            className="text-red-600 hover:text-red-800 underline mt-2"
                         >
                             Try again
                         </button>
@@ -70,13 +70,13 @@ const ForgotPassword = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 transition"
                                 />
                             </div>
                             <button
                                 type="submit"
                                 className={`w-full p-3 rounded-md text-white font-medium transition-colors ${
-                                    email ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
+                                    email ? "bg-red-600 hover:bg-red-700" : "bg-gray-400 cursor-not-allowed"
                                 }`}
                                 disabled={!email || loading}
                             >
@@ -97,7 +97,7 @@ const ForgotPassword = () => {
                 )}
 
                 <div className="text-center mt-6 text-sm">
-                    <Link to="/login" className="text-blue-600 hover:text-blue-800 font-medium">
+                    <Link to="/login" className="text-red-600 hover:text-red-800 font-medium">
                         ← Back to Login
                     </Link>
                 </div>

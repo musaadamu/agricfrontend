@@ -103,7 +103,7 @@ const PublishedJournalArchive = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+            <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-16">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -134,7 +134,7 @@ const PublishedJournalArchive = () => {
                             <select
                                 value={selectedYear}
                                 onChange={(e) => handleYearChange(e.target.value)}
-                                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             >
                                 <option value="">Choose a year</option>
                                 {availableYears.map(year => (
@@ -153,7 +153,7 @@ const PublishedJournalArchive = () => {
                                             onClick={() => handleQuarterChange(quarter)}
                                             className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                                                 selectedQuarter === quarter
-                                                    ? 'bg-blue-600 text-white'
+                                                    ? 'bg-red-600 text-white'
                                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                             }`}
                                         >
@@ -176,7 +176,7 @@ const PublishedJournalArchive = () => {
                 {/* Loading State */}
                 {loading && (
                     <div className="flex justify-center items-center py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
                     </div>
                 )}
 
@@ -243,7 +243,7 @@ const PublishedJournalArchive = () => {
                                     onClick={() => handlePageChange(page)}
                                     className={`px-4 py-2 rounded-lg ${
                                         currentPage === page
-                                            ? 'bg-blue-600 text-white'
+                                            ? 'bg-red-600 text-white'
                                             : 'border border-gray-300 hover:bg-gray-50'
                                     }`}
                                 >

@@ -86,7 +86,7 @@ const Contact = () => {
               </p>
               <p className="flex items-center gap-3">
                 <FiPhone className="text-red-600 flex-shrink-0" />
-                <span>+234-803-494-2253; +234-806-538-6688</span>
+                <span>Chairman: Dr. Victor Madu U. - 08034942253 | Secretary: Halima Abdullahi - 08065386688</span>
               </p>
             </div>
 

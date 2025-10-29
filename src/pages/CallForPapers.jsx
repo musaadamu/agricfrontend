@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CallForPapers = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-red-50">
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Hero Header */}
         <div className="relative mb-16">
@@ -181,24 +181,24 @@ const CallForPapers = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
               <div className="bg-gradient-to-r from-red-600 to-orange-600 p-4">
-                <h3 className="text-lg font-bold text-white">Dr. Victor Madu U.</h3>
+                <h3 className="text-lg font-bold text-white">Chairman: Dr. Victor Madu U.</h3>
               </div>
               <div className="p-6">
                 <p className="text-gray-700 flex items-center">
                   <span className="text-xl mr-3">📱</span>
-                  <a href="tel:+2348034942253" className="hover:underline text-red-600 font-semibold">08034942253</a>
+                  <a href="tel:+2348034942253" className="hover:underline text-red-600 font-semibold">Dr. Victor Madu U. - 08034942253</a>
                 </p>
               </div>
             </div>
 
             <div className="bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
               <div className="bg-gradient-to-r from-red-600 to-orange-600 p-4">
-                <h3 className="text-lg font-bold text-white">Halima Abdullahi</h3>
+                <h3 className="text-lg font-bold text-white">Secretary: Halima Abdullahi</h3>
               </div>
               <div className="p-6">
                 <p className="text-gray-700 flex items-center">
                   <span className="text-xl mr-3">📱</span>
-                  <a href="tel:+2348065386688" className="hover:underline text-red-600 font-semibold">08065386688</a>
+                  <a href="tel:+2348065386688" className="hover:underline text-red-600 font-semibold">Halima Abdullahi - 08065386688</a>
                 </p>
               </div>
             </div>

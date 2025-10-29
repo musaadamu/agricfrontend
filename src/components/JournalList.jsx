@@ -331,46 +331,6 @@ const JournalList = () => {
 
     return (
         <div className="journal-showcase-container">
-            {/* Hero Header */}
-            <div className="journal-hero-header">
-                <div className="journal-hero-content">
-                    <h1 className="journal-hero-title-responsive responsive-hero-title">Vocational Education Research Hub</h1>
-                    <p className="journal-hero-desc-responsive journal-hero-desc-white">
-                        Explore groundbreaking research, innovative case studies, and transformative insights from <span className="journal-full-title">JOVOTE - Journal of Vocational Teacher Education</span>. Discover evidence-based practices and cutting-edge methodologies advancing vocational and technical education across Nigeria and the African continent.
-                    </p>
-                    <div className="hero-stats">
-                        <div className="stat-item">
-                            <span className="stat-number">
-                                <FiFileText />
-                                {pagination.totalJournals}
-                            </span>
-                            <span className="stat-label">Research Papers</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">
-                                <FiTrendingUp />
-                                {publicationYears.length}
-                            </span>
-                            <span className="stat-label">Years of Excellence</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">
-                                <FiAward />
-                                50+
-                            </span>
-                            <span className="stat-label">Expert Authors</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-number">
-                                <FiGlobe />
-                                Global
-                            </span>
-                            <span className="stat-label">Impact</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             {/* Search and Filter Panel */}
             <div className="search-filter-section">
                 <div className="search-bar-group">
@@ -493,7 +453,7 @@ const JournalList = () => {
                                         <div className="journal-card-actions flex flex-col md:flex-row justify-center md:justify-start items-center gap-2 md:space-x-2 mt-4">
                                             <Link
                                                 to={`/journals/${journal._id}`}
-                                                className="action-button view-button bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition w-full md:w-auto text-center"
+                                                className="action-button view-button bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition w-full md:w-auto text-center"
                                             >
                                                 <FiEye /> View Details
                                             </Link>

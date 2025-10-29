@@ -119,14 +119,14 @@ const About = () => {
                     </p>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border border-blue-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-4 flex items-center">
+                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-4 sm:p-6 border border-red-200">
+                  <h3 className="text-lg sm:text-xl font-bold text-red-900 mb-4 flex items-center">
                     <span className="mr-2">📞</span>
                     Contact Information
                   </h3>
                   <div className="space-y-3 text-gray-700">
                     <div className="flex items-start space-x-3">
-                      <span className="text-blue-600 mt-1 text-sm sm:text-base">📍</span>
+                      <span className="text-red-600 mt-1 text-sm sm:text-base">📍</span>
                       <div className="text-xs sm:text-sm whitespace-pre-line break-words">
                         School of Secondary Education (Vocational)
                         <br />Federal College of Education (Technical)
@@ -134,12 +134,12 @@ const About = () => {
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <span className="text-blue-600 text-sm sm:text-base">📧</span>
-                      <a href="mailto:jovote2025@gmail.com" className="hover:underline text-blue-700 text-xs sm:text-sm break-all">jovote2025@gmail.com</a>
+                      <span className="text-red-600 text-sm sm:text-base">📧</span>
+                      <a href="mailto:jovote2025@gmail.com" className="hover:underline text-red-700 text-xs sm:text-sm break-all">jovote2025@gmail.com</a>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <span className="text-blue-600 text-sm sm:text-base">📱</span>
-                      <span className="text-xs sm:text-sm break-words">Dr. Victor Madu U.: 08034942253 | Halima Abdullahi: 08065386688</span>
+                      <span className="text-red-600 text-sm sm:text-base">📱</span>
+                      <span className="text-xs sm:text-sm break-words">Chairman: Dr. Victor Madu U. - 08034942253 | Secretary: Halima Abdullahi - 08065386688</span>
                     </div>
                   </div>
                 </div>

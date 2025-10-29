@@ -93,13 +93,14 @@ const Navigation = ({ user }) => {
         {/* Desktop Navigation */}
         <div className="nav-content">
           <div className="nav-primary">
-            {navigationItems.map((item) => {
+            {navigationItems.map((item, index) => {
               const Icon = item.icon;
+              const isHome = item.path === '/';
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`nav-item ${isActive(item.path) ? 'nav-item-active' : ''}`}
+                  className={`nav-item ${isActive(item.path) ? 'nav-item-active' : ''} ${isHome ? 'nav-item-home' : ''}`}
                   title={item.label}
                 >
                   <Icon className="nav-icon" />
