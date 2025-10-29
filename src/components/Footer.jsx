@@ -45,21 +45,26 @@ const Footer = () => {
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Impact Banner */}
-      <div className="bg-gradient-to-r from-red-700 via-orange-700 to-amber-600 py-6 relative border-b border-white/10">
+      {/* Impact Banner - JOVOTE Performance Metrics */}
+      <div className="bg-gradient-to-r from-red-600 via-orange-600 to-amber-500 py-8 relative border-b-4 border-red-800">
         <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-white mb-1">JOVOTE Journal Performance</h3>
+            <p className="text-red-100 text-sm">Advancing Vocational Teacher Education</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
             {[
-              { icon: FaBookOpen, number: '500+', label: 'Research Articles' },
-              { icon: FaUsers, number: '1,200+', label: 'Active Researchers' },
-              { icon: FaGraduationCap, number: '50+', label: 'Partner Institutions' },
-              { icon: FaAward, number: '95%', label: 'Citation Rate' }
+              { icon: FaBookOpen, number: '12+', label: 'Published Volumes', color: 'from-blue-400 to-blue-600' },
+              { icon: FaUsers, number: '200+', label: 'Contributing Authors', color: 'from-purple-400 to-purple-600' },
+              { icon: FaGraduationCap, number: '35+', label: 'Vocational Programs', color: 'from-green-400 to-green-600' },
+              { icon: FaAward, number: '98%', label: 'Peer Review Quality', color: 'from-yellow-400 to-yellow-600' }
             ].map((stat, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 cursor-pointer">
-                <stat.icon className="text-2xl text-amber-400 min-w-8" />
-                <div>
-                  <div className="text-xl font-bold text-white">{stat.number}</div>
-                  <div className="text-xs text-blue-100 font-medium">{stat.label}</div>
+              <div key={index} className={`relative overflow-hidden p-4 bg-white/15 rounded-2xl backdrop-blur-md border border-white/30 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/30 cursor-pointer group`}>
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <stat.icon className="text-3xl text-white mb-2 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="text-2xl font-bold text-white">{stat.number}</div>
+                  <div className="text-xs text-red-100 font-medium mt-1">{stat.label}</div>
                 </div>
               </div>
             ))}
