@@ -40,13 +40,13 @@ const Footer = () => {
     <footer className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-200 relative overflow-hidden">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 via-transparent to-emerald-500/10"></div>
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/10 via-transparent to-orange-500/10"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
       </div>
 
       {/* Impact Banner */}
-      <div className="bg-gradient-to-r from-blue-800 via-indigo-800 to-emerald-700 py-6 relative border-b border-white/10">
+      <div className="bg-gradient-to-r from-red-700 via-orange-700 to-amber-600 py-6 relative border-b border-white/10">
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
             {[
@@ -75,54 +75,50 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="lg:col-span-2 space-y-6">
               <div className="flex items-center gap-4">
-                <img 
-                  src="images/logo.JPG" 
-                  alt="NIJOBED Journal Logo" 
+                <img
+                  src="images/logo.JPG"
+                  alt="JOVOTE Journal Logo"
                   className="w-14 h-14 rounded-xl object-cover border-2 border-white/20 shadow-lg"
                 />
                 <div>
-                  <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                    NIJOBED
+                  <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                    JOVOTE
                   </h3>
                   <p className="text-xs text-slate-400 font-medium">
-                    Nigerian Journal of Business and Entrepreneurship Education
+                    Journal of Vocational Teacher Education
                   </p>
                 </div>
               </div>
-              
+
               <p className="text-sm leading-relaxed text-slate-300">
-                Pioneering scholarly excellence in business education and entrepreneurial research. 
-                Committed to advancing knowledge that drives economic growth and innovation across Africa.
+                Advancing scholarly excellence in vocational teacher education and technical research.
+                Committed to advancing knowledge that transforms vocational education across Nigeria and Africa.
               </p>
 
               <div className="bg-white/5 p-4 rounded-lg border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-xs text-slate-400 font-semibold">ISSN:</span>
-                  <span className="font-mono text-sm text-white font-semibold">1234-5678</span>
+                  <span className="font-mono text-sm text-white font-semibold">978799-416</span>
                   <span className="text-xs text-slate-500 italic">(Online)</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 font-semibold">Print:</span>
-                  <span className="font-mono text-sm text-white font-semibold">8765-4321</span>
                 </div>
               </div>
             </div>
 
             {/* Research Areas */}
             <div className="space-y-4">
-              <h4 className="text-base font-bold text-white border-b-2 border-blue-500 pb-1 w-fit">
+              <h4 className="text-base font-bold text-white border-b-2 border-red-500 pb-1 w-fit">
                 Research Areas
               </h4>
               <div className="grid grid-cols-1 gap-2">
                 {[
-                  'Business Education',
-                  'Entrepreneurship',
-                  'Innovation Studies',
-                  'Economic Development',
-                  'Leadership Research',
-                  'Digital Business'
+                  'Vocational Education',
+                  'Teacher Training',
+                  'Technical Education',
+                  'Curriculum Development',
+                  'Pedagogical Research',
+                  'Skills Development'
                 ].map((area, index) => (
-                  <div key={index} className="bg-gradient-to-r from-blue-800 to-indigo-800 text-white px-3 py-1 rounded-full text-xs font-medium text-center transition-transform duration-200 hover:scale-105">
+                  <div key={index} className="bg-gradient-to-r from-red-700 to-orange-700 text-white px-3 py-1 rounded-full text-xs font-medium text-center transition-transform duration-200 hover:scale-105">
                     {area}
                   </div>
                 ))}
@@ -131,7 +127,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h4 className="text-base font-bold text-white border-b-2 border-blue-500 pb-1 w-fit">
+              <h4 className="text-base font-bold text-white border-b-2 border-red-500 pb-1 w-fit">
                 Quick Links
               </h4>
               <div className="grid grid-cols-1 gap-3">
@@ -140,7 +136,7 @@ const Footer = () => {
                   <ul className="space-y-1">
                     {['Submit Article', 'Guidelines', 'Peer Review', 'Publication Ethics'].map((link, index) => (
                       <li key={index}>
-                        <a href="#" className="text-xs text-slate-300 hover:text-blue-400 transition-all duration-200 flex items-center gap-1 group">
+                        <a href="#" className="text-xs text-slate-300 hover:text-red-400 transition-all duration-200 flex items-center gap-1 group">
                           <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
                           {link}
                         </a>
@@ -153,7 +149,7 @@ const Footer = () => {
                   <ul className="space-y-1">
                     {['Current Issue', 'Archives', 'Search', 'Subscribe'].map((link, index) => (
                       <li key={index}>
-                        <a href="#" className="text-xs text-slate-300 hover:text-blue-400 transition-all duration-200 flex items-center gap-1 group">
+                        <a href="#" className="text-xs text-slate-300 hover:text-red-400 transition-all duration-200 flex items-center gap-1 group">
                           <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
                           {link}
                         </a>
@@ -166,20 +162,20 @@ const Footer = () => {
 
             {/* Contact & Connect */}
             <div className="space-y-4">
-              <h4 className="text-base font-bold text-white border-b-2 border-blue-500 pb-1 w-fit">
+              <h4 className="text-base font-bold text-white border-b-2 border-red-500 pb-1 w-fit">
                 Contact & Connect
               </h4>
               
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-start gap-2">
-                  <FaMapMarkerAlt className="text-sm text-emerald-400 mt-0.5 min-w-4" />
+                  <FaMapMarkerAlt className="text-sm text-orange-400 mt-0.5 min-w-4" />
                   <div>
                     <div className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Payment Address</div>
                     <div className="text-xs text-slate-200 whitespace-pre-line">
                       The Editor-in-Chief
-                      <br />Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)
-                      <br />School of Secondary Education (Business),
+                      <br />Journal of Vocational Teacher Education (JOVOTE)
+                      <br />School of Secondary Education (Vocational),
                       <br />Federal College of Education (Technical),
                       <br />Potiskum, Yobe State.
                     </div>
@@ -187,11 +183,11 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-start gap-2">
-                  <FiMail className="text-sm text-blue-400 mt-0.5 min-w-4" />
+                  <FiMail className="text-sm text-red-400 mt-0.5 min-w-4" />
                   <div>
                     <div className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Email</div>
-                    <a href="mailto:sbefcetpotiskum@gmail.com" className="text-xs text-blue-300 hover:text-blue-400 transition-colors">
-                      sbefcetpotiskum@gmail.com
+                    <a href="mailto:jovote2025@gmail.com" className="text-xs text-red-300 hover:text-red-400 transition-colors">
+                      jovote2025@gmail.com
                     </a>
                   </div>
                 </div>
@@ -200,7 +196,7 @@ const Footer = () => {
                   <FaPhone className="text-sm text-amber-400 mt-0.5 min-w-4" />
                   <div>
                     <div className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Phone</div>
-                    <div className="text-xs text-slate-200">+2347035694303; +2348128161859</div>
+                    <div className="text-xs text-slate-200">+234 803 494 2253; +234 806 538 6688</div>
                   </div>
                 </div>
               </div>
@@ -238,13 +234,13 @@ const Footer = () => {
                       placeholder="Enter your email"
                       className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white text-xs placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all"
                     />
-                    <button 
+                    <button
                       onClick={handleSubscribe}
                       disabled={isSubscribed}
                       className={`px-3 py-2 rounded-md text-white text-xs font-semibold transition-all duration-300 min-w-12 flex items-center justify-center ${
-                        isSubscribed 
-                          ? 'bg-emerald-600 cursor-not-allowed' 
-                          : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/25'
+                        isSubscribed
+                          ? 'bg-emerald-600 cursor-not-allowed'
+                          : 'bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-500/25'
                       }`}
                     >
                       {isSubscribed ? '✓' : <FiSend />}
@@ -263,11 +259,11 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-left">
               <p className="text-xs text-slate-300 mb-1">
-                © {currentYear} Nigerian Journal of Business and Entrepreneurship Education. 
+                © {currentYear} Journal of Vocational Teacher Education (JOVOTE).
                 <span className="text-slate-400 font-medium"> All rights reserved.</span>
               </p>
               <p className="text-xs text-slate-400">
-                Published by <strong>Center for Entrepreneurship and Leadership Studies</strong>
+                Published by <strong>School of Secondary Education (Vocational), FCET Potiskum</strong>
               </p>
             </div>
 
@@ -282,7 +278,7 @@ const Footer = () => {
             {/* Back to Top Button */}
             <button
               onClick={scrollToTop}
-              className="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-1 flex items-center justify-center z-50"
+              className="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-1 flex items-center justify-center z-50"
               aria-label="Back to top"
             >
               <FaArrowUp className="text-sm" />

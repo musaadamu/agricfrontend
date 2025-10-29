@@ -12,7 +12,7 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%);
+  background: linear-gradient(135deg, #7c2d12 0%, #92400e 25%, #b45309 50%, #d97706 75%, #f59e0b 100%);
 }
 
 .carousel-slides {
@@ -43,7 +43,7 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  background: linear-gradient(45deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e0 50%, #e2e8f0 75%, #f8fafc 100%);
+  background: linear-gradient(45deg, #fef2f2 0%, #fed7aa 25%, #fecaca 50%, #fed7aa 75%, #fef2f2 100%);
 }
 
 .carousel-overlay {
@@ -122,15 +122,15 @@
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #dc2626 0%, #ea580c 100%);
   color: white;
   border: 2px solid transparent;
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+  background: linear-gradient(135deg, #b91c1c 0%, #c2410c 100%);
 }
 
 .carousel-nav {
@@ -203,7 +203,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #dc2626 0%, #ea580c 100%);
   transition: width 0.3s ease;
 }
 
@@ -219,24 +219,24 @@
   height: 4px;
   border: none;
   border-radius: 2px;
-  background: #e2e8f0;
+  background: #fed7aa;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .indicator.active {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #dc2626 0%, #ea580c 100%);
   transform: scale(1.2);
 }
 
 .indicator:hover {
-  background: #cbd5e0;
+  background: #fecaca;
 }
 
 .slide-counter {
   text-align: center;
   margin-top: 15px;
-  color: #64748b;
+  color: #92400e;
   font-weight: 500;
   font-size: 0.9rem;
 }

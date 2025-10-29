@@ -9,33 +9,33 @@ const Carousel = () => {
   const slides = [
     {
       src: "/images/image1.JPG",
-      alt: "Business Education Research",
-      title: "Advancing Business Education Research",
-      description: "Leading research in business, management, and entrepreneurship education"
+      alt: "Vocational Teacher Education Research",
+      title: "Advancing Vocational Teacher Education Research",
+      description: "Leading research in vocational education, teacher training, and technical education"
     },
     {
       src: "/images/image2.JPG",
       alt: "Academic Excellence",
       title: "Fostering Academic Excellence",
-      description: "Promoting quality research and innovation"
+      description: "Promoting quality research and innovation in vocational education"
     },
     {
       src: "/images/image3.JPG",
-      alt: "Business Innovation",
-      title: "Driving Business Innovation",
-      description: "Advancing teaching and learning in business and entrepreneurship"
+      alt: "Vocational Education Innovation",
+      title: "Driving Vocational Education Innovation",
+      description: "Advancing teaching and learning in vocational and technical education"
     },
     {
       src: "/images/image4.JPG",
-      alt: "Business Research Community",
-      title: "Building Business Research Community",
-      description: "Fostering collaboration in business and entrepreneurship education"
+      alt: "Vocational Education Research Community",
+      title: "Building Vocational Education Research Community",
+      description: "Fostering collaboration in vocational teacher education across Nigeria"
     },
     {
       src: "/images/image5.JPG",
-      alt: "Future of Business Education",
-      title: "Shaping the Future of Business Education",
-      description: "Innovating business and entrepreneurship education in Nigeria"
+      alt: "Future of Vocational Teacher Education",
+      title: "Shaping the Future of Vocational Teacher Education",
+      description: "Innovating vocational and technical education in Nigeria"
     }
   ];
 

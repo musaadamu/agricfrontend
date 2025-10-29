@@ -124,19 +124,19 @@ const PublishedJournalCard = ({ journal }) => {
     return (
         <motion.div
             layout
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
-            whileHover={{ y: -2 }}
+            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-red-100 h-full flex flex-col"
+            whileHover={{ y: -8, scale: 1.02 }}
         >
             {/* Header with Volume Badge */}
-            <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4">
-                <div className="flex justify-between items-start mb-2">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium">
-                        Volume {getQuarterDisplay(journal.volume_year, journal.volume_quarter)}
+            <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-600 text-white p-6">
+                <div className="flex justify-between items-start mb-3">
+                    <div className="bg-white/25 backdrop-blur-md rounded-full px-4 py-2 text-sm font-bold border border-white/30">
+                        {getQuarterDisplay(journal.volume_year, journal.volume_quarter)}
                     </div>
                     {journal.doi && (
                         <button
                             onClick={copyDOI}
-                            className="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/30 transition-colors"
+                            className="bg-white/25 backdrop-blur-md rounded-full p-2 hover:bg-white/40 transition-all border border-white/30"
                             title="Copy DOI"
                         >
                             <FaCopy className="text-sm" />
@@ -144,29 +144,29 @@ const PublishedJournalCard = ({ journal }) => {
                     )}
                 </div>
                 
-                <h3 className="text-lg font-bold leading-tight mb-2 line-clamp-2">
+                <h3 className="text-xl font-bold leading-tight mb-3 line-clamp-2 text-white">
                     {journal.title}
                 </h3>
-                
-                <div className="flex items-center gap-2 text-sm opacity-90">
+
+                <div className="flex items-center gap-2 text-sm opacity-95 text-white/90">
                     <FaUsers className="text-xs" />
-                    <span>{formatAuthors(journal.authors)}</span>
+                    <span className="font-medium">{formatAuthors(journal.authors)}</span>
                 </div>
             </div>
 
             {/* Content */}
-            <div className="p-4">
+            <div className="p-6 flex-1 flex flex-col">
                 {/* Abstract */}
-                <div className="mb-4">
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                        {isExpanded 
-                            ? journal.abstract 
+                <div className="mb-5 flex-1">
+                    <p className="text-gray-700 text-sm leading-relaxed">
+                        {isExpanded
+                            ? journal.abstract
                             : truncateText(journal.abstract, 150)
                         }
                         {journal.abstract && journal.abstract.length > 150 && (
                             <button
                                 onClick={() => setIsExpanded(!isExpanded)}
-                                className="text-green-600 hover:text-green-700 ml-1 font-medium"
+                                className="text-red-600 hover:text-red-700 ml-2 font-semibold transition-colors"
                             >
                                 {isExpanded ? 'Show less' : 'Read more'}
                             </button>
@@ -176,24 +176,24 @@ const PublishedJournalCard = ({ journal }) => {
 
                 {/* Keywords */}
                 {journal.keywords && journal.keywords.length > 0 && (
-                    <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                            <FaTags className="text-gray-400 text-xs" />
-                            <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                    <div className="mb-5">
+                        <div className="flex items-center gap-2 mb-3">
+                            <FaTags className="text-red-500 text-xs" />
+                            <span className="text-xs font-bold text-red-600 uppercase tracking-wider">
                                 Keywords
                             </span>
                         </div>
-                        <div className="flex flex-wrap gap-1">
+                        <div className="flex flex-wrap gap-2">
                             {journal.keywords.slice(0, 3).map((keyword, index) => (
                                 <span
                                     key={index}
-                                    className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
+                                    className="px-3 py-1 bg-gradient-to-r from-red-100 to-orange-100 text-red-700 rounded-full text-xs font-medium border border-red-200"
                                 >
                                     {keyword}
                                 </span>
                             ))}
                             {journal.keywords.length > 3 && (
-                                <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
+                                <span className="px-3 py-1 bg-gradient-to-r from-red-100 to-orange-100 text-red-700 rounded-full text-xs font-medium border border-red-200">
                                     +{journal.keywords.length - 3} more
                                 </span>
                             )}
@@ -202,44 +202,44 @@ const PublishedJournalCard = ({ journal }) => {
                 )}
 
                 {/* Metadata */}
-                <div className="space-y-2 mb-4 text-sm text-gray-500">
+                <div className="space-y-2 mb-6 text-sm text-gray-600 border-t border-gray-200 pt-4">
                     <div className="flex items-center gap-2">
-                        <FaCalendarAlt className="text-xs" />
-                        <span>Published: {formatDate(journal.publication_date)}</span>
+                        <FaCalendarAlt className="text-xs text-red-500" />
+                        <span className="font-medium">Published: {formatDate(journal.publication_date)}</span>
                     </div>
-                    
+
                     {journal.page_numbers && (
                         <div className="flex items-center gap-2">
-                            <FaFileAlt className="text-xs" />
-                            <span>Pages: {journal.page_numbers}</span>
+                            <FaFileAlt className="text-xs text-red-500" />
+                            <span className="font-medium">Pages: {journal.page_numbers}</span>
                         </div>
                     )}
 
                     {journal.doi && (
                         <div className="flex items-center gap-2">
-                            <FaExternalLinkAlt className="text-xs" />
+                            <FaExternalLinkAlt className="text-xs text-red-500" />
                             <span className="font-mono text-xs">DOI: {journal.doi}</span>
                         </div>
                     )}
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2">
+                <div className="flex gap-3 mt-auto">
                     {/* PDF Download Button */}
                     <button
                         onClick={() => handleDownload('pdf')}
                         disabled={downloading || (!journal.pdfCloudinaryUrl && !journal.content_file_path)}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl hover:from-red-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold shadow-md"
                     >
                         {downloading ? (
                             <>
-                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                                Downloading...
+                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                                <span>Downloading...</span>
                             </>
                         ) : (
                             <>
-                                <FaDownload />
-                                PDF
+                                <FaDownload className="text-sm" />
+                                <span>PDF</span>
                             </>
                         )}
                     </button>
@@ -249,14 +249,14 @@ const PublishedJournalCard = ({ journal }) => {
                         <button
                             onClick={() => handleDownload('docx')}
                             disabled={downloading}
-                            className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold shadow-md"
                         >
                             {downloading ? (
-                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
                             ) : (
                                 <>
-                                    <FaDownload />
-                                    DOCX
+                                    <FaDownload className="text-sm" />
+                                    <span>DOCX</span>
                                 </>
                             )}
                         </button>
@@ -264,27 +264,26 @@ const PublishedJournalCard = ({ journal }) => {
 
                     <button
                         onClick={() => {
-                            // Navigate to detailed view (implement if needed)
                             window.location.href = `/published-journals/${journal._id}`;
                         }}
-                        className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+                        className="px-4 py-3 border-2 border-red-300 text-red-600 rounded-xl hover:bg-red-50 transition-all flex items-center justify-center gap-2 font-semibold"
                     >
-                        <FaEye />
-                        View
+                        <FaEye className="text-sm" />
+                        <span>View</span>
                     </button>
                 </div>
             </div>
 
             {/* Status Badge (if not published) */}
             {journal.status !== 'published' && (
-                <div className="absolute top-2 right-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        journal.status === 'under_review' ? 'bg-yellow-100 text-yellow-800' :
-                        journal.status === 'accepted' ? 'bg-blue-100 text-blue-800' :
-                        journal.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                        'bg-gray-100 text-gray-800'
+                <div className="absolute top-4 right-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
+                        journal.status === 'under_review' ? 'bg-yellow-100 text-yellow-800 border border-yellow-300' :
+                        journal.status === 'accepted' ? 'bg-green-100 text-green-800 border border-green-300' :
+                        journal.status === 'rejected' ? 'bg-red-100 text-red-800 border border-red-300' :
+                        'bg-gray-100 text-gray-800 border border-gray-300'
                     }`}>
-                        {journal.status.replace('_', ' ').toUpperCase()}
+                        {journal.status.replace('_', ' ')}
                     </span>
                 </div>
             )}

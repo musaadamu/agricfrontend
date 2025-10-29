@@ -1,5 +1,5 @@
-// Service Worker for NIJOBED
-const CACHE_NAME = 'nijobed-v1';
+// Service Worker for JOVOTE
+const CACHE_NAME = 'jovote-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',

@@ -24,7 +24,7 @@ Allow: /guide
 Allow: /editorial-board
 
 # Sitemap location
-Sitemap: https://www.nijobed.com.ng/sitemap.xml
+Sitemap: https://agricfrontend.vercel.app/api/seo/sitemap.xml
 
 # Crawl delay (be respectful to servers)
 Crawl-delay: 1

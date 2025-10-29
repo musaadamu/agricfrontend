@@ -72,7 +72,7 @@ const PublishedJournalNavigation = ({ user }) => {
               <img src="/images/logo.JPG" alt="Journal Logo" className="logo-img" />
             </div>
             <div className="brand-text">
-              <h1 className="brand-title">NIJOBED</h1>
+              <h1 className="brand-title">JOVOTE</h1>
               <span className="brand-subtitle">Published Journals</span>
             </div>
           </Link>

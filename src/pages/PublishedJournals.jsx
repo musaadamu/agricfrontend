@@ -100,9 +100,9 @@ const PublishedJournals = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-amber-50">
             {/* Header Section */}
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
+            <div className="bg-gradient-to-r from-red-700 via-red-600 to-orange-600 text-white py-20 shadow-2xl">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -110,24 +110,31 @@ const PublishedJournals = () => {
                         transition={{ duration: 0.6 }}
                         className="text-center"
                     >
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                            Published Journals {currentYear}
+                        <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+                            JOVOTE Research Collection
                         </h1>
-                        <p className="text-xl mb-8 max-w-3xl mx-auto">
-                            Explore our collection of peer-reviewed agricultural research publications
+                        <p className="text-xl mb-8 max-w-3xl mx-auto opacity-95">
+                            Peer-reviewed vocational teacher education research from leading scholars
                         </p>
-                        
+
                         {/* Stats Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                <div className="text-2xl font-bold">{totalJournals}</div>
-                                <div className="text-sm opacity-90">Total Published</div>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                            <motion.div
+                                whileHover={{ y: -5 }}
+                                className="bg-white/15 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/25 transition-all"
+                            >
+                                <div className="text-4xl font-bold mb-2">{totalJournals}</div>
+                                <div className="text-sm opacity-90 font-medium">Total Published</div>
+                            </motion.div>
                             {quarterlyStats.map((stat) => (
-                                <div key={stat._id} className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                    <div className="text-2xl font-bold">{stat.count}</div>
-                                    <div className="text-sm opacity-90">{getQuarterName(stat._id)}</div>
-                                </div>
+                                <motion.div
+                                    key={stat._id}
+                                    whileHover={{ y: -5 }}
+                                    className="bg-white/15 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/25 transition-all"
+                                >
+                                    <div className="text-4xl font-bold mb-2">{stat.count}</div>
+                                    <div className="text-sm opacity-90 font-medium">{getQuarterName(stat._id)}</div>
+                                </motion.div>
                             ))}
                         </div>
                     </motion.div>
@@ -135,24 +142,29 @@ const PublishedJournals = () => {
             </div>
 
             {/* Search and Filter Section */}
-            <div className="container mx-auto px-4 py-8">
-                <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-                    <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <div className="container mx-auto px-4 py-12">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-white rounded-2xl shadow-xl p-8 mb-12 border-l-4 border-red-600"
+                >
+                    <div className="flex flex-col lg:flex-row gap-6 items-center">
                         {/* Search Form */}
-                        <form onSubmit={handleSearch} className="flex-1 flex gap-2">
+                        <form onSubmit={handleSearch} className="flex-1 w-full flex gap-3">
                             <div className="relative flex-1">
-                                <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-red-400 text-lg" />
                                 <input
                                     type="text"
-                                    placeholder="Search journals by title, author, or keywords..."
+                                    placeholder="Search by title, author, keywords..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                    className="w-full pl-12 pr-4 py-3 border-2 border-red-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                                 />
                             </div>
                             <button
                                 type="submit"
-                                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                                className="px-8 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl hover:from-red-700 hover:to-orange-700 transition-all font-semibold shadow-lg"
                             >
                                 Search
                             </button>
@@ -165,23 +177,26 @@ const PublishedJournals = () => {
                             currentYear={currentYear}
                         />
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Results Info */}
-                <div className="flex justify-between items-center mb-6">
-                    <div className="text-gray-600">
-                        Showing {journals.length} of {totalJournals} journals
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                    <div className="text-gray-700 font-medium">
+                        <span className="text-2xl font-bold text-red-600">{journals.length}</span>
+                        <span className="text-gray-600"> of </span>
+                        <span className="text-2xl font-bold text-red-600">{totalJournals}</span>
+                        <span className="text-gray-600"> journals</span>
                         {selectedQuarter !== 'all' && (
-                            <span className="ml-2 px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                            <span className="ml-3 px-4 py-2 bg-gradient-to-r from-red-100 to-orange-100 text-red-800 rounded-full text-sm font-semibold border border-red-200">
                                 {getQuarterName(selectedQuarter)}
                             </span>
                         )}
                     </div>
-                    
-                    <div className="flex gap-2">
+
+                    <div className="flex gap-3">
                         <button
-                            onClick={() => window.location.href = '/journal-archive'}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                            onClick={() => window.location.href = '/published-journal-archive'}
+                            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl hover:from-orange-600 hover:to-amber-600 transition-all font-semibold flex items-center gap-2 shadow-lg"
                         >
                             <FaCalendarAlt />
                             View Archive
@@ -191,8 +206,11 @@ const PublishedJournals = () => {
 
                 {/* Loading State */}
                 {loading && (
-                    <div className="flex justify-center items-center py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+                    <div className="flex justify-center items-center py-20">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-16 w-16 border-4 border-red-200 border-t-red-600 mx-auto mb-4"></div>
+                            <p className="text-gray-600 font-medium">Loading journals...</p>
+                        </div>
                     </div>
                 )}
 
@@ -202,7 +220,7 @@ const PublishedJournals = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.6 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
                     >
                         {journals.map((journal, index) => (
                             <motion.div
@@ -219,51 +237,61 @@ const PublishedJournals = () => {
 
                 {/* Empty State */}
                 {!loading && journals.length === 0 && (
-                    <div className="text-center py-12">
-                        <div className="text-gray-400 text-6xl mb-4">📚</div>
-                        <h3 className="text-xl font-semibold text-gray-600 mb-2">No journals found</h3>
-                        <p className="text-gray-500">
-                            {searchQuery ? 'Try adjusting your search terms' : 'No journals published yet for this period'}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-red-200"
+                    >
+                        <div className="text-red-300 text-7xl mb-6">📚</div>
+                        <h3 className="text-2xl font-bold text-red-900 mb-3">No journals found</h3>
+                        <p className="text-red-700 text-lg">
+                            {searchQuery ? 'Try adjusting your search terms or filters' : 'No journals published yet for this period'}
                         </p>
-                    </div>
+                    </motion.div>
                 )}
 
                 {/* Pagination */}
                 {!loading && totalPages > 1 && (
-                    <div className="flex justify-center items-center gap-2 mt-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex justify-center items-center gap-3 mt-12 pb-8"
+                    >
                         <button
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
-                            className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                            className="px-6 py-3 border-2 border-red-300 text-red-600 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:bg-red-50 transition-all font-semibold"
                         >
-                            Previous
+                            ← Previous
                         </button>
-                        
-                        {[...Array(totalPages)].map((_, index) => {
-                            const page = index + 1;
-                            return (
-                                <button
-                                    key={page}
-                                    onClick={() => handlePageChange(page)}
-                                    className={`px-4 py-2 rounded-lg ${
-                                        currentPage === page
-                                            ? 'bg-green-600 text-white'
-                                            : 'border border-gray-300 hover:bg-gray-50'
-                                    }`}
-                                >
-                                    {page}
-                                </button>
-                            );
-                        })}
-                        
+
+                        <div className="flex gap-2 flex-wrap justify-center">
+                            {[...Array(totalPages)].map((_, index) => {
+                                const page = index + 1;
+                                return (
+                                    <button
+                                        key={page}
+                                        onClick={() => handlePageChange(page)}
+                                        className={`px-4 py-3 rounded-xl font-semibold transition-all ${
+                                            currentPage === page
+                                                ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg'
+                                                : 'border-2 border-red-200 text-red-600 hover:bg-red-50'
+                                        }`}
+                                    >
+                                        {page}
+                                    </button>
+                                );
+                            })}
+                        </div>
+
                         <button
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
-                            className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+                            className="px-6 py-3 border-2 border-red-300 text-red-600 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:bg-red-50 transition-all font-semibold"
                         >
-                            Next
+                            Next →
                         </button>
-                    </div>
+                    </motion.div>
                 )}
             </div>
         </div>

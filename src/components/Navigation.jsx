@@ -148,8 +148,8 @@ const Navigation = ({ user }) => {
             <div className="mobile-brand">
               <img src="images/logo.JPG" alt="Journal Logo" className="mobile-logo" />
               <div className="mobile-brand-text">
-                <h2 className="mobile-title">NIJOBED</h2>
-                <span className="mobile-subtitle">Academic Journal</span>
+                <h2 className="mobile-title">JOVOTE</h2>
+                <span className="mobile-subtitle">Vocational Teacher Education</span>
               </div>
             </div>
             <button className="mobile-close" onClick={closeMobileMenu} aria-label="Close mobile menu">

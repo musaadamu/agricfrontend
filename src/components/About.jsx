@@ -267,20 +267,20 @@ const About = () => {
             <div className="p-0">
               <div className="relative">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3931.964964357751!2d11.031963!3d11.713964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10f4c7e2e2e2e2e3%3A0x7e2e2e2e2e2e2e2e!2sFederal%20College%20of%20Education%20(Technical)%20Potiskum!5e0!3m2!1sen!2sng!4v1701876008045!5m2!1sen!2sng"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3931.964964357751!2d11.031963!3d11.713964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10f4c7e2e2e2e2e3%3A0x7e2e2e2e2e2e2e2e!2sFederal%20College%20of%20Education%20(Technical)%20Potiskum%2C%20Yobe%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1729776000000"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Federal College of Education Technical Potiskum Location"
+                  title="Federal College of Education (Technical) Potiskum, Yobe State, Nigeria"
                   className="rounded-b-2xl"
                 ></iframe>
                 <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg">
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-gray-800">Potiskum, Yobe State, Nigeria</span>
+                    <span className="text-sm font-medium text-gray-800">Federal College of Education (Technical), Potiskum, Yobe State, Nigeria</span>
                   </div>
                 </div>
               </div>

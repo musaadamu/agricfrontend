@@ -11,21 +11,21 @@ const VolumeSelector = ({ selectedQuarter, onQuarterChange, currentYear }) => {
     ];
 
     return (
-        <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-gray-600">
+        <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-red-700 font-semibold">
                 <FaFilter className="text-sm" />
-                <span className="text-sm font-medium">Filter by Quarter:</span>
+                <span className="text-sm">Filter:</span>
             </div>
-            
-            <div className="flex gap-1">
+
+            <div className="flex gap-2 flex-wrap">
                 {quarters.map((quarter) => (
                     <button
                         key={quarter.value}
                         onClick={() => onQuarterChange(quarter.value)}
-                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        className={`px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
                             selectedQuarter === quarter.value
-                                ? 'bg-green-600 text-white shadow-md'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg border border-red-700'
+                                : 'bg-white text-red-600 border-2 border-red-200 hover:bg-red-50'
                         }`}
                         title={quarter.description}
                     >

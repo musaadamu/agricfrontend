@@ -334,9 +334,9 @@ const JournalList = () => {
             {/* Hero Header */}
             <div className="journal-hero-header">
                 <div className="journal-hero-content">
-                    <h1 className="journal-hero-title-responsive responsive-hero-title">Research Excellence Hub</h1>
+                    <h1 className="journal-hero-title-responsive responsive-hero-title">Vocational Education Research Hub</h1>
                     <p className="journal-hero-desc-responsive journal-hero-desc-white">
-                        Explore impactful research, case studies, and insights from the <span className="journal-full-title">Nigerian Journal of Business and Entrepreneurship Education (NIJOBED)</span>. Discover innovative approaches and evidence-based practices shaping the future of business and entrepreneurship education in Nigeria and beyond.
+                        Explore groundbreaking research, innovative case studies, and transformative insights from <span className="journal-full-title">JOVOTE - Journal of Vocational Teacher Education</span>. Discover evidence-based practices and cutting-edge methodologies advancing vocational and technical education across Nigeria and the African continent.
                     </p>
                     <div className="hero-stats">
                         <div className="stat-item">
@@ -476,7 +476,7 @@ const JournalList = () => {
                                         </div>
                                         <div className="journal-card-meta flex flex-wrap gap-2 md:gap-4 mt-2 text-xs md:text-sm text-gray-600 justify-center md:justify-start">
                                             <span className="meta-item flex items-center gap-1"><FiCalendar /> {journal.publicationDate ? formatDate(journal.publicationDate) : ''}</span>
-                                            <span className="meta-item flex items-center gap-1"><FiBook /> {journal.journalName || 'NIJOBED'}</span>
+                                            <span className="meta-item flex items-center gap-1"><FiBook /> {journal.journalName || 'JOVOTE'}</span>
                                             {journal.volume && <span className="meta-item">Vol. {journal.volume}</span>}
                                         </div>
                                         {journal.abstract && (
