@@ -201,7 +201,10 @@ const Footer = () => {
                   <FaPhone className="text-sm text-amber-400 mt-0.5 min-w-4" />
                   <div>
                     <div className="text-xs text-slate-400 font-semibold uppercase tracking-wide">Phone</div>
-                    <div className="text-xs text-slate-200">+234 803 494 2253; +234 806 538 6688</div>
+                    <div className="text-xs text-slate-200 space-y-1">
+                      <div><span className="font-semibold">Chairman:</span> Dr. Victor Madu U. - 08034942253</div>
+                      <div><span className="font-semibold">Secretary:</span> Halima Abdullahi - 08065386688</div>
+                    </div>
                   </div>
                 </div>
               </div>
