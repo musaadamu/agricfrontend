@@ -225,48 +225,24 @@ const PublishedJournalCard = ({ journal }) => {
 
                 {/* Actions */}
                 <div className="flex gap-3 mt-auto">
-                    {/* PDF Download Button */}
-                    <button
-                        onClick={() => handleDownload('pdf')}
-                        disabled={downloading || (!journal.pdfCloudinaryUrl && !journal.content_file_path)}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl hover:from-red-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold shadow-md"
-                    >
-                        {downloading ? (
-                            <>
-                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                                <span>Downloading...</span>
-                            </>
-                        ) : (
-                            <>
-                                <FaDownload className="text-sm" />
-                                <span>PDF</span>
-                            </>
-                        )}
-                    </button>
-
-                    {/* DOCX Download Button (if available) */}
-                    {journal.docxCloudinaryUrl && (
+                    {/* PDF View Button */}
+                    {journal.pdfCloudinaryUrl && (
                         <button
-                            onClick={() => handleDownload('docx')}
+                            onClick={() => window.open(journal.pdfCloudinaryUrl, '_blank')}
                             disabled={downloading}
-                            className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold shadow-md"
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl hover:from-red-700 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-semibold shadow-md"
                         >
-                            {downloading ? (
-                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                            ) : (
-                                <>
-                                    <FaDownload className="text-sm" />
-                                    <span>DOCX</span>
-                                </>
-                            )}
+                            <FaEye className="text-sm" />
+                            <span>PDF</span>
                         </button>
                     )}
 
+                    {/* View Details Button */}
                     <button
                         onClick={() => {
                             window.location.href = `/published-journals/${journal._id}`;
                         }}
-                        className="px-4 py-3 border-2 border-red-300 text-red-600 rounded-xl hover:bg-red-50 transition-all flex items-center justify-center gap-2 font-semibold"
+                        className="flex-1 px-4 py-3 border-2 border-red-300 text-red-600 rounded-xl hover:bg-red-50 transition-all flex items-center justify-center gap-2 font-semibold"
                     >
                         <FaEye className="text-sm" />
                         <span>View</span>

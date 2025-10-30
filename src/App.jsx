@@ -39,6 +39,7 @@ import PublishedJournalBulk from "./pages/PublishedJournalBulk.jsx";
 import SubmitJournal from "./pages/SubmitJournal.jsx";
 import ManagePublishedJournals from "./pages/ManagePublishedJournals.jsx";
 import PublishedJournalArchive from "./pages/PublishedJournalArchive.jsx";
+import PublishedJournalDetail from "./components/PublishedJournalDetail.jsx";
 import TestDownload from "./pages/TestDownload.jsx";
 import TestBothSystems from "./pages/TestBothSystems.jsx";
 
@@ -74,6 +75,7 @@ function App() {
             {/* Published Journal System Routes */}
             <Route path="/published-journal-home" element={<PublishedJournalHome />} />
             <Route path="/published-journals" element={<PublishedJournals />} />
+            <Route path="/published-journals/:id" element={<PublishedJournalDetail />} />
             <Route path="/published-journal-search" element={<PublishedJournalSearch />} />
             <Route path="/published-journal-stats" element={<PublishedJournalStats />} />
             <Route path="/published-journal-archive" element={<PublishedJournalArchive />} />
