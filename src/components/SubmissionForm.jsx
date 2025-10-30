@@ -49,11 +49,11 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
 
     const validateStep3 = () => {
         const newErrors = {};
-        
-        if (!data.manuscript) {
-            newErrors.manuscript = 'Manuscript file is required';
+
+        if (!data.pdfFile && !data.docxFile) {
+            newErrors.files = 'Please upload at least one file (PDF or DOCX)';
         }
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -87,27 +87,32 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
     };
 
     // Handle file upload with enhanced validation
-    const handleFileChange = (event) => {
+    const handleFileChange = (event, fileType) => {
         const file = event.target.files[0];
         if (file) {
             console.log('File selected:', {
                 name: file.name,
                 type: file.type,
-                size: file.size
+                size: file.size,
+                fileType: fileType
             });
 
-            // Validate file type
-            const allowedTypes = [
-                'application/pdf',
-                'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ];
+            // Validate file type based on fileType parameter
+            let allowedTypes = [];
+            let allowedExtensions = [];
 
-            const allowedExtensions = ['.pdf', '.doc', '.docx'];
+            if (fileType === 'pdf') {
+                allowedTypes = ['application/pdf'];
+                allowedExtensions = ['.pdf'];
+            } else if (fileType === 'docx') {
+                allowedTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                allowedExtensions = ['.doc', '.docx'];
+            }
+
             const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
 
             if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
-                toast.error('Please upload a PDF, DOC, or DOCX file');
+                toast.error(`Please upload a ${fileType.toUpperCase()} file`);
                 console.error('Invalid file type:', file.type, 'Extension:', fileExtension);
                 return;
             }
@@ -128,11 +133,11 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
             }
 
             console.log('File validation passed');
-            onDataChange({ manuscript: file });
-            if (errors.manuscript) {
-                setErrors(prev => ({ ...prev, manuscript: '' }));
+            onDataChange({ [fileType === 'pdf' ? 'pdfFile' : 'docxFile']: file });
+            if (errors.files) {
+                setErrors(prev => ({ ...prev, files: '' }));
             }
-            toast.success(`File "${file.name}" selected successfully`);
+            toast.success(`${fileType.toUpperCase()} file "${file.name}" selected successfully`);
         }
     };
 
@@ -322,85 +327,106 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
             {currentStep === 3 && (
                 <div>
                     <h2 className="text-2xl font-bold mb-6">Manuscript Upload</h2>
-                    
+
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <p className="text-sm text-blue-800">
+                            ℹ️ You can upload PDF and/or DOCX files (max 50MB each). At least one file is required.
+                        </p>
+                    </div>
+
+                    {/* PDF File Upload */}
                     <div className="mb-6">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Manuscript File *
+                            PDF File (Optional)
                         </label>
-                        
-                        {!data.manuscript ? (
+
+                        {!data.pdfFile ? (
                             <div
-                                onClick={() => fileInputRef.current?.click()}
-                                className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                                    errors.manuscript ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-green-400 hover:bg-green-50'
-                                }`}
+                                onClick={() => document.getElementById('pdfInput')?.click()}
+                                className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors border-gray-300 hover:border-blue-400 hover:bg-blue-50"
                             >
-                                <FaUpload className="mx-auto text-4xl text-gray-400 mb-4" />
-                                <p className="text-lg font-medium text-gray-600 mb-2">
-                                    Click to upload your manuscript
-                                </p>
-                                <p className="text-sm text-gray-500 mb-3">
-                                    Supported formats: PDF, DOC, DOCX (Max: 50MB)
-                                </p>
-                                <div className="text-xs text-gray-400 space-y-1">
-                                    <p>• PDF files are preferred for final submissions</p>
-                                    <p>• DOCX files are accepted for review purposes</p>
-                                    <p>• Ensure your file is complete and properly formatted</p>
-                                </div>
+                                <FaUpload className="mx-auto text-3xl text-gray-400 mb-2" />
+                                <p className="text-sm font-medium text-gray-600">Click to upload PDF</p>
+                                <p className="text-xs text-gray-500">Max: 50MB</p>
                             </div>
                         ) : (
                             <div className="border border-green-300 rounded-lg p-4 bg-green-50">
                                 <div className="flex items-center gap-3">
-                                    <div className="flex-shrink-0">
-                                        <FaFileAlt className="text-green-600 text-2xl" />
-                                    </div>
+                                    <FaFileAlt className="text-green-600 text-xl" />
                                     <div className="flex-1 min-w-0">
-                                        <p className="font-medium text-gray-900 truncate">{data.manuscript.name}</p>
-                                        <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
-                                            <span>{formatFileSize(data.manuscript.size)}</span>
-                                            <span>•</span>
-                                            <span className="capitalize">
-                                                {data.manuscript.type.includes('pdf') ? 'PDF Document' :
-                                                 data.manuscript.type.includes('word') ? 'Word Document' :
-                                                 data.manuscript.name.toLowerCase().endsWith('.docx') ? 'Word Document' :
-                                                 'Document'}
-                                            </span>
-                                            <span>•</span>
-                                            <span className="text-green-600 font-medium">✓ Valid</span>
-                                        </div>
+                                        <p className="font-medium text-gray-900 truncate">{data.pdfFile.name}</p>
+                                        <p className="text-xs text-gray-600">{formatFileSize(data.pdfFile.size)}</p>
                                     </div>
                                     <button
+                                        type="button"
                                         onClick={() => {
-                                            onDataChange({ manuscript: null });
-                                            toast.info('File removed. You can select a new file.');
+                                            onDataChange({ pdfFile: null });
+                                            toast.info('PDF file removed.');
                                         }}
-                                        className="text-red-600 hover:bg-red-100 p-2 rounded-lg transition-colors"
-                                        title="Remove file"
+                                        className="text-red-600 hover:bg-red-100 p-2 rounded-lg"
                                     >
                                         <FaTimes />
                                     </button>
                                 </div>
+                            </div>
+                        )}
 
-                                {/* File preview info */}
-                                <div className="mt-3 pt-3 border-t border-green-200">
-                                    <p className="text-xs text-green-700">
-                                        <FaCheck className="inline mr-1" />
-                                        File ready for submission. You can proceed to the next step.
-                                    </p>
+                        <input
+                            id="pdfInput"
+                            type="file"
+                            onChange={(e) => handleFileChange(e, 'pdf')}
+                            accept=".pdf,application/pdf"
+                            className="hidden"
+                        />
+                    </div>
+
+                    {/* DOCX File Upload */}
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            DOCX File (Optional)
+                        </label>
+
+                        {!data.docxFile ? (
+                            <div
+                                onClick={() => document.getElementById('docxInput')?.click()}
+                                className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors border-gray-300 hover:border-green-400 hover:bg-green-50"
+                            >
+                                <FaUpload className="mx-auto text-3xl text-gray-400 mb-2" />
+                                <p className="text-sm font-medium text-gray-600">Click to upload DOCX</p>
+                                <p className="text-xs text-gray-500">Max: 50MB</p>
+                            </div>
+                        ) : (
+                            <div className="border border-green-300 rounded-lg p-4 bg-green-50">
+                                <div className="flex items-center gap-3">
+                                    <FaFileAlt className="text-green-600 text-xl" />
+                                    <div className="flex-1 min-w-0">
+                                        <p className="font-medium text-gray-900 truncate">{data.docxFile.name}</p>
+                                        <p className="text-xs text-gray-600">{formatFileSize(data.docxFile.size)}</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            onDataChange({ docxFile: null });
+                                            toast.info('DOCX file removed.');
+                                        }}
+                                        className="text-red-600 hover:bg-red-100 p-2 rounded-lg"
+                                    >
+                                        <FaTimes />
+                                    </button>
                                 </div>
                             </div>
                         )}
-                        
+
                         <input
-                            ref={fileInputRef}
+                            id="docxInput"
                             type="file"
-                            onChange={handleFileChange}
-                            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                            onChange={(e) => handleFileChange(e, 'docx')}
+                            accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                             className="hidden"
                         />
-                        
-                        {errors.manuscript && <p className="text-red-500 text-sm mt-1">{errors.manuscript}</p>}
                     </div>
+
+                    {errors.files && <p className="text-red-500 text-sm mt-1">{errors.files}</p>}
                 </div>
             )}
 
@@ -446,18 +472,29 @@ const SubmissionForm = ({ currentStep, data, onStepChange, onDataChange, onSubmi
                             <p className="text-gray-700">{data.submitted_by}</p>
                         </div>
 
-                        {/* Manuscript */}
+                        {/* Files */}
                         <div>
-                            <h3 className="font-semibold text-gray-900 mb-2">Manuscript</h3>
-                            {data.manuscript && (
-                                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                                    <FaFileAlt className="text-green-600" />
-                                    <div>
-                                        <p className="font-medium">{data.manuscript.name}</p>
-                                        <p className="text-sm text-gray-500">{formatFileSize(data.manuscript.size)}</p>
+                            <h3 className="font-semibold text-gray-900 mb-2">Uploaded Files</h3>
+                            <div className="space-y-2">
+                                {data.pdfFile && (
+                                    <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                        <FaFileAlt className="text-blue-600" />
+                                        <div className="flex-1">
+                                            <p className="font-medium text-gray-900">{data.pdfFile.name}</p>
+                                            <p className="text-sm text-gray-600">{formatFileSize(data.pdfFile.size)} • PDF</p>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
+                                {data.docxFile && (
+                                    <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                                        <FaFileAlt className="text-green-600" />
+                                        <div className="flex-1">
+                                            <p className="font-medium text-gray-900">{data.docxFile.name}</p>
+                                            <p className="text-sm text-gray-600">{formatFileSize(data.docxFile.size)} • DOCX</p>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

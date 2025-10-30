@@ -12,7 +12,8 @@ const SubmitJournal = () => {
         authors: [''],
         keywords: [''],
         submitted_by: '',
-        manuscript: null
+        pdfFile: null,
+        docxFile: null
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionResult, setSubmissionResult] = useState(null);
@@ -36,6 +37,11 @@ const SubmitJournal = () => {
         setIsSubmitting(true);
 
         try {
+            // Validate that at least one file is selected
+            if (!finalData.pdfFile && !finalData.docxFile) {
+                throw new Error('Please upload at least one file (PDF or DOCX)');
+            }
+
             const formData = new FormData();
             formData.append('title', finalData.title);
             formData.append('abstract', finalData.abstract);
@@ -43,8 +49,11 @@ const SubmitJournal = () => {
             formData.append('keywords', JSON.stringify(finalData.keywords.filter(keyword => keyword.trim())));
             formData.append('submitted_by', finalData.submitted_by);
 
-            if (finalData.manuscript) {
-                formData.append('manuscript', finalData.manuscript);
+            if (finalData.pdfFile) {
+                formData.append('pdfFile', finalData.pdfFile);
+            }
+            if (finalData.docxFile) {
+                formData.append('docxFile', finalData.docxFile);
             }
 
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/published-journals/submit`, {
@@ -85,7 +94,8 @@ const SubmitJournal = () => {
             authors: [''],
             keywords: [''],
             submitted_by: '',
-            manuscript: null
+            pdfFile: null,
+            docxFile: null
         });
         setSubmissionResult(null);
         setIsSubmitting(false);
