@@ -78,7 +78,7 @@ export default function EditorialBoard() {
     },
     {
       name: "Mrs. Grace Atijegbe",
-      affiliation: "Department of Fine and Applied Arts Education, FCE (T) Potiskum",
+      affiliation: "Department of Home Economics Education, FCE (T) Potiskum",
       role: "Publication Committee - Member"
     },
     {
