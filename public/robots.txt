@@ -1,3 +1,7 @@
+# Robots.txt for JOVETE - Journal of Vocational Teacher Education
+# Domain: www.jovete.com.ng
+
+# Default rules for all bots
 User-agent: *
 Allow: /
 
@@ -10,34 +14,66 @@ Disallow: /forgotpassword
 Disallow: /resetpassword/
 Disallow: /updateprofile
 Disallow: /submission
+Disallow: /submit-journal
 Disallow: /manage-journals
+Disallow: /manage-published-journals
 Disallow: /journals/uploads
+Disallow: /published-journal-upload
+Disallow: /published-journal-bulk
+Disallow: /logout
+Disallow: /unauthorized
+Disallow: /test
+Disallow: /test-download
+Disallow: /test-both-systems
 
-# Allow important pages
+# Allow important public pages
 Allow: /
 Allow: /journals
 Allow: /journals/*
+Allow: /published-journals
+Allow: /published-journals/*
 Allow: /archive
+Allow: /published-journal-archive
 Allow: /about
 Allow: /contact
 Allow: /guide
 Allow: /editorial-board
+Allow: /call-for-papers
+Allow: /published-journal-home
+Allow: /published-journal-search
+Allow: /published-journal-stats
 
 # Sitemap location
-Sitemap: https://agricfrontend.vercel.app/api/seo/sitemap.xml
+Sitemap: https://www.jovete.com.ng/sitemap.xml
 
 # Crawl delay (be respectful to servers)
 Crawl-delay: 1
 
-# Specific bot instructions
+# Specific bot instructions for Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
 
+# Specific bot instructions for Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# Specific bot instructions for Yahoo
 User-agent: Slurp
 Allow: /
 Crawl-delay: 2
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+

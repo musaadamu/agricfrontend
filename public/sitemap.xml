@@ -1,58 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Homepage -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main sitemap with all pages and journal URLs -->
+  <sitemap>
+    <loc>https://www.jovete.com.ng/api/seo/sitemap.xml</loc>
+    <lastmod>2025-11-09</lastmod>
+  </sitemap>
 
-    <!-- Journals Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/journals</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
+  <!-- PDF sitemap for search engines to index PDF files -->
+  <sitemap>
+    <loc>https://www.jovete.com.ng/api/seo/pdf-sitemap.xml</loc>
+    <lastmod>2025-11-09</lastmod>
+  </sitemap>
+</sitemapindex>
 
-    <!-- Archive Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/archive</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- About Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/about</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Contact Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/contact</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Guide Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/guide</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Editorial Board Page -->
-    <url>
-        <loc>https://agricfrontend.vercel.app/editorial-board</loc>
-        <lastmod>2024-08-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-</urlset>
