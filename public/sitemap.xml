@@ -11,5 +11,15 @@
     <loc>https://www.jovete.com.ng/api/seo/pdf-sitemap.xml</loc>
     <lastmod>2025-11-09</lastmod>
   </sitemap>
+  <!-- Main sitemap for new domain www.jovote.com.ng -->
+  <sitemap>
+    <loc>https://www.jovote.com.ng/api/seo/sitemap.xml</loc>
+    <lastmod>2025-11-09</lastmod>
+  </sitemap>
+  <!-- PDF sitemap for new domain www.jovote.com.ng -->
+  <sitemap>
+    <loc>https://www.jovote.com.ng/api/seo/pdf-sitemap.xml</loc>
+    <lastmod>2025-11-09</lastmod>
+  </sitemap>
 </sitemapindex>
 
