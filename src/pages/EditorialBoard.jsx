@@ -10,6 +10,16 @@ export default function EditorialBoard() {
     },
     // Members
     {
+      name: "Dr. Muhammad Madu Yunusa",
+      affiliation: "Department of Agricultural Education, FCE (T) Potiskum",
+      role: "Member"
+    },
+    {
+      name: "Dr. Monday Usman",
+      affiliation: "Department of Agricultural Education, FCE (T) Potiskum",
+      role: "Member"
+    },
+    {
       name: "Dr. Isa Ibrahim Shehu",
       affiliation: "Department of Agricultural Education, FCE (T) Potiskum",
       role: "Member"
@@ -36,7 +46,7 @@ export default function EditorialBoard() {
     },
     {
       name: "Dr. Abdulkadir Abdulkarim",
-      affiliation: "Department of Psychology and Guidance and Counseling, FCE (T) Potiskum",
+      affiliation: "Department of Psychology and Guidance and counseling, FCE (T) Potiskum",
       role: "Member"
     },
     // Consulting Editors/Editorial Advisers
@@ -78,7 +88,7 @@ export default function EditorialBoard() {
     },
     {
       name: "Mrs. Grace Atijegbe",
-      affiliation: "Department of Home Economics Education, FCE (T) Potiskum",
+      affiliation: "Department of Fine and Applied Arts Education, FCE (T) Potiskum",
       role: "Publication Committee - Member"
     },
     {
